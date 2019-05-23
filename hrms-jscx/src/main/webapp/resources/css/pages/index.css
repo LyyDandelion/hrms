@@ -1,0 +1,69 @@
+
+
+.menu-list {
+	
+	/*width: 1090px;*/
+	height: 150px;
+	left: 50%;
+	bottom: 70px
+}
+
+.menu-list li {
+	float: left;
+	height: 150px;
+	width: 130px;
+	text-align: center;
+	margin-right: 15%;
+	position: relative;
+	
+}
+
+.menu-list li:last-child {
+	margin-right: 0
+}
+
+.menu-list li.last {
+	margin-right: 0
+}
+
+.menu-list li i {
+	position: relative;
+	display: inline-block;
+	width: 266px;
+	height: 100px;
+	cursor: pointer;
+
+}
+
+.menu-list li i.user {
+    background: url(../../images/index/userSearch.png) no-repeat;
+	background-position: 0 0;
+}
+
+.menu-list li i.apply {
+    background: url(../../images/index/apply.png) no-repeat;
+	background-position: 0 0;
+}
+
+.menu-list li i.search {
+	background: url(../../images/index/caigou.png) no-repeat;
+	background-position: 0 0;
+}
+
+.menu-list li i.log {
+	background: url(../../images/index/log.png) no-repeat;
+	background-position: 0 0;
+}
+
+.menu-list li span {
+	font-size: 15px;
+	font-weight:bolder;
+	color: #46b9bf;
+	left: 117px;
+	top: -58px;
+	position: relative;
+}
+
+.mini-tree-nodes-tr{
+	background: #333740;
+}

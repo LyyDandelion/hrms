@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jssvc.hrms.dao.SalaryMapper" >
+  <resultMap id="BaseResultMap" type="jssvc.hrms.model.Salary" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="dah" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="post_salary" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="year_salary" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="float_salary" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="award" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="tel_allowrance" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="traffic_allowrance" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="lunch_allowrance" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="insurance" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="endowment_insurance" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="medical_insurance" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="work_year" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="post_level" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="flag" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="note1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sort" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dah, post_salary, year_salary, float_salary, award, tel_allowrance, traffic_allowrance, 
+    lunch_allowrance, insurance, endowment_insurance, medical_insurance, work_year, post_level, 
+    flag, note1, sort
+  </sql>
+  <select id="selectByDah" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+        *
+    from t_hrms_salary
+    where dah = #{dah,jdbcType=VARCHAR}
+  </select>
+  <select id="selectSalaries" resultMap="BaseResultMap" parameterType="jssvc.hrms.model.filter.SalarySearchFilter" >
+    select distinct
+    a.*
+    from t_hrms_salary a
+    <if test="sortField != null" >
+      order by a.${sortField} ${sortOrder}
+    </if>
+    <if test="limit != 0" >
+      limit #{offset},#{limit}
+    </if>
+  </select>
+  <select id="selectSalariesCount" resultType="int" parameterType="jssvc.hrms.model.filter.SalarySearchFilter" >
+    select count(1)
+    from t_hrms_salary
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_hrms_salary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_hrms_salary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jssvc.hrms.model.Salary" >
+    insert into t_hrms_salary (id, dah, post_salary, 
+      year_salary, float_salary, award, 
+      tel_allowrance, traffic_allowrance, lunch_allowrance, 
+      insurance, endowment_insurance, medical_insurance, 
+      work_year, post_level, flag, 
+      note1, sort)
+    values (#{id,jdbcType=INTEGER}, #{dah,jdbcType=VARCHAR}, #{postSalary,jdbcType=DOUBLE}, 
+      #{yearSalary,jdbcType=DOUBLE}, #{floatSalary,jdbcType=DOUBLE}, #{award,jdbcType=DOUBLE}, 
+      #{telAllowrance,jdbcType=DOUBLE}, #{trafficAllowrance,jdbcType=DOUBLE}, #{lunchAllowrance,jdbcType=DOUBLE}, 
+      #{insurance,jdbcType=DOUBLE}, #{endowmentInsurance,jdbcType=DOUBLE}, #{medicalInsurance,jdbcType=DOUBLE}, 
+      #{workYear,jdbcType=DOUBLE}, #{postLevel,jdbcType=DOUBLE}, #{flag,jdbcType=VARCHAR}, 
+      #{note1,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jssvc.hrms.model.Salary" >
+    insert into t_hrms_salary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dah != null" >
+        dah,
+      </if>
+      <if test="postSalary != null" >
+        post_salary,
+      </if>
+      <if test="yearSalary != null" >
+        year_salary,
+      </if>
+      <if test="floatSalary != null" >
+        float_salary,
+      </if>
+      <if test="award != null" >
+        award,
+      </if>
+      <if test="telAllowrance != null" >
+        tel_allowrance,
+      </if>
+      <if test="trafficAllowrance != null" >
+        traffic_allowrance,
+      </if>
+      <if test="lunchAllowrance != null" >
+        lunch_allowrance,
+      </if>
+      <if test="insurance != null" >
+        insurance,
+      </if>
+      <if test="endowmentInsurance != null" >
+        endowment_insurance,
+      </if>
+      <if test="medicalInsurance != null" >
+        medical_insurance,
+      </if>
+      <if test="workYear != null" >
+        work_year,
+      </if>
+      <if test="postLevel != null" >
+        post_level,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="note1 != null" >
+        note1,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dah != null" >
+        #{dah,jdbcType=VARCHAR},
+      </if>
+      <if test="postSalary != null" >
+        #{postSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="yearSalary != null" >
+        #{yearSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="floatSalary != null" >
+        #{floatSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="award != null" >
+        #{award,jdbcType=DOUBLE},
+      </if>
+      <if test="telAllowrance != null" >
+        #{telAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="trafficAllowrance != null" >
+        #{trafficAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="lunchAllowrance != null" >
+        #{lunchAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="insurance != null" >
+        #{insurance,jdbcType=DOUBLE},
+      </if>
+      <if test="endowmentInsurance != null" >
+        #{endowmentInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalInsurance != null" >
+        #{medicalInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="workYear != null" >
+        #{workYear,jdbcType=DOUBLE},
+      </if>
+      <if test="postLevel != null" >
+        #{postLevel,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="note1 != null" >
+        #{note1,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jssvc.hrms.model.Salary" >
+    update t_hrms_salary
+    <set >
+      <if test="dah != null" >
+        dah = #{dah,jdbcType=VARCHAR},
+      </if>
+      <if test="postSalary != null" >
+        post_salary = #{postSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="yearSalary != null" >
+        year_salary = #{yearSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="floatSalary != null" >
+        float_salary = #{floatSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="award != null" >
+        award = #{award,jdbcType=DOUBLE},
+      </if>
+      <if test="telAllowrance != null" >
+        tel_allowrance = #{telAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="trafficAllowrance != null" >
+        traffic_allowrance = #{trafficAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="lunchAllowrance != null" >
+        lunch_allowrance = #{lunchAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="insurance != null" >
+        insurance = #{insurance,jdbcType=DOUBLE},
+      </if>
+      <if test="endowmentInsurance != null" >
+        endowment_insurance = #{endowmentInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalInsurance != null" >
+        medical_insurance = #{medicalInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="workYear != null" >
+        work_year = #{workYear,jdbcType=DOUBLE},
+      </if>
+      <if test="postLevel != null" >
+        post_level = #{postLevel,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="note1 != null" >
+        note1 = #{note1,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jssvc.hrms.model.Salary" >
+    update t_hrms_salary
+    set dah = #{dah,jdbcType=VARCHAR},
+      post_salary = #{postSalary,jdbcType=DOUBLE},
+      year_salary = #{yearSalary,jdbcType=DOUBLE},
+      float_salary = #{floatSalary,jdbcType=DOUBLE},
+      award = #{award,jdbcType=DOUBLE},
+      tel_allowrance = #{telAllowrance,jdbcType=DOUBLE},
+      traffic_allowrance = #{trafficAllowrance,jdbcType=DOUBLE},
+      lunch_allowrance = #{lunchAllowrance,jdbcType=DOUBLE},
+      insurance = #{insurance,jdbcType=DOUBLE},
+      endowment_insurance = #{endowmentInsurance,jdbcType=DOUBLE},
+      medical_insurance = #{medicalInsurance,jdbcType=DOUBLE},
+      work_year = #{workYear,jdbcType=DOUBLE},
+      post_level = #{postLevel,jdbcType=DOUBLE},
+      flag = #{flag,jdbcType=VARCHAR},
+      note1 = #{note1,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

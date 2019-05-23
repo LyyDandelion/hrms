@@ -1,0 +1,14 @@
+﻿[
+    { "id": "suggestionApplyStart", "text": "建议人拟写合理化建议开始" ,tag:"suggestionApplyStart"},
+    { "id": "adminAccept", "text": "平台管理人员受理" ,tag:"adminAccept"},
+    { "id": "managerCheck", "text": "主管总经理审核" ,tag:"managerCheck"},
+    { "id": "leaderCheck", "text": "行领导审批" ,tag:"leaderCheck"},
+    { "id": "departmentAcceptStart", "text": "经办部门总经理开始受理" ,tag:"departmentAcceptStart"},
+    { "id": "departmentHandle", "text": "经办人员办理" ,tag:"departmentHandle"},
+    { "id": "departmentAcceptEnd", "text": "经办部门总经理受理完成" ,tag:"departmentAcceptEnd"},
+    { "id": "adminView", "text": "平台管理员初审" ,tag:"adminView"},
+    { "id": "managerReview", "text": "主管总经理复审" ,tag:"managerReview"},
+    { "id": "leaderComment", "text": "行领导阅示" ,tag:"leaderComment"},
+    { "id": "suggestionApplyEnd", "text": "建议人评价" ,tag:"suggestionApplyEnd"},
+    { "id": "processEnd", "text": "流程结束" ,tag:"processEnd"}
+]

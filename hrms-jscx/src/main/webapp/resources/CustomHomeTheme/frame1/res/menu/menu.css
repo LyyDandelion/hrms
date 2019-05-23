@@ -1,0 +1,97 @@
+﻿.menu {
+    position: relative;
+    cursor: pointer;    
+    background: #42485b;
+    color: #fff;
+    font-size:14px;
+    font-family:Arial,"Microsoft YaHei","微软雅黑",sans-serif;
+}
+
+ul, li 
+{
+    position:relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-title {
+    display: block;
+    line-height: 45px;
+}
+
+
+.menu-title.selected{
+    color:#39BAEA;
+}
+
+.menu-title:hover {
+    background: #39BAEA;
+    color : white;
+}
+
+.menu-title.selected:hover{
+    color : white;
+}
+
+.menu-arrow {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+}
+
+.menu-arrow:after {
+    content: "\f104";    
+}
+
+.open > a > .menu-arrow:after {
+    content: "\f106";    
+}
+
+.menu-text
+{
+    padding-left:6px;
+}
+
+.menu ul
+{
+    display:none;
+}
+
+.menu .open > ul
+{
+    display:block;
+}
+
+.menu ul
+{
+    background-color: #333744;    
+}
+
+.menu-title
+{
+    padding-left:15px;
+}
+
+.menu ul .menu-title
+{
+    padding-left:40px;
+}
+
+.menu ul ul .menu-title
+{
+    padding-left:60px;
+}
+
+.menu  .menu-submenu {
+    color:#c9c9c9;
+}
+
+.menu .menu-submenu .menu-submenu {
+    color:#a5a5a5;
+}
+
+.menu  .menu-submenu .menu-submenu .menu-submenu {
+    color:#777;
+}

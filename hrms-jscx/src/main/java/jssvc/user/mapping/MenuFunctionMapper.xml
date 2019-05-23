@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jssvc.user.dao.MenuFunctionMapper" >
+  <resultMap id="BaseResultMap" type="jssvc.user.model.MenuFunction" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="menu_id" property="menuId" jdbcType="VARCHAR" />
+    <result column="function_name" property="functionName" jdbcType="VARCHAR" />
+    <result column="function_action" property="functionAction" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, menu_id, function_name, function_action
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_menu_function
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_menu_function
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="jssvc.user.model.MenuFunction" >
+    insert into t_menu_function (id, menu_id, function_name,
+      function_action)
+    values (#{id,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR}, #{functionName,jdbcType=VARCHAR},
+      #{functionAction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jssvc.user.model.MenuFunction" >
+    insert into t_menu_function
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="functionName != null" >
+        function_name,
+      </if>
+      <if test="functionAction != null" >
+        function_action,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null" >
+        #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="functionAction != null" >
+        #{functionAction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jssvc.user.model.MenuFunction" >
+    update t_menu_function
+    <set >
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null" >
+        function_name = #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="functionAction != null" >
+        function_action = #{functionAction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jssvc.user.model.MenuFunction" >
+    update t_menu_function
+    set menu_id = #{menuId,jdbcType=VARCHAR},
+      function_name = #{functionName,jdbcType=VARCHAR},
+      function_action = #{functionAction,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAllMenuFunctions" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_menu_function
+    order by id
+  </select>
+  <select id="selectMenuFunctionsByMenuId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from t_menu_function
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+    order by id
+  </select>
+  <select id="selectMenuFunctionsByAuth" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select distinct
+    q.*
+    from t_role_function o, t_user_role p, t_menu_function q
+    where o.role_id = p.role_id
+    and o.function_id = q.id
+    and p.dah = #{0,jdbcType=VARCHAR}
+    and q.menu_id = #{1,jdbcType=VARCHAR}
+    order by q.id
+  </select>
+  <select id="selectCountByFunction" resultType="int" parameterType="java.lang.String">
+    select count(1)
+    from t_menu_function
+    where function_action = #{function,jdbcType=VARCHAR}
+  </select>
+</mapper>

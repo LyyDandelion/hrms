@@ -1,0 +1,988 @@
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "action": "showUserList",
+            "pId": "menu001100",
+            "id": "menu001101",
+            "text": "员工管理",
+            "sort": 1101,
+            "iconCls": "icon-sort",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showUserList.do"
+          },
+          {
+            "action": "showUserUpd",
+            "pId": "menu001100",
+            "id": "menu001102",
+            "text": "信息修改",
+            "sort": 1102,
+            "iconCls": "icon-edit",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showUserUpd.do"
+          },
+          {
+            "action": "showPwdUpd",
+            "pId": "menu001100",
+            "id": "menu001103",
+            "text": "密码修改",
+            "sort": 1103,
+            "iconCls": "icon-lock",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showPwdUpd.do"
+          }
+        ],
+        "action": "#",
+        "pId": "menu001000",
+        "id": "menu001100",
+        "text": "用户",
+        "sort": 1100,
+        "iconCls": "icon-user",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      },
+      {
+        "children": [
+          {
+            "action": "showJgList",
+            "pId": "menu001200",
+            "id": "menu001201",
+            "text": "机构管理",
+            "sort": 1201,
+            "iconCls": "icon-expand",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showJgList.do"
+          }
+        ],
+        "action": "#",
+        "pId": "menu001000",
+        "id": "menu001200",
+        "text": "机构",
+        "sort": 1200,
+        "iconCls": "icon-node",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      },
+      {
+        "children": [
+          {
+            "action": "showRoleList",
+            "pId": "menu001300",
+            "id": "menu001301",
+            "text": "角色查看",
+            "sort": 1301,
+            "iconCls": "icon-edit",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showRoleList.do"
+          },
+          {
+            "action": "showUserRoleList",
+            "pId": "menu001300",
+            "id": "menu001302",
+            "text": "员工角色管理",
+            "sort": 1302,
+            "iconCls": "icon-sort",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showUserRoleList.do"
+          }
+        ],
+        "action": "#",
+        "pId": "menu001000",
+        "id": "menu001300",
+        "text": "角色",
+        "sort": 1300,
+        "iconCls": "icon-filter",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu001000",
+    "text": "基础管理",
+    "sort": 1000,
+    "iconCls": "fa fa-desktop",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  },
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "action": "showZcConfirmList.do",
+            "pId": "menu002050",
+            "id": "menu002051",
+            "text": "待确认资产",
+            "sort": 2051,
+            "iconCls": "icon-help",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showZcConfirmList.do"
+          },
+          {
+            "action": "showZcdjInfoList",
+            "pId": "menu002050",
+            "id": "menu002052",
+            "text": "资产信息",
+            "sort": 2052,
+            "iconCls": "icon-ok",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showZcdjInfoList.do"
+          },
+          {
+            "children": [
+              {
+                "action": "showMultiStatisticChart",
+                "pId": "menu002059",
+                "id": "menu002056",
+                "text": "资产汇总分析图",
+                "sort": 2056,
+                "iconCls": "",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showMultiStatisticChart.do"
+              },
+              {
+                "action": "showMultiStatistic",
+                "pId": "menu002059",
+                "id": "menu002057",
+                "text": "资产汇总分析",
+                "sort": 2057,
+                "iconCls": "icon-search",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showMultiStatistic.do"
+              },
+              {
+                "action": "showZcTotalSummary",
+                "pId": "menu002059",
+                "id": "menu002058",
+                "text": "资产概况",
+                "sort": 2058,
+                "iconCls": "icon-search",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showZcTotalSummary.do"
+              }
+            ],
+            "action": "#",
+            "pId": "menu002050",
+            "id": "menu002059",
+            "text": "资产统计分析",
+            "sort": 2059,
+            "iconCls": "#",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "#"
+          },
+          {
+            "action": "showWxInfoList",
+            "pId": "menu002050",
+            "id": "menu002060",
+            "text": "资产维修",
+            "sort": 2060,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showWxInfoList.do"
+          },
+          {
+            "action": "showZcBfInfoList",
+            "pId": "menu002050",
+            "id": "menu002061",
+            "text": "资产报废",
+            "sort": 2061,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showZcBfInfoList.do"
+          },
+          {
+            "children": [
+              {
+                "action": "showZcAllocationUpd",
+                "pId": "menu002510",
+                "id": "menu002511",
+                "text": "调拨申请",
+                "sort": 2510,
+                "iconCls": "icon-add",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showZcAllocationUpd.do"
+              },
+              {
+                "action": "showZcAllocationList",
+                "pId": "menu002510",
+                "id": "menu002512",
+                "text": "资产调拨查询",
+                "sort": 2512,
+                "iconCls": "icon-search",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showZcAllocationList.do"
+              }
+            ],
+            "action": "#",
+            "pId": "menu002050",
+            "id": "menu002510",
+            "text": "资产调拨",
+            "sort": 2510,
+            "iconCls": "",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "#"
+          },
+          {
+            "children": [
+              {
+                "action": "showCustomAttrList",
+                "pId": "menu002053",
+                "id": "menu002054",
+                "text": "自定义属性",
+                "sort": 254,
+                "iconCls": "icon-search",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showCustomAttrList.do"
+              },
+              {
+                "action": "showZcPositionList",
+                "pId": "menu002053",
+                "id": "menu002055",
+                "text": "资产位置管理",
+                "sort": 2055,
+                "iconCls": "icon-search",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showZcPositionList.do"
+              }
+            ],
+            "action": "",
+            "pId": "menu002050",
+            "id": "menu002053",
+            "text": "基础数据",
+            "sort": 2553,
+            "iconCls": "icon-edit",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "#"
+          }
+        ],
+        "action": "#",
+        "pId": "menu002000",
+        "id": "menu002050",
+        "text": "资产管理",
+        "sort": 2050,
+        "iconCls": "icon-edit",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "action": "showRkInfoAdd",
+                "pId": "menu002300",
+                "id": "menu002103",
+                "text": "入库",
+                "sort": 2102,
+                "iconCls": "icon-addnew",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showRkInfoAdd.do"
+              },
+              {
+                "action": "showRkInfoList",
+                "pId": "menu002300",
+                "id": "menu002104",
+                "text": "入库管理",
+                "sort": 2103,
+                "iconCls": "icon-edit",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showRkInfoList.do"
+              },
+              {
+                "action": "showRkApprove",
+                "pId": "menu002300",
+                "id": "menu002105",
+                "text": "入库审批",
+                "sort": 2105,
+                "iconCls": "icon-goto",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showRkApprove.do"
+              }
+            ],
+            "action": "#",
+            "pId": "menu002100",
+            "id": "menu002300",
+            "text": "入库管理",
+            "sort": 2101,
+            "iconCls": "icon-downgrade",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "#"
+          },
+          {
+            "children": [
+              {
+                "action": "showCkWply",
+                "pId": "menu002400",
+                "id": "menu002110",
+                "text": "物品领用",
+                "sort": 2301,
+                "iconCls": "icon-add",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showCkWply.do"
+              },
+              {
+                "action": "showCkInfoList",
+                "pId": "menu002400",
+                "id": "menu002111",
+                "text": "物品领用管理",
+                "sort": 2302,
+                "iconCls": "icon-edit",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showCkInfoList.do"
+              },
+              {
+                "action": "showCkApprove",
+                "pId": "menu002400",
+                "id": "menu002112",
+                "text": "物品领用审批",
+                "sort": 2303,
+                "iconCls": "icon-goto",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showCkApprove.do"
+              },
+              {
+                "action": "showCkConfirmList",
+                "pId": "menu002400",
+                "id": "menu002113",
+                "text": "物品出库",
+                "sort": 2304,
+                "iconCls": "icon-print",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showCkConfirmList.do"
+              }
+            ],
+            "action": "#",
+            "pId": "menu002100",
+            "id": "menu002400",
+            "text": "出库管理",
+            "sort": 2200,
+            "iconCls": "icon-upgrade",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "#"
+          },
+          {
+            "children": [
+              {
+                "action": "showZcWpInfoList",
+                "pId": "menu002500",
+                "id": "menu002121",
+                "text": "仓库库存",
+                "sort": 2251,
+                "iconCls": "icon-date",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showZcWpInfoList.do"
+              },
+              {
+                "action": "showCkSummary",
+                "pId": "menu002500",
+                "id": "menu002122",
+                "text": "出库记录汇总",
+                "sort": 2252,
+                "iconCls": "icon-date",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showCkSummary.do"
+              },
+              {
+                "action": "showCkSummaryNew",
+                "pId": "menu002500",
+                "id": "menu002123",
+                "text": "入库记录汇总",
+                "sort": 2253,
+                "iconCls": "icon-date",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showCkSummaryNew.do"
+              },
+              {
+                "action": "showZkpzInfo",
+                "pId": "menu002500",
+                "id": "menu002124",
+                "text": "重空凭证查询",
+                "sort": 2254,
+                "iconCls": "icon-date",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showZkpzInfo.do"
+              }
+            ],
+            "action": "#",
+            "pId": "menu002100",
+            "id": "menu002500",
+            "text": "仓库资产",
+            "sort": 2250,
+            "iconCls": "icon-cut",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "#"
+          },
+          {
+            "children": [
+              {
+                "action": "showWpTypeList",
+                "pId": "menu002200",
+                "id": "menu002101",
+                "text": "物品类型管理",
+                "sort": 2201,
+                "iconCls": "icon-sort",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showWpTypeList.do"
+              },
+              {
+                "action": "showGysInfoList",
+                "pId": "menu002200",
+                "id": "menu002102",
+                "text": "供应商管理",
+                "sort": 2202,
+                "iconCls": "icon-node",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showGysInfoList.do"
+              },
+              {
+                "action": "showPurposeList",
+                "pId": "menu002200",
+                "id": "menu002201",
+                "text": "用途管理",
+                "sort": 2203,
+                "iconCls": "icon-find",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showPurposeList.do"
+              },
+              {
+                "action": "showWeiBaoList",
+                "pId": "menu002200",
+                "id": "menu002202",
+                "text": "维保商管理",
+                "sort": 2204,
+                "iconCls": "icon-split",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showWeiBaoList.do"
+              },
+              {
+                "action": "showPurposeTypeList",
+                "pId": "menu002200",
+                "id": "menu002203",
+                "text": "用途机构分配",
+                "sort": 2205,
+                "iconCls": "icon-edit",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showPurposeTypeList.do"
+              },
+              {
+                "action": "showKjbHeaderList",
+                "pId": "menu002200",
+                "id": "menu002204",
+                "text": "科技部分组负责人",
+                "sort": 2206,
+                "iconCls": "icon-search",
+                "class": "com.wjrcb.jgj.user.model.Menu",
+                "url": "showKjbHeaderList.do"
+              }
+            ],
+            "action": "#",
+            "pId": "menu002100",
+            "id": "menu002200",
+            "text": "基础管理",
+            "sort": 5400,
+            "iconCls": "icon-tip",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "#"
+          }
+        ],
+        "action": "#",
+        "pId": "menu002000",
+        "id": "menu002100",
+        "text": "仓库管理",
+        "sort": 2100,
+        "iconCls": "icon-node",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu002000",
+    "text": "资产管理",
+    "sort": 2000,
+    "iconCls": "icon-collapse",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  },
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "action": "showPbInfoList",
+            "pId": "menu003100",
+            "id": "menu003101",
+            "text": "排班信息",
+            "sort": 3101,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showPbInfoList.do"
+          },
+          {
+            "action": "showPbInfoList",
+            "pId": "menu003100",
+            "id": "menu003102",
+            "text": "VPN申请管理",
+            "sort": 3102,
+            "iconCls": "icon-edit",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showVPNInfoList.do"
+          }
+        ],
+        "action": "#",
+        "pId": "menu003000",
+        "id": "menu003100",
+        "text": "排班管理",
+        "sort": 3100,
+        "iconCls": "icon-collapse",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      },
+      {
+        "children": [
+          {
+            "action": "showJjbInfoList",
+            "pId": "menu003200",
+            "id": "menu003203",
+            "text": "交接班信息",
+            "sort": 3203,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showJjbInfoList.do"
+          }
+        ],
+        "action": "#",
+        "pId": "menu003000",
+        "id": "menu003200",
+        "text": "交接班管理",
+        "sort": 3200,
+        "iconCls": "icon-collapse",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      },
+      {
+        "children": [
+          {
+            "action": "showThbInfoList",
+            "pId": "menu003300",
+            "id": "menu003301",
+            "text": "替换班信息",
+            "sort": 3301,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showThbInfoList.do"
+          }
+        ],
+        "action": "#",
+        "pId": "menu003000",
+        "id": "menu003300",
+        "text": "替换班管理",
+        "sort": 3300,
+        "iconCls": "icon-collapse",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu003000",
+    "text": "排班管理",
+    "sort": 3000,
+    "iconCls": "icon-collapse",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  },
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "action": "showProblemTypeList",
+            "pId": "menu004100",
+            "id": "menu004205",
+            "text": "问题分类管理",
+            "sort": 4101,
+            "iconCls": "icon-edit",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showProblemTypeList.do"
+          },
+          {
+            "action": "showTransList",
+            "pId": "menu004100",
+            "id": "menu004101",
+            "text": "程序负责人查询",
+            "sort": 4102,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showTransList.do"
+          },
+          {
+            "action": "showProblemTypeDetailList",
+            "pId": "menu004100",
+            "id": "menu004102",
+            "text": "我负责的问题",
+            "sort": 4103,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showProblemTypeDetailList.do"
+          }
+        ],
+        "action": "#",
+        "pId": "menu004000",
+        "id": "menu004100",
+        "text": "基础数据管理",
+        "sort": 4100,
+        "iconCls": "icon-node",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      },
+      {
+        "children": [
+          {
+            "action": "showProblemList",
+            "pId": "menu004200",
+            "id": "menu004202",
+            "text": "问题综合管理",
+            "sort": 4202,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showProblemList.do"
+          },
+          {
+            "action": "showProblemSearch",
+            "pId": "menu004200",
+            "id": "menu004201",
+            "text": "问题全文检索",
+            "sort": 4204,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showProblemSearch.do"
+          },
+          {
+            "action": "showAllProblemList",
+            "pId": "menu004200",
+            "id": "menu004220",
+            "text": "问题查询",
+            "sort": 4220,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showAllProblemList.do"
+          }
+        ],
+        "action": "#",
+        "pId": "menu004000",
+        "id": "menu004200",
+        "text": "问题管理",
+        "sort": 4200,
+        "iconCls": "icon-node",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu004000",
+    "text": "知识库",
+    "sort": 4000,
+    "iconCls": "icon-collapse",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  },
+  {
+    "children": [
+      {
+        "action": "showEventManaging",
+        "pId": "menu004206",
+        "id": "menu004207",
+        "text": "IT服务申请",
+        "sort": 4207,
+        "iconCls": "icon-edit",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showEventManaging.do"
+      },
+      {
+        "action": "showEventServiceAssigning",
+        "pId": "menu004206",
+        "id": "menu004208",
+        "text": "我的待办",
+        "sort": 4208,
+        "iconCls": "icon-edit",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showEventServiceAssigning.do"
+      },
+      {
+        "action": "showEventSearch",
+        "pId": "menu004206",
+        "id": "menu004209",
+        "text": "IT服务查询",
+        "sort": 4209,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showEventSearch.do"
+      },
+      {
+        "action": "showEprobManaging",
+        "pId": "menu004206",
+        "id": "menu004210",
+        "text": "问题创建",
+        "sort": 4210,
+        "iconCls": "icon-edit",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showEprobManaging.do"
+      },
+      {
+        "action": "showEChangeManaging",
+        "pId": "menu004206",
+        "id": "menu004211",
+        "text": "变更创建",
+        "sort": 4211,
+        "iconCls": "icon-add",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showEChangeManaging.do"
+      },
+      {
+        "action": "showBachEChangeList",
+        "pId": "menu004206",
+        "id": "menu004212",
+        "text": "批量更新",
+        "sort": 4212,
+        "iconCls": "icon-edit",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showBachEChangeList.do"
+      },
+      {
+        "action": "showEventTabList",
+        "pId": "menu004206",
+        "id": "menu004213",
+        "text": "附件类型管理",
+        "sort": 4213,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showEventTabList.do"
+      },
+      {
+        "action": "showBatchEChangeSearch",
+        "pId": "menu004206",
+        "id": "menu004215",
+        "text": "批量更新查询",
+        "sort": 4215,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showBatchEChangeSearch.do"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu004206",
+    "text": "事件服务",
+    "sort": 4206,
+    "iconCls": "icon-collapse",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  },
+  {
+    "children": [
+      {
+        "action": "showCgUndoneService",
+        "pId": "menu005000",
+        "id": "menu005200",
+        "text": "采购流程待办",
+        "sort": 5200,
+        "iconCls": "icon-edit",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showCgUndoneService.do"
+      },
+      {
+        "action": "showCgSearch",
+        "pId": "menu005000",
+        "id": "menu005300",
+        "text": "采购记录查询",
+        "sort": 5300,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showCgSearch.do"
+      },
+      {
+        "children": [
+          {
+            "action": "showCgGoodsManageList",
+            "pId": "menu005400",
+            "id": "menu005500",
+            "text": "物品类型管理",
+            "sort": 5500,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showCgGoodsManageList.do"
+          },
+          {
+            "action": "showCgYsbhInfoSercher",
+            "pId": "menu005400",
+            "id": "menu005501",
+            "text": "预算编号管理",
+            "sort": 5501,
+            "iconCls": "icon-search",
+            "class": "com.wjrcb.jgj.user.model.Menu",
+            "url": "showCgYsbhInfoSercher.do"
+          }
+        ],
+        "action": "#",
+        "pId": "menu005000",
+        "id": "menu005400",
+        "text": "物品管理",
+        "sort": 5400,
+        "iconCls": "icon-tip",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "#"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu005000",
+    "text": "采购管理",
+    "sort": 5000,
+    "iconCls": "icon-collapse",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  },
+  {
+    "children": [
+      {
+        "action": "showDcdbUndone",
+        "pId": "menu006000",
+        "id": "menu006200",
+        "text": "督查督办流程待办",
+        "sort": 6200,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showDcdbUndone.do"
+      },
+      {
+        "action": "showDcdbSearch",
+        "pId": "menu006000",
+        "id": "menu006300",
+        "text": "督查督办流程查询",
+        "sort": 6300,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showDcdbSearch.do"
+      },
+      {
+        "action": "showDcdbExecution",
+        "pId": "menu006000",
+        "id": "menu006400",
+        "text": "月度事项完成情况统计",
+        "sort": 6400,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showDcdbExecution.do"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu006000",
+    "text": "督查督办",
+    "sort": 6000,
+    "iconCls": "icon-collapse",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  },
+  {
+    "children": [
+      {
+        "action": "#",
+        "pId": "menu007000",
+        "id": "menu007200",
+        "text": "合理化建议流程待办",
+        "sort": 7200,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showSuggestUndone.do"
+      },
+      {
+        "action": "showSuggestSearch",
+        "pId": "menu007000",
+        "id": "menu007300",
+        "text": "合理化建议申请查询",
+        "sort": 7300,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showSuggestSearch.do"
+      },
+      {
+        "action": "showSuggestMss.do",
+        "pId": "menu007000",
+        "id": "menu007400",
+        "text": "月度合理化建议管理统计",
+        "sort": 7400,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showSuggestMss.do"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu007000",
+    "text": "合理化建议",
+    "sort": 7000,
+    "iconCls": "icon-collapse",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  },
+  {
+    "children": [
+      {
+        "action": "showLcUndone",
+        "pId": "menu008000",
+        "id": "menu008100",
+        "text": "理财产品审批流程待办",
+        "sort": 8100,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showLcUndone.do"
+      },
+      {
+        "action": "showLcQuery",
+        "pId": "menu008000",
+        "id": "menu008300",
+        "text": "理财产品审批流程查询",
+        "sort": 8300,
+        "iconCls": "icon-search",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showLcQuery.do"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu008000",
+    "text": "理财产品审批",
+    "sort": 8000,
+    "iconCls": "icon-collapse",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  },
+  {
+    "children": [
+      {
+        "action": "showLogList",
+        "pId": "menu009000",
+        "id": "menu009101",
+        "text": "日志管理",
+        "sort": 9101,
+        "iconCls": "icon-find",
+        "class": "com.wjrcb.jgj.user.model.Menu",
+        "url": "showLogList.do"
+      }
+    ],
+    "action": "#",
+    "pId": "-1",
+    "id": "menu009000",
+    "text": "日志管理",
+    "sort": 9000,
+    "iconCls": "icon-collapse",
+    "class": "com.wjrcb.jgj.user.model.Menu",
+    "url": "#"
+  }
+]

@@ -1,0 +1,6 @@
+﻿[
+    { "id": "jrscbLeaderApprove", "text": "金融市场部总经理审批" ,tag:"jrscbLeaderApprove"},
+    { "id": "sbLeaderApprove", "text": "三部门负责人会签" ,tag:"sbLeaderApprove"},
+    { "id": "fghzApprove", "text": "分管行长审批" ,tag:"fghzApprove"},
+    { "id": "hzApprove", "text": "行长审批" ,tag:"hzApprove"},
+]

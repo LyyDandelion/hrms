@@ -1,0 +1,535 @@
+html, body {
+	height: 100%
+}
+
+body {
+	position: relative
+}
+
+.pf-hd {
+	height: 75px;
+	background:  url(../../images/home/background.jpg) no-repeat;
+	width: 100%;
+}
+
+.pf-hd .logo {
+	float: left;
+}
+
+.pf-hd .name {
+	float: left;
+	width: 159px;
+	height: 26px;
+	margin-left: 230px;
+	margin-top: 24px;
+	background: url(../../images/index/logo3.png) no-repeat;
+
+}
+
+.pf-hd .logout {
+	float: right;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../../images/home/icon8.png);
+	margin-top: 25px;
+	margin-right: 15px;
+	cursor: pointer
+}
+
+.pf-hd .username {
+	float: right;
+	padding: 0 15px;
+	font-size: 14px;
+	line-height: 14px;
+	height: 14px;
+	margin-top: 28px;
+	border-right: 1px solid #fff;
+	color: #000000;
+	margin-right: 15px
+}
+
+.pf-hd .toggle-icon {
+	float: right;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../../images/home/icon7.png);
+	margin-top: 25px;
+	margin-left: 10px;
+	cursor: pointer
+}
+
+.pf-hd .avatar {
+	float: right;
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	background: url(../../images/home/user.png);
+	margin-top: 25px;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.pf-hd .split {
+	float: right;
+	display: inline-block;
+	width: 1px;
+	font-size: 14px;
+	line-height: 14px;
+	height: 14px;
+	margin-top: 28px;
+	background-color: #fff;
+	margin-right: 10px
+}
+
+.pf-hd .fast-input {
+	float: right;
+	height: 25px;
+	line-height: 22px;
+	border: 1px solid #fff;
+	padding: 0 10px;
+	width: 100px;
+	border-radius: 10px;
+	background-color: #fff;
+	margin: 0 10px;
+	margin-top: 23px
+}
+
+.pf-hd .fast-input:focus {
+	outline: none
+}
+
+.pf-hd .tip {
+	font-size: 14px;
+	line-height: 14px;
+	height: 14px;
+	margin-top: 28px;
+	float: right;
+	color: #000000
+}
+
+.pf-bd {
+	position: absolute;
+	top: 75px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding-left: 211px;
+	background-color: #E9EEF4;
+	background-repeat: repeat-x;
+}
+
+.pf-bd .left-menu {
+	position: absolute;
+	left: 0;
+	width: 211px;
+	top: 5px;
+	bottom: 0;
+	overflow-y: auto;
+	background-color:#42485b;
+}
+
+.pf-bd .left-menu ul li {
+	cursor: pointer
+}
+
+.pf-bd .left-menu ul li.current .model-hd {
+	background: url(../../images/home/icon22.png) no-repeat
+}
+
+.pf-bd .left-menu ul li.current .model-hd span {
+	color: #fff
+}
+
+.pf-bd .left-menu ul li.current .model-hd .num {
+	display: block
+}
+
+.pf-bd .left-menu ul li.open .model-hd .arrow {
+	background: url(../../images/home/icon23.png)
+}
+
+.pf-bd .left-menu ul li.open .model-bd {
+	position: relative;
+	padding-top: 15px;
+	padding-left: 40px;
+	display: block
+}
+
+.pf-bd .left-menu ul li.open .model-bd .bottom-border {
+	display: inline-block
+}
+
+.pf-bd .left-menu ul li .model-hd {
+	position: relative;
+	height: 50px;
+	line-height: 50px
+}
+
+.pf-bd .left-menu ul li .model-hd .model-icon {
+	float: left;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 12px;
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url(../../images/home/icon20.png)
+}
+
+.pf-bd .left-menu ul li .model-hd .model-icon.basic {
+	background-position: 0 0
+}
+
+.pf-bd .left-menu ul li .model-hd .model-icon.treture {
+	background-position: -24px 0
+}
+
+.pf-bd .left-menu ul li .model-hd .model-icon.work {
+	background-position: -48px 0
+}
+
+.pf-bd .left-menu ul li .model-hd .model-icon.log {
+	background-position: -72px 0
+}
+
+.pf-bd .left-menu ul li .model-hd span {
+	float: left;
+	color: #96e8fe;
+	font-size: 14px;
+	display: inline-block
+}
+
+.pf-bd .left-menu ul li .model-hd .num {
+	float: right;
+	margin-right: 22px;
+	display: none;
+	height: 16px;
+	width: 16px;
+	line-height: 16px;
+	background-color: #6cd032;
+	border-radius: 50%;
+	color: #fff;
+	margin-top: 17px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 12px
+}
+
+.pf-bd .left-menu ul li .model-hd .arrow {
+	float: right;
+	margin-right: 15px;
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-top: 19px;
+	background: url(../../images/home/icon24.png)
+}
+
+.pf-bd .left-menu ul li .model-hd .bottom-border {
+	position: absolute;
+	display: inline-block;
+	bottom: -1px;
+	height: 1px;
+	left: 0;
+	right: 0;
+	background: url(../../images/home/icon19.png)
+}
+
+.pf-bd .left-menu ul li .model-bd {
+	position: relative;
+	padding-top: 0;
+	padding-left: 40px;
+	display: none
+}
+
+.pf-bd .left-menu ul li .model-bd .bottom-border {
+	position: absolute;
+	display: none;
+	bottom: -1px;
+	height: 1px;
+	left: 0;
+	right: 0;
+	background: url(../../images/home/icon19.png)
+}
+
+.pf-bd .pf-content {
+	position: relative;
+	height: 100%;
+	top:4px;
+}
+
+.pf-bd .pf-content .pf-content-inner {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 20px;
+	right: 10px
+}
+
+.pf-bd .pf-content .belong-to {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: #151111;
+	text-align: center
+}
+
+
+
+.pf-bd .pf-content .mini-tabs-scrollCt {
+	border-bottom: solid 1px #E9EEF4;
+	border: solid 1px #E9EEF4;
+	background: #E9EEF4
+}
+
+.pf-bd .pf-content .mini-tabs-scrollCt .mini-tabs-space {
+	width: 0;
+	border-bottom: solid 1px #E9EEF4
+}
+
+.pf-bd .pf-content .mini-tabs-scrollCt .mini-tabs-space div {
+	width: 0
+}
+
+.pf-bd .pf-content .mini-tabs-scrollCt .mini-tabs-space2 {
+	width: 12px;
+	border-bottom: solid 1px #E9EEF4
+}
+
+.pf-bd .pf-content .mini-tabs-scrollCt .mini-tabs-space2 div {
+	width: 12px
+}
+
+
+.pf-bd .pf-content .mini-tabs-scrollCt .mini-tabs-header-top .mini-tab-active
+	{
+	background: #fff;
+	color: #000000;
+	border-top: solid 1px #fff;
+	border: solid 1px #fff;
+	border-bottom: 1px solid #fff
+}
+
+.pf-bd .pf-content .mini-tabs-bodys {
+	position: relative;
+	border: solid 1px #fff;
+	border-top: 0;
+	background: white;
+	padding: 15px
+}
+
+.pf-bd .pf-content .mini-tab-close {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	vertical-align: top;
+	margin-left: 10px;
+	margin-top: 2px;
+	background: url(../../images/home/icon29.png);
+	cursor: pointer;
+	opacity: .6;
+	filter: alpha(opacity = 60)
+}
+
+.pf-bd .pf-content .mini-tab-close-hover {
+	background: url(../../images/home/icon30.png);
+	opacity: 1;
+	filter: alpha(opacity = 100)
+}
+
+.mini-toolbar table {
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: grey;
+	padding: 1px
+}
+
+.left-menu .mini-tree-selectedNode .mini-tree-nodeshow {
+	border: 1px solid transparent;
+	background: none
+}
+
+.left-menu .mini-tree-node-hover .mini-tree-nodeshow {
+	border: 1px solid transparent;
+	background: none
+}
+
+.left-menu .mini-tree-nodetext {
+	color: #fff
+}
+
+.left-menu .mini-tree-node-hover .mini-tree-nodeshow .mini-tree-nodetext
+	{
+	color: #fff
+}
+
+.left-menu .mini-tree-selectedNode .mini-tree-nodeshow .mini-tree-nodetext
+	{
+	/*color: #000000*/
+}
+
+.left-menu .mini-tree .mini-tree-icon {
+	/*display: none*/
+}
+
+.left-menu .mini-tree-treeLine .mini-tree-expand .mini-tree-node-ecicon-firstAndlast
+	{
+	background-position: 2px 1px
+}
+
+.left-menu .mini-tree-nodetext {
+	padding-top: 0
+}
+
+.left-menu .mini-tree-nodetitle {
+	height: 34px
+}
+
+.left-menu .mini-tree-indent {
+	height: 34px
+}
+
+.left-menu .mini-tree-node-ecicon.mini-tree-node-ecicon-firstAndlast {
+	height: 24px;
+	position: relative;
+	top: -2px
+}
+
+.left-menu .mini-tree-node-ecicon {
+	height: 34px;
+	position: relative;
+	top: 6px
+}
+
+.left-menu .mini-grid-row .mini-grid-cell-inner .mini-tree-nodetitle {
+	height: 50px;
+	line-height: 50px;
+	/*border-bottom: 1px dotted #fff*/
+}
+
+
+
+.left-menu .mini-tree-nodes-tr .mini-grid-row .mini-grid-cell-inner .mini-tree-nodetitle
+	{
+	height: 34px;
+	line-height: 34px;
+	background: none;
+	border-bottom: 0
+}
+
+.left-menu .mini-grid-row .mini-grid-cell-inner .mini-tree-nodetitle .mini-tree-indent:first-child
+	{
+	visibility: hidden
+}
+
+.left-menu .mini-grid-row .mini-grid-cell-inner .mini-tree-nodetitle .mini-tree-node-ecicont
+	{
+	visibility: hidden
+}
+
+.left-menu .mini-tree-node-ecicon {
+	visibility: hidden
+}
+
+.left-menu .mini-tree-nodes-tr .mini-tree-node-ecicon {
+	visibility: visible
+}
+
+.pf-hd .user-label {
+	float: right;
+	font-size: 14px;
+	line-height: 14px;
+	height: 14px;
+	margin-top: 28px;
+	color: black;
+}
+
+.pf-hd .lock {
+	float: right;
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	background: url(../../images/home/lock.png);
+	margin-top: 26px;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.left-menu .mini-grid-row .mini-grid-cell-inner .mini-tree-nodetitle.mini-tree-expand
+{
+	/*height: 50px;*/
+	/*line-height: 50px;*/
+	/*!*background-color: #3ABAEB;*!*/
+	/*background: url(../../images/home/icon22.png) no-repeat*/
+}
+.mini-tree-selectedNode{
+	background-color: #3ABAEB;
+}
+
+
+/*顶部导航栏*/
+.mini-tabs-position-top .mini-tabs-headers, .mini-tabs-position-bottom .mini-tabs-headers{
+	height: 50px;
+}
+
+
+.pf-bd .pf-content .mini-tabs-scrollCt .mini-tab {
+	background: #8D9EBA;
+	color: #fff;
+	border: 1px solid #8D9EBA;
+	font-size: 16px;
+	padding: 5px 32px;
+	text-align: center;
+	cursor: pointer;
+	white-space: nowrap;
+	height:100%
+	/*border-top-left-radius: 10px;*/
+	/*border-top-right-radius: 10px;*/
+}
+
+.pf-bd .pf-content .mini-tabs-position-top .mini-tabs-header {
+	margin-top: 0;
+	height:100%;
+}
+
+/* 首页tab页面body  tab-body*/
+.mini-tabs-body{
+	background-color: #fff;
+	right: 10px;
+}
+.pf-bd .pf-content .mini-tabs-bodys{
+	position: relative;
+	border: solid 1px #E9EEF4;
+	border-top: 0;
+	background: #E9EEF4;
+	padding: 15px;
+}
+
+/*按钮*/
+a.mini-button{
+	background-color: #679BCA;
+	border: 1px solid #679BCA;
+}
+a.mini-button-text{
+	color:#fff;
+}
+
+.mini-toolbar{
+	background-color: white;
+}
+.pf-bd .pf-content .mini-tabs-bodys{
+	background: white;
+	padding-top: 0px;
+}
+
+.duty_mgmt{
+	position: relative;
+	left: 15px;
+}

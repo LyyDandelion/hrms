@@ -1,0 +1,7 @@
+[
+    { "id": "1", "text": "非常不满意" ,tag:"fcbmy"},
+    { "id": "2", "text": "不满意" ,tag:"bmy"},
+    { "id": "3", "text": "基本满意" ,tag:"jbmy"},
+    { "id": "4", "text": "较满意" ,tag:"jmy"},
+    { "id": "5", "text": "非常满意" ,tag:"fcmy"}
+]

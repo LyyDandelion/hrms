@@ -1,0 +1,21 @@
+﻿[
+    { "id": "refuse", "text": "审批拒绝" ,tag:"refuse"},
+    { "id": "newState", "text": "新建" ,tag:"newState"},
+    { "id": "temporaryXj", "text": "临时询价完成" ,tag:"temporaryXj"},
+    { "id": "kjbfzLeader", "text": "申请部门副总审批中" ,tag:"kjbfzLeader"},
+    { "id": "sqbmLeader", "text": "申请部门领导审批中" ,tag:"sqbmLeader"},
+    { "id": "sqbmfgLeader", "text": "申请部门分管领导审批中" ,tag:"sqbmfgLeader"},
+    { "id": "xjz", "text": "询价中" ,tag:"xjz"},
+    { "id": "ywbmsp", "text": "业务部门审批" ,tag:"ywbmsp"},
+    { "id": "wpglbmfzLeader", "text": "物品所属部门副总审批中" ,tag:"wpglbmfzLeader"},
+    { "id": "wpssbmLeader", "text": "物品所属部门总经理审批中" ,tag:"wpssbmLeader"},
+    { "id": "wpssbmFghz", "text": "物品所属部门分管领导审批中" ,tag:"wpssbmFghz"},
+    { "id": "cwLeader", "text": "财务总经理审批中" ,tag:"cwLeader"},
+    { "id": "cwfghzLeader", "text": "财务分管领导审批中" ,tag:"cwfghzLeader"},
+    { "id": "cghLeader", "text": "财管会审批中" ,tag:"cghLeader"},
+    { "id": "hbhLeader", "text": "行办会审批中" ,tag:"hbhLeader"},
+    { "id": "dshLeader", "text": "董事会审批中" ,tag:"dshLeader"},
+    { "id": "wpssbmConfirm", "text": "物品主管部门确认中" ,tag:"wpssbmConfirm"},
+    { "id": "applicantConfirm", "text": "申请人确认中" ,tag:"applicantConfirm"},
+    { "id": "cgEnd", "text": "采购完成" ,tag:"cgEnd"}
+]

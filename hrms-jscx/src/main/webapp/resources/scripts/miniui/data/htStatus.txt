@@ -1,0 +1,10 @@
+[
+    { "id": "apply", "text": "合同送审申请" ,tag:"apply"},
+    { "id": "applyDeptLeader", "text": "申请部门负责人" ,tag:"applyDeptLeader"},
+    { "id": "lawDept", "text": "法律审查岗" ,tag:"lawDept"},
+    { "id": "ywDept", "text": "业务部门会审" ,tag:"ywDept"},
+    { "id": "lawDeptManager", "text": "法律合规部总经理" ,tag:"lawDeptManager"},
+    { "id": "fgLeaders", "text": "分管领导会审" ,tag:"fgLeaders"},
+    { "id": "applyUserAdditions", "text": "申请人补充" ,tag:"applyUserAdditions"},
+    { "id": "end", "text": "已完成" ,tag:"end"}
+ ]

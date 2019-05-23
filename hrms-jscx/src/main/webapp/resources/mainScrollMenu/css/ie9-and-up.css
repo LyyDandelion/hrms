@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+* {
+    margin:0;
+    padding:0;
+    list-style-type:none;
+}
+
+a,img {
+    border:0;
+}
+
+body {
+    font:inherit;
+    font-size:100%;
+}
+
+.scrollView {
+    width:100%;
+    height:140px;
+    overflow:hidden;
+}
+
+.mr_frbox {
+    width:98%;
+    height:100%;
+    position: relative;
+}
+
+.mr_frBtnL {
+    float:left;
+    width:25px;
+    height:40px;
+    position: absolute;
+    left: 1%;
+    top: 26%;
+    transform: translate(1%, 26%);
+}
+
+.mr_frBtnR {
+    float:right;
+    width:25px;
+    height:40px;
+    position: absolute;
+    right: 1%;
+    top: 26%;
+    transform: translate(-1%, 26%);
+}
+
+.mr_frUl {
+    width: 93%;
+    height: 90%;
+    position: absolute;
+    left: 1%;
+    transform: translate(3%, 0);
+}
+
+.mr_frUl ul li {
+    width: 300px;
+    height: 140px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mr_frUl ul li i.search {
+    background: url("../../images/index/caigou.png") no-repeat;
+    background-position: 0 0;
+    width: 270px;
+    height: 100px;
+    top: 16%;
+    transform: translate(0, 16%);
+    display: block;
+}
+
+.mr_frUl ul li i.apply {
+    background: url("../../images/index/apply.png") no-repeat;
+    background-position: 0 0;
+    width: 270px;
+    height: 100px;
+    top: 16%;
+    transform: translate(0, 16%);
+    display: block;
+}
+
+.mr_frUl ul li span {
+    font-size: 15px;
+    font-weight:bolder;
+    color: #46b9bf;
+    left: 46%;
+    top: 41%;
+    position: absolute;
+}
+
+.tempWrap {
+	margin:0 auto;
+}

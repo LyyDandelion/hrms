@@ -1,0 +1,5 @@
+[
+    { "id": "4", "text": "协议供货" ,tag:"xygh"},
+    { "id": "5", "text": "询价采购" ,tag:"xjcg"},
+    { "id": "3", "text": "单一来源采购" ,tag:"dylycg"}
+]

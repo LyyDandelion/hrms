@@ -1,0 +1,14 @@
+﻿[
+    { "id": "adminLoginStart", "text": "平台管理人员申请中" ,tag:"adminLoginStart"},
+    { "id": "managerCheck", "text": "主管总经理审核中" ,tag:"managerCheck"},
+    { "id": "leaderCheck", "text": "行领导审批中" ,tag:"leaderCheck"},
+    { "id": "adminLoginEnd", "text": "平台管理人员申请确认" ,tag:"adminLoginEnd"},
+    { "id": "departmentAcceptStart", "text": "承办部门总经理受理" ,tag:"departmentAcceptStart"},
+    { "id": "departmentHandle", "text": "具体承办人员分配" ,tag:"departmentHandle"},
+    { "id": "departmentAcceptEnd", "text": "承办部门总经理受理确认" ,tag:"departmentAcceptEnd"},
+    { "id": "adminViewStart", "text": "平台管理员初审申请中" ,tag:"adminViewStart"},
+    { "id": "managerReview", "text": "主管总经理复审中" ,tag:"managerReview"},
+    { "id": "leaderComment", "text": "行领导评价中" ,tag:"leaderComment"},
+    { "id": "adminViewEnd", "text": "平台管理员申请确认" ,tag:"adminViewEnd"},
+    { "id": "processEnd", "text": "流程结束" ,tag:"processEnd"}
+]

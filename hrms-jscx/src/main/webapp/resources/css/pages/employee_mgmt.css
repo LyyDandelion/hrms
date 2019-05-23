@@ -1,0 +1,34 @@
+.mini-window.mini-panel .mini-panel-toolbar {
+	border-bottom: 0
+}
+
+.subfiled-text {
+	font-size: 14px;
+	line-height: 30px;
+	height: 30px;
+	padding-left: 12px;
+	font-weight: bold
+}
+
+.mini-panel.mini-window #form1 {
+	padding: 20px;
+	padding-top: 0;
+	font-size: 12px
+}
+
+.mini-panel.mini-window #form1 table {
+	width: 100%
+}
+
+.mini-panel.mini-window #form1 .mini-textbox {
+	width: 210px;
+	padding: 6px 0
+}
+
+.mini-panel.mini-window #form1 .mini-buttonedit {
+	width: 210px
+}
+
+.mini-panel.mini-window #form1 .mini-textarea .mini-textbox-input {
+	height: 50px !important
+}

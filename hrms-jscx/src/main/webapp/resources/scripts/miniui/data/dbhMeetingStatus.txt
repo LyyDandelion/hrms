@@ -1,0 +1,6 @@
+[
+    {"id": "newCreate", "desc": "经办人员审核"},
+    {"id": "dbLeaderSP", "desc": "董办总经理审批"},
+    {"id": "cbbmDoing", "desc": "承办部门任务中"},
+    {"id": "pass", "desc": "完成审批"}
+]

@@ -1,0 +1,194 @@
+html, body {
+	height: 100%
+}
+
+body {
+	background: #00BBFF url(../../images/login/bg.jpg) no-repeat;
+    background-size:cover;
+    width:100%;
+    height:100%;
+}
+
+.pg-center {
+	position: absolute;
+	height: 300px;
+	width: 800px;
+	left: 50%;
+	top: 50%;
+	margin-left: -400px;
+	margin-top: -200px
+}
+
+.pg-center .line {
+	position: absolute;
+	width: 1px;
+	height: 283px;
+	left: 400px;
+	top: 9px;
+	background: url(../../images/login/line.png) no-repeat;
+	background-size:100% 100%;
+}
+
+.pg-center .left-logo {
+	float: left;
+	width: 340px;
+	height: 214px;
+	margin-left: 29px;
+	margin-top: 43px;
+	background: url(../../images/login/logo.png) no-repeat;
+	background-size:100% 100%;
+}
+
+.pg-center .right-input {
+	float: right;
+	width: 400px
+}
+
+.pg-center .right-input .login-btn {
+	display: inline-block;
+	width: 300px;
+	margin-left: 50px;
+	background-color: #00BBFF;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #00BBFF;
+	border-radius: 40px;
+	color: #fff;
+	font-size: 18px;
+	text-align: center
+}
+
+.pg-center .right-input .wrap {
+	width: 300px;
+	margin-left: 50px;
+	background-color: #fff;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #eaeef1;
+	border-radius: 40px;
+	margin-bottom: 16px
+}
+
+.pg-center .right-input .wrap .account {
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-top: 10px;
+	margin-right: 14px;
+	margin-left: 28px;
+	background-image: url(../../images/login/icon2.png)
+}
+
+.pg-center .right-input {
+	position: relative;
+	margin-top: 45px;
+	cursor: pointer
+}
+
+.wrap.dept-wrap {
+	position: relative;
+	cursor: pointer
+}
+
+.pg-center .right-input .wrap.dept-wrap .account {
+	background-image: url(../../images/login/icon1.png)
+}
+
+.pg-center .right-input .wrap.dept-wrap .arrow {
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-top: 10px;
+	background-image: url(../../images/login/down.png)
+}
+
+.pg-center .right-input .wrap.dept-wrap.show .arrow {
+	background-image: url(../../images/login/up.png)
+}
+
+.pg-center .right-input .wrap.dept-wrap.show ul {
+	display: block
+}
+
+.pg-center .right-input .wrap.dept-wrap ul {
+	position: absolute;
+	left: -1px;
+	top: 43px;
+	width: 264px;
+	border: 1px solid #eaeef1;
+	border-radius: 20px;
+	padding: 0 18px;
+	background-color: #fff;
+	display: none
+}
+
+.pg-center .right-input .wrap.dept-wrap ul li {
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #eaeef1;
+	color: #4b525c;
+	padding-left: 59px
+}
+
+.pg-center .right-input .wrap.dept-wrap ul li:hover {
+	color: #25acec
+}
+
+.pg-center .right-input .wrap.dept-wrap ul li.last {
+	border-bottom: 0
+}
+
+.pg-center .right-input .wrap.dept-wrap ul li:last-child {
+	border-bottom: 0
+}
+
+.pg-center .right-input .wrap.pwd-wrap {
+	margin-bottom: 32px
+}
+
+.pg-center .right-input .wrap .pwd {
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-top: 10px;
+	margin-right: 14px;
+	margin-left: 28px;
+	background-image: url(../../images/login/icon3.png)
+}
+
+.pg-center .right-input .wrap .split {
+	float: left;
+	display: inline-block;
+	width: 1px;
+	background-color: #99a5b5;
+	height: 14px;
+	margin-right: 14px;
+	margin-top: 13px
+}
+
+.pg-center .right-input .wrap input {
+	float: left;
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 4px;
+	outline: none;
+	text-decoration: none;
+	border: 0;
+	color: #4b525c
+}
+
+.pg-center .right-input .wrap input:focus {
+	outline: none
+}
+
+.pg-center .right-input .wrap label {
+	float: left;
+	width: 170px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 5px;
+	color: #4b525c;
+	margin-right: 10px;
+	cursor: pointer
+}

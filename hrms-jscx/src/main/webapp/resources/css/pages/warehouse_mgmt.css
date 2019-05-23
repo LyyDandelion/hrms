@@ -1,0 +1,46 @@
+.warehouse_mgmt .form-wrap {
+	padding: 15px;
+	border: 1px solid #d9e0e8;
+	margin-bottom: 20px
+}
+
+.warehouse_mgmt #form1 {
+	padding: 0 20px;
+	font-size: 14px
+}
+
+.warehouse_mgmt #form1 table {
+	width: 100%
+}
+
+.warehouse_mgmt #form1 .mini-textbox {
+	width: 300px;
+	padding: 6px 0
+}
+
+.warehouse_mgmt #form1 .mini-buttonedit {
+	width: 300px
+}
+
+.warehouse_mgmt #form1 .mini-textarea .mini-textbox-input {
+	height: 50px !important
+}
+
+.warehouse_mgmt .sure-button {
+	background-color: #70da18;
+	border: 1px solid #70da18;
+	color: #fff;
+	line-height: 28px
+}
+
+.warehouse_mgmt .cancel-button {
+	background-color: #c9c9c9;
+	border: 1px solid #c9c9c9;
+	color: #fff;
+	line-height: 28px
+}
+
+.warehouse_mgmt .footer {
+	margin-top: 20px;
+	margin-bottom: 0
+}

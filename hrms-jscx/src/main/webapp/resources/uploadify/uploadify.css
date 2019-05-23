@@ -1,0 +1,110 @@
+/*
+Uploadify
+Copyright (c) 2012 Reactive Apps, Ronnie Garcia
+Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
+*/
+li.template {
+    display:none;
+}
+.uploadUL{	
+	padding:5px 5px 13px 5px;
+	border:1px solid #66d2ff; 
+	margin:0 5px 10px 0;
+	background: #dbf4ff;
+	border-color: #afe8ff;
+	color: #666452;
+	text-align:center;
+	}
+.uploadUL span.chooseText{color:#333;}
+.uploadUL .uploadULWrapper{ margin:0 auto; width:700px; position:relative; height:30px;}
+.uploadspan{ position:absolute; left:650px; width:200px; text-align:left; top:10px;background: url('../images/icons/cross_circle.png') left 0px  no-repeat; display:none}
+.button{float:left;margin:3px 0 0 10px}
+#main-content ul.docUL {position:relative; margin:0 auto;}
+#main-content ul.docUL li.docLI{
+	width:49.5%; 
+	margin:0;
+	padding:0;
+	float:left; 
+	background: none;
+}
+#main-content ul.docUL .docList{
+	border:1px solid #66d2ff; 
+	margin:0 5px 10px 0;
+	background: #dbf4ff;
+	border-color: #afe8ff;
+	color: #666452;
+	height:252px;
+	overflow-y:auto;
+}
+#main-content ul.docUL .docList th{height:23px; line-height:23px; padding:6px 10px;background:#fff}
+#main-content ul.docUL .docList td{height:23px; line-height:23px; padding:7px 10px;}
+#main-content ul.docUL li h5{ margin:5px 0px 0px 0px; padding:0px 0 10px 0; text-align:center; border-bottom:1px dashed #349dc8; }
+#uploadQuene{ margin:0 auto; width:400px;}
+
+.turnLeft{float:left; margin-right:10px}
+                
+.uploadify {
+	position: relative;
+	text-align:left;
+	float:left;
+	margin-top:3px;
+	width:100px !important;
+}
+.uploadify-button {
+
+
+	background: #2a7cb2 url('../images/bg-button-green.gif') top left repeat-x !important;
+	border: 1px solid #2a7cb2 !important;
+	padding: 4px 0px 4px 0px !important;
+	color: #fff !important;
+	font-family: Verdana, Arial, sans-serif;
+	text-align: center;
+	width: 100px !important;
+	height: 15px !important;
+	line-height:15px !important;
+	font-size: 11px !important;
+	                -moz-border-radius: 4px;
+                -webkit-border-radius: 4px;
+				border-radius: 4px;
+}
+
+.uploadify-button.disabled {
+	background-color: #D0D0D0;
+	color: #808080;
+}
+.uploadify-queue {
+	margin-bottom: 1em;
+}
+.uploadify-queue-item {
+	background-color: #F5F5F5;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font: 11px Verdana, Geneva, sans-serif;
+	margin-top: 5px;
+	max-width: 350px;
+	padding: 10px;
+}
+.uploadify-error {
+	background-color: #FDE5DD !important;
+}
+.uploadify-queue-item .cancel a {
+	background: url('uploadify-cancel.png') 0 0 no-repeat;
+	float: right;
+	height:	16px;
+	text-indent: -9999px;
+	width: 16px;
+}
+.uploadify-queue-item.completed {
+	background-color: #E5E5E5;
+}
+.uploadify-progress {
+	background-color: #E5E5E5;
+	margin-top: 10px;
+	width: 100%;
+}
+.uploadify-progress-bar {
+	background-color: #0099FF;
+	height: 3px;
+	width: 1px;
+}

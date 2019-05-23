@@ -1,0 +1,8 @@
+[
+    { "id": "0", "text": "公开招标" ,tag:"gkzb"},
+    { "id": "2", "text": "邀请招标" ,tag:"yqzb"},
+    { "id": "1", "text": "竞争性谈判" ,tag:"jzxtp"},   
+    { "id": "4", "text": "协议供货" ,tag:"xygh"},
+    { "id": "5", "text": "询价采购" ,tag:"xjcg"},
+    { "id": "3", "text": "单一来源采购" ,tag:"dylycg"}
+]
