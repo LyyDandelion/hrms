@@ -132,6 +132,14 @@ public class ExcelUtil {
         return region;
     }
 
+    /**
+     * @deprecated  设置标题头
+     * @param cell
+     * @param row
+     * @param style
+     * @param cellIndex
+     * @param cellValue
+     */
     private static void setCell(HSSFCell cell,HSSFRow row,HSSFCellStyle style,int cellIndex,String cellValue){
         cell = row.createCell(cellIndex);
         cell.setCellValue(cellValue);
