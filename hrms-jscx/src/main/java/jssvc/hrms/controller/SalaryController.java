@@ -4,12 +4,14 @@ import jssvc.base.constant.ConstantKey;
 import jssvc.base.constant.ConstantMessage;
 import jssvc.base.controller.BaseController;
 import jssvc.base.exception.BusinessException;
+import jssvc.base.util.DateUtil;
 import jssvc.base.util.JSON;
 import jssvc.hrms.model.Salary;
 import jssvc.hrms.model.SalaryVo;
 import jssvc.hrms.model.filter.SalarySearchFilter;
 import jssvc.hrms.service.SalaryService;
-import jssvc.user.model.UserVo;
+import jssvc.hrms.utlis.ExcelUtil;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -114,14 +121,174 @@ public class SalaryController extends BaseController {
             hashmap.put(ConstantKey.KEY_TOTAL, count);
             String json = JSON.Encode(hashmap);
             response.getWriter().write(json);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new BusinessException(ConstantMessage.ERR00003, e);
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             throw new BusinessException(ConstantMessage.ERR00004, e);
         } catch (IOException e) {
             throw new BusinessException(ConstantMessage.ERR00005, e);
         }
     }
+
+    /**
+     * 工資查詢報表
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("salaryStatements.do")
+    private ModelAndView salaryStatements(String id) {
+        // 跳轉到工資報表
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("hrms/salaryStatements");
+        mv.addObject(ConstantKey.KEY_MENU_ID, id);
+        return mv;
+    }
+
+    /**
+     * 工资条查询
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("salarySheetQuery.do")
+    private ModelAndView salarySheetQuery(String id) {
+        // 跳轉到工資報表
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("hrms/salarySheet");
+        mv.addObject(ConstantKey.KEY_MENU_ID, id);
+        return mv;
+    }
+    /**
+     * 工资报表查询
+     * @param filter
+     * @throws BusinessException
+     */
+    @ResponseBody
+    @RequestMapping("ajax/getsalaryList.do")
+    private void getSalaryList(SalarySearchFilter filter) throws BusinessException {
+        try {
+            // 用户查询条件
+            filter.setOffset();
+            filter.setLimit();
+            filter.setLoginDah(getSessionUser().getDah());
+            // 取得用户列表
+            List<SalaryVo> userVos = salaryService.getSalaries(filter);
+            // 取得用户总件数
+            long count = salaryService.getSalariesCount(filter);
+            logger.info("工资报表数据："+ count);
+            HashMap<String, Object> hashmap = new HashMap<String, Object>();
+            hashmap.put(ConstantKey.KEY_DATA, userVos);
+            hashmap.put(ConstantKey.KEY_TOTAL, count);
+            String json = JSON.Encode(hashmap);
+            response.getWriter().write(json);
+        } catch (SQLException e) {
+            throw new BusinessException(ConstantMessage.ERR00003, e);
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e) {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
+    /**
+     * 工资报表导出本地，默认是桌面
+     * @param all
+     * @throws BusinessException
+     */
+    @ResponseBody
+    @RequestMapping("ajax/printStament.do")
+    private String printStament(String all) throws BusinessException {
+        SalarySearchFilter salarySearchFilter=new SalarySearchFilter();
+        try {
+            // 取得用户列表
+            List<SalaryVo> userVos = salaryService.getSalaries(salarySearchFilter);
+            //excel标题
+            String[] title = {"序号","工号","岗位","岗位工资","工龄工资","浮动工资","绩效奖金","通讯补贴","交通补贴","用餐补贴","社保"};
+            //excel文件名
+            String fileName = "员工工资报表"+ DateUtil.getChinaDateString(new Date()) +".xls";
+            //sheet名
+            String sheetName = "工资报表";
+            String[][] content = new String[title.length][11];
+            for (int i = 0; i < userVos.size(); i++) {
+                SalaryVo salaryVo=userVos.get(i);
+                content[i][0] =String.valueOf(i+1);
+                content[i][1] =salaryVo.getDah();
+                content[i][2] =salaryVo.getName();
+                content[i][3] =salaryVo.getPost();
+                content[i][4] =String.valueOf(salaryVo.getPostSalary());
+                content[i][5] =String.valueOf(salaryVo.getFloatSalary());
+                content[i][6] =String.valueOf(salaryVo.getAward());
+                content[i][7] =String.valueOf(salaryVo.getTelAllowrance());
+                content[i][8] =String.valueOf(salaryVo.getTrafficAllowrance());
+                content[i][9] =String.valueOf(salaryVo.getLunchAllowrance());
+                content[i][10] =String.valueOf(salaryVo.getInsurance());
+            }
+            //创建HSSFWorkbook
+            HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, content, null);
+            File file=new File("C:\\Users\\Administrator\\Desktop\\");
+            OutputStream stream=new FileOutputStream(new File(file, fileName));
+            wb.write(stream);
+            stream.close();
+            // 取得用户总件数
+        } catch (SQLException e) {
+            throw new BusinessException(ConstantMessage.ERR00003, e);
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+    /**
+     * 工资报表导出本地，默认是桌面
+     * @param all
+     * @throws BusinessException
+     */
+    @ResponseBody
+    @RequestMapping("ajax/printSalarySheet.do")
+    private String printSalarySheet(String all) throws BusinessException {
+        SalarySearchFilter salarySearchFilter=new SalarySearchFilter();
+        try {
+            // 取得用户列表
+            List<SalaryVo> userVos = salaryService.getSalaries(salarySearchFilter);
+            //excel文件名
+            String fileName = "员工工资条"+ DateUtil.getChinaDateString(new Date()) +".xls";
+            //sheet名
+            String sheetName = "工资条";
+            String[][] content = new String[11][11];
+            for (int i = 0; i < userVos.size(); i++) {
+                SalaryVo salaryVo=userVos.get(i);
+                content[i][0] =String.valueOf(i+1);
+                content[i][1] =salaryVo.getDah();
+                content[i][2] =salaryVo.getName();
+                content[i][3] =salaryVo.getPost();
+                content[i][4] =String.valueOf(salaryVo.getPostSalary());
+                content[i][5] =String.valueOf(salaryVo.getFloatSalary());
+                content[i][6] =String.valueOf(salaryVo.getAward());
+                content[i][7] =String.valueOf(salaryVo.getTelAllowrance());
+                content[i][8] =String.valueOf(salaryVo.getTrafficAllowrance());
+                content[i][9] =String.valueOf(salaryVo.getLunchAllowrance());
+                content[i][10] =String.valueOf(salaryVo.getInsurance());
+            }
+            //创建HSSFWorkbook
+            HSSFWorkbook wb = ExcelUtil.getHSSFWorkbookForSalary(sheetName, content, null);
+            File file=new File("C:\\Users\\Administrator\\Desktop\\");
+            OutputStream stream=new FileOutputStream(new File(file, fileName));
+            wb.write(stream);
+            stream.close();
+            // 取得用户总件数
+        } catch (SQLException e) {
+            throw new BusinessException(ConstantMessage.ERR00003, e);
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
 }

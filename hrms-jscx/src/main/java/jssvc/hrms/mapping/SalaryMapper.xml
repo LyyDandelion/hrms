@@ -37,9 +37,12 @@
     select distinct
     a.*
     from t_hrms_salary a
+      <if test="dah != null and dah!=''" >
+           where a.dah = #{dah,jdbcType=VARCHAR}
+      </if>
     <if test="sortField != null" >
       order by a.${sortField} ${sortOrder}
-    </if>
+  </if>
     <if test="limit != 0" >
       limit #{offset},#{limit}
     </if>

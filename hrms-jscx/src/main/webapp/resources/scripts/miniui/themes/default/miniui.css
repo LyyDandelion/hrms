@@ -1230,7 +1230,7 @@ body .mini-buttonedit-disabled .mini-buttonedit-up, body .mini-buttonedit-disabl
 input.mini-textbox, input.mini-buttonedit, input.mini-datepicker, input.mini-spinner,
 	input.mini-timespinner, input.mini-combobox, input.mini-treeselect,
 	input.mini-lookup, input.mini-htmlfile, input.mini-password, input.mini-checkbox,
-	input.mini-textarea {
+	input.mini-textarea,input.mini-datepicker {
 	visibility: hidden;
 	border: 0;
 	padding: 0;
