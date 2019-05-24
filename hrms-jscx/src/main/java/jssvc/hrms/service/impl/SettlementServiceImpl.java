@@ -45,7 +45,8 @@ public class SettlementServiceImpl implements SettlementService {
 
             // 取得岗位列表
             List<Constant> gwList = constantDao.selectByType(ConstantKey.KEY_POSITION);
-            Constant constant = gwList.get(settlementMapper.selectPost(u.getDah()));
+             int   postLevel=(int)settlementMapper.selectPost(u.getDah());
+           Constant constant = gwList.get(postLevel);
             SettlementVo.setPost(constant.getName());
 
             SettlementVoList.add(SettlementVo);

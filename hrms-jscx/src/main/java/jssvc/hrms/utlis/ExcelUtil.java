@@ -101,14 +101,15 @@ public class ExcelUtil {
         setCell(cell,row,style,8,"应（代）扣金额");
         setCell(cell,row1,style,8,"养老保险");
         setCell(cell,row1,style,9,"医疗保险");
-        setCell(cell,row,style,10,"实发工资");
+        setCell(cell,row1,style,10,"公积金");
+        setCell(cell,row,style,11,"实发工资");
         sheet.addMergedRegion(mergeCells(0,1,0,0));
         sheet.addMergedRegion(mergeCells(0,1,1,1));
         sheet.addMergedRegion(mergeCells(0,1,2,2));
         sheet.addMergedRegion(mergeCells(0,0,3,4));
         sheet.addMergedRegion(mergeCells(0,0,5,7));
-        sheet.addMergedRegion(mergeCells(0,0,8,9));
-        sheet.addMergedRegion(mergeCells(0,1,10,10));
+        sheet.addMergedRegion(mergeCells(0,0,8,10));
+        sheet.addMergedRegion(mergeCells(0,1,11,11));
         //创建内容从第三行开始
         for(int i=1;i<=values.length;i++){
             row = sheet.createRow(i + 1);

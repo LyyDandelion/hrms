@@ -8,8 +8,11 @@ import jssvc.base.util.DateUtil;
 import jssvc.base.util.JSON;
 import jssvc.hrms.model.Salary;
 import jssvc.hrms.model.SalaryVo;
+import jssvc.hrms.model.SettlementVo;
 import jssvc.hrms.model.filter.SalarySearchFilter;
+import jssvc.hrms.model.filter.SettlementSearchFilter;
 import jssvc.hrms.service.SalaryService;
+import jssvc.hrms.service.SettlementService;
 import jssvc.hrms.utlis.ExcelUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
@@ -37,7 +40,8 @@ public class SalaryController extends BaseController {
 
     @Autowired
     protected SalaryService salaryService;
-
+    @Autowired
+    protected SettlementService settlementService;
     /**
      * 展示薪酬页面
      * @param id
@@ -138,7 +142,7 @@ public class SalaryController extends BaseController {
     @ResponseBody
     @RequestMapping("salaryStatements.do")
     private ModelAndView salaryStatements(String id) {
-        // 跳轉到工資報表
+        // 跳转到工资报表查询
         ModelAndView mv = new ModelAndView();
         mv.setViewName("hrms/salaryStatements");
         mv.addObject(ConstantKey.KEY_MENU_ID, id);
@@ -242,35 +246,65 @@ public class SalaryController extends BaseController {
         return "success";
     }
     /**
-     * 工资报表导出本地，默认是桌面
+     * 工资报表查询
+     * @param filter
+     * @throws BusinessException
+     */
+    @ResponseBody
+    @RequestMapping("ajax/getSalarySheetList.do")
+    private void getSalarySheetList(SettlementSearchFilter filter) throws BusinessException {
+        try {
+            // 用户查询条件
+            filter.setOffset();
+            filter.setLimit();
+            filter.setLoginDah(getSessionUser().getDah());
+            // 取得工资列表
+            List<SettlementVo> settlementVos = settlementService.getDatas(filter);
+            // 取得用户总件数
+            long count = settlementService.getSettlementCount(filter);
+            logger.info("工资条报表数据："+ count);
+            HashMap<String, Object> hashmap = new HashMap<String, Object>();
+            hashmap.put(ConstantKey.KEY_DATA, settlementVos);
+            hashmap.put(ConstantKey.KEY_TOTAL, count);
+            String json = JSON.Encode(hashmap);
+            response.getWriter().write(json);
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e) {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
+    /**
+     * 工资条导出本地，默认是桌面
      * @param all
      * @throws BusinessException
      */
     @ResponseBody
     @RequestMapping("ajax/printSalarySheet.do")
     private String printSalarySheet(String all) throws BusinessException {
-        SalarySearchFilter salarySearchFilter=new SalarySearchFilter();
+        SettlementSearchFilter settlementSearchFilter=new SettlementSearchFilter();
         try {
-            // 取得用户列表
-            List<SalaryVo> userVos = salaryService.getSalaries(salarySearchFilter);
+            // 取得工资列表
+            List<SettlementVo> settlementVos = settlementService.getDatas(settlementSearchFilter);
             //excel文件名
             String fileName = "员工工资条"+ DateUtil.getChinaDateString(new Date()) +".xls";
             //sheet名
             String sheetName = "工资条";
-            String[][] content = new String[11][11];
-            for (int i = 0; i < userVos.size(); i++) {
-                SalaryVo salaryVo=userVos.get(i);
+            String[][] content = new String[12][12];
+            for (int i = 0; i < settlementVos.size(); i++) {
+                SettlementVo settlementVo=settlementVos.get(i);
                 content[i][0] =String.valueOf(i+1);
-                content[i][1] =salaryVo.getDah();
-                content[i][2] =salaryVo.getName();
-                content[i][3] =salaryVo.getPost();
-                content[i][4] =String.valueOf(salaryVo.getPostSalary());
-                content[i][5] =String.valueOf(salaryVo.getFloatSalary());
-                content[i][6] =String.valueOf(salaryVo.getAward());
-                content[i][7] =String.valueOf(salaryVo.getTelAllowrance());
-                content[i][8] =String.valueOf(salaryVo.getTrafficAllowrance());
-                content[i][9] =String.valueOf(salaryVo.getLunchAllowrance());
-                content[i][10] =String.valueOf(salaryVo.getInsurance());
+                content[i][1] =settlementVo.getDah();
+                content[i][2] =settlementVo.getName();
+                content[i][3] =String.valueOf(settlementVo.getBase());
+                content[i][4] =String.valueOf(settlementVo.getOvertimeSalary());
+                content[i][5] =String.valueOf(settlementVo.getCompassionateDeduction());
+                content[i][6] =String.valueOf(settlementVo.getLateDeduction());
+                content[i][7] =String.valueOf(settlementVo.getSickDeduction());
+                content[i][8] =String.valueOf(settlementVo.getOwnerEndowmentInsurance());
+                content[i][9] =String.valueOf(settlementVo.getOwnerMedicalInsurance());
+                content[i][10] =String.valueOf(settlementVo.getOwnerAccumulationFund());
+                content[i][11] =String.valueOf(settlementVo.getRealWages());
             }
             //创建HSSFWorkbook
             HSSFWorkbook wb = ExcelUtil.getHSSFWorkbookForSalary(sheetName, content, null);
@@ -279,8 +313,6 @@ public class SalaryController extends BaseController {
             wb.write(stream);
             stream.close();
             // 取得用户总件数
-        } catch (SQLException e) {
-            throw new BusinessException(ConstantMessage.ERR00003, e);
         } catch (NullPointerException e) {
             throw new BusinessException(ConstantMessage.ERR00004, e);
         } catch (FileNotFoundException e) {

@@ -46,19 +46,20 @@
 </div>
 <div class="mini-fit">
     <div id="salaryDatagrid" class="mini-datagrid"  allowAlternating="true" style="width:100%;height:100%;"
-         url="<%=request.getContextPath()%>/ajax/getsalaryList.do" allowResize="true" idField="dah" pageSize="50">
+         url="<%=request.getContextPath()%>/ajax/getSalarySheetList.do" allowResize="true" idField="dah" pageSize="50">
         <div property="columns">
             <div type="indexcolumn" width="60" headerAlign="center">序号</div>
             <div field="dah" width="80" allowSort="true" align="center" headerAlign="center">工号</div>
             <div field="name" width="80" allowSort="true" align="center" headerAlign="center">姓名</div>
-            <div field="post" width="80" allowSort="false" align="center" headerAlign="center">基本工资</div>
-            <div field="postSalary" width="80" allowSort="false" align="center" headerAlign="center">加班工资</div>
-            <div field="yearSalary" width="80" allowSort="true" align="center" headerAlign="center">事假扣款</div>
-            <div field="floatSalary" width="80" allowSort="true" align="center" headerAlign="center">迟到扣款</div>
-            <div field="award" width="80" allowSort="true" align="center" headerAlign="center">病假扣款</div>
-            <div field="telAllowrance" width="80" allowSort="true" align="center" headerAlign="center">养老保险</div>
-            <div field="trafficAllowrance" width="80" allowSort="true" align="center" headerAlign="center">医疗保险</div>
-            <div field="lunchAllowrance" width="80" allowSort="true" align="center" headerAlign="center">实发工资</div>
+            <div field="base" width="80" allowSort="false" align="center" headerAlign="center">基本工资</div>
+            <div field="overtimeSalary" width="80" allowSort="false" align="center" headerAlign="center">加班工资</div>
+            <div field="compassionateDeduction" width="80" allowSort="true" align="center" headerAlign="center">事假扣款</div>
+            <div field="lateDeduction" width="80" allowSort="true" align="center" headerAlign="center">迟到扣款</div>
+            <div field="sickDeduction" width="80" allowSort="true" align="center" headerAlign="center">病假扣款</div>
+            <div field="ownerEndowmentInsurance" width="80" allowSort="true" align="center" headerAlign="center">养老保险</div>
+            <div field="ownerMedicalInsurance" width="80" allowSort="true" align="center" headerAlign="center">医疗保险</div>
+            <div field="ownerAccumulationFund" width="80" allowSort="true" align="center" headerAlign="center">医疗保险</div>
+            <div field="realWages" width="80" allowSort="true" align="center" headerAlign="center">实发工资</div>
 <%--
             <div field="flagName" width="60" allowSort="false" align="center" headerAlign="center">状态</div>
 --%>
@@ -118,8 +119,8 @@
     });
 
     var grid = mini.get("salaryDatagrid");
-    mini.get("flag").setValue("0");
-    grid.load({"flag":"0"});
+  /*  mini.get("flag").setValue("0");
+    grid.load({"flag":"0"});*/
     grid.sortBy("dah", "ASC");
 
     // 操作列的生成
@@ -143,8 +144,6 @@
 
     // 查询按钮按下的事件
     function search() {
-
-
         var jgh = mini.get("jgh").getValue();
         var dah = mini.get("dah").getValue();
         var flag = mini.get("flag").getValue();
