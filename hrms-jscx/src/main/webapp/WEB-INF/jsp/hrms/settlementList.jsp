@@ -132,7 +132,14 @@
                 var s = '';
                 // 编辑权限设定
                 if (editFlag) {
-                    s = s + '<a class="Edit_Button" href="javascript:grantRow(\'' + uid + '\')">发放</a>';
+                    var row = grid.getRowByUID(uid);
+                    if(row.isGrant=='Y')
+                    {
+                        s = s + '<a class="Edit_Button" style="color:gray" href="#">发放</a>';
+                    }
+                    else{
+                        s = s + '<a class="Edit_Button" href="javascript:grantRow(\'' + uid + '\')">发放</a>';
+                    }
                     s = s + '<a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')">编辑</a>';
 
                 } else {
@@ -196,21 +203,28 @@
             function grantRow(row_uid){
                 var row = grid.getRowByUID(row_uid);
                 if (row) {
-                    mini.open({
-                        url: "<%=request.getContextPath()%>/settlementUpdPop.do",
-                        title: "发放", width: 800, height: 640,
-                        onload: function () {
-                            var iframe = this.getIFrameEl();
-                            var data = { actionFlag: "grant", dah: row.dah };
-                            iframe.contentWindow.SetData(data);
-                        },
-                        ondestroy: function (action) {
-                            if (action == "ok") {
-                                grid.reload();
-                            }
+                    if (row.dah == "admin") {
+                        mini.alert("超级管理员不能停用！");
+                        return;
+                    }
+                    mini.confirm("是否确定向改员工发工资？", "确定？", function(action) {
+                        if (action == "ok") {
+                            $.ajax({
+                                url: "<%=request.getContextPath()%>/ajax/settlement_updateSettlement.do",
+                                type: "post",
+                                data: {dah : row.dah,month:row.month,isGrant:'Y'},
+                                dataType: 'text',
+                                success: function (text) {
+                                    if (text == "SUCCESS") {
+                                        mini.alert("该员工已发放工资", "提醒", function(action) { grid.reload(); });
+                                    }
+                                }
+                            });
                         }
                     });
                 }
+
+
             }
 
             // 编辑操作按下的事件
@@ -222,7 +236,7 @@
                         title: "编辑结算", width: 800, height: 640,
                         onload: function () {
                             var iframe = this.getIFrameEl();
-                            var data = { actionFlag: "edit", dah: row.dah };
+                            var data = { actionFlag: "edit", dah: row.dah ,month:row.month};
                             iframe.contentWindow.SetData(data);
                         },
                         ondestroy: function (action) {

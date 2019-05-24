@@ -122,7 +122,9 @@
                     form.setData(o.settlement);
                     form.setChanged(false);
                     mini.get("dah").setEnabled(false);
-                    mini.get("month").setEnabled(false);
+                    mini.get("month").setValue(o.settlement.month);
+                    // mini.get("month").setEnabled(false);
+                    // mini.get("month").setValue(o.settlement.month);
                     // mini.get("name").setValue(o.level);
                     mini.get("dah").setAllowInput(false);
                     mini.get("month").setAllowInput(false);
@@ -142,7 +144,9 @@
     // 保存该画面数据
     function save() {
         debugger;
+        // var k=$("#month").val();
         var s=$("#userForm").serializeArray();
+
         console.log(JSON.stringify(s))
         var form = new mini.Form("#userTbl");
         form.validate();
