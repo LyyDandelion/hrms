@@ -20,7 +20,7 @@ public interface SettlementMapper {
 
     List<Settlement> selectSettlement(SettlementSearchFilter filter);
 
-    int selectPost(String dah);
+    double selectPost(String dah);
 
     int selectSettlementCount(SettlementSearchFilter filter);
 

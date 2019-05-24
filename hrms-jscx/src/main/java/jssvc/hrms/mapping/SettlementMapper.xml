@@ -58,7 +58,7 @@
     from t_hrms_settlement
   </select>
   <!-- 查询岗位-->
-  <select id="selectPost" resultType="int" parameterType="java.lang.String">
+  <select id="selectPost" resultType="double" parameterType="java.lang.String">
     SELECT s.post_level from t_hrms_salary s where
       s.dah=(SELECT dah from t_hrms_settlement  d where
       d.dah=#{dah})
@@ -268,10 +268,10 @@
         update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
       <if test="base != null" >
-        base = #{base,jdbctype=DOUBLE},
+        base = #{base,jdbcType=DOUBLE},
       </if>
       <if test="realWages != null" >
-        real_wages = #{realwages,jdbctype=DOUBLE},
+        real_wages = #{realWages,jdbcType=DOUBLE},
       </if>
       <if test="isGrant != null" >
         is_grant = #{isGrant,jdbcType=VARCHAR},
@@ -356,10 +356,10 @@
                 update_date = #{updateDate,jdbcType=TIMESTAMP},
             </if>
             <if test="base != null" >
-                base = #{base,jdbctype=DOUBLE},
+                base = #{base,jdbcType=DOUBLE},
             </if>
             <if test="realWages != null" >
-                real_wages = #{realwages,jdbctype=DOUBLE},
+                real_wages = #{realWages,jdbcType=DOUBLE},
             </if>
             <if test="isGrant != null" >
                 is_grant = #{isGrant,jdbcType=VARCHAR},
