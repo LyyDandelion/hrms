@@ -79,6 +79,6 @@ public class SettlementServiceImpl implements SettlementService {
     @Override
     public void updateSettlement(Settlement settlement) {
         settlement.setUpdateDate(new Date());
-        settlementMapper.updateByPrimaryKey(settlement);
+        settlementMapper.updateByDah(settlement);
     }
 }

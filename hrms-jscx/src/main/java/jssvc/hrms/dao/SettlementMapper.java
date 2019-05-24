@@ -27,4 +27,5 @@ public interface SettlementMapper {
     int selectByDah(String dah);
 
     Settlement getSettlement(String dah);
+    int updateByDah(Settlement record);
 }

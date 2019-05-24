@@ -119,11 +119,13 @@
                 success: function (text) {
                     debugger;
                     var o = mini.decode(text);
-                    form.setData(o.importData);
+                    form.setData(o.settlement);
                     form.setChanged(false);
                     mini.get("dah").setEnabled(false);
+                    mini.get("month").setEnabled(false);
                     // mini.get("name").setValue(o.level);
                     mini.get("dah").setAllowInput(false);
+                    mini.get("month").setAllowInput(false);
                     //mini.get("ygxm").setEnabled(false);
                     //mini.get("jgh").setEnabled(false);
                     //mini.get("sex").setEnabled(false);
@@ -139,6 +141,9 @@
 
     // 保存该画面数据
     function save() {
+        debugger;
+        var s=$("#userForm").serializeArray();
+        console.log(JSON.stringify(s))
         var form = new mini.Form("#userTbl");
         form.validate();
         if (form.isValid() == true) {
@@ -155,13 +160,12 @@
                                     mini.alert("创建成功！", "提醒", function(action) { CloseWindow("ok");});
                                 } else {
                                     mini.alert("已创建，不能重复创建！");
-
                                 }
                             }
                         });
                     }
                 });
-            } else if (paramAction == "edit" || paramAction == "start") {
+            } else if (paramAction == "edit" ) {
                 var message;
                 var alertMessage;
                 if (paramAction == "edit") {
@@ -174,7 +178,7 @@
                 mini.confirm(message, "确定？",function(action) {
                     if (action == "ok") {
                         $.ajax({
-                            url: "<%=request.getContextPath()%>/ajax/user_updateUser.do",
+                            url: "<%=request.getContextPath()%>/ajax/settlement_updateSettlement.do",
                             type: "post",
                             dataType: 'text',
                             data: $("#userForm").serializeArray(),

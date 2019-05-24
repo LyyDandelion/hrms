@@ -268,10 +268,10 @@
         update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
       <if test="base != null" >
-        base = #{base,jdbctype=double},
+        base = #{base,jdbctype=DOUBLE},
       </if>
       <if test="realWages != null" >
-        real_wages = #{realwages,jdbctype=double},
+        real_wages = #{realwages,jdbctype=DOUBLE},
       </if>
       <if test="isGrant != null" >
         is_grant = #{isGrant,jdbcType=VARCHAR},
@@ -313,5 +313,68 @@
   </update>
 
 
+    <update id="updateByDah" parameterType="jssvc.hrms.model.Settlement" >
+        update t_hrms_settlement
+        <set >
+            <if test="dah != null" >
+                dah = #{dah,jdbcType=VARCHAR},
+            </if>
+            <if test="month != null" >
+                month = #{month,jdbcType=INTEGER},
+            </if>
+            <if test="sickDeduction != null" >
+                sick_deduction = #{sickDeduction,jdbcType=DOUBLE},
+            </if>
+            <if test="compassionateDeduction != null" >
+                compassionate_deduction = #{compassionateDeduction,jdbcType=INTEGER},
+            </if>
+            <if test="lateDeduction != null" >
+                late_deduction = #{lateDeduction,jdbcType=DOUBLE},
+            </if>
+            <if test="overtimeSalary != null" >
+                overtime_salary = #{overtimeSalary,jdbcType=DOUBLE},
+            </if>
+            <if test="ownerEndowmentInsurance != null" >
+                owner_endowment_insurance = #{ownerEndowmentInsurance,jdbcType=DOUBLE},
+            </if>
+            <if test="companyEndowmentInsurance != null" >
+                company_endowment_insurance = #{companyEndowmentInsurance,jdbcType=DOUBLE},
+            </if>
+            <if test="ownerMedicalInsurance != null" >
+                owner_medical_insurance = #{ownerMedicalInsurance,jdbcType=DOUBLE},
+            </if>
+            <if test="companyMedicalInsurance != null" >
+                company_medical_insurance = #{companyMedicalInsurance,jdbcType=DOUBLE},
+            </if>
+            <if test="ownerAccumulationFund != null" >
+                owner_accumulation_fund = #{ownerAccumulationFund,jdbcType=DOUBLE},
+            </if>
+            <if test="companyAccumulationFund != null" >
+                company_accumulation_fund = #{companyAccumulationFund,jdbcType=DOUBLE},
+            </if>
+            <if test="updateDate != null" >
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="base != null" >
+                base = #{base,jdbctype=DOUBLE},
+            </if>
+            <if test="realWages != null" >
+                real_wages = #{realwages,jdbctype=DOUBLE},
+            </if>
+            <if test="isGrant != null" >
+                is_grant = #{isGrant,jdbcType=VARCHAR},
+            </if>
+            <if test="flag != null" >
+                flag = #{flag,jdbcType=VARCHAR},
+            </if>
+            <if test="note1 != null" >
+                note1 = #{note1,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null" >
+                sort = #{sort,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where dah = #{dah} and month=#{month}
+    </update>
 
 </mapper>

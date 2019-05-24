@@ -193,8 +193,24 @@
                 }
             }
 
-            function grantRow(){
-
+            function grantRow(row_uid){
+                var row = grid.getRowByUID(row_uid);
+                if (row) {
+                    mini.open({
+                        url: "<%=request.getContextPath()%>/settlementUpdPop.do",
+                        title: "发放", width: 800, height: 640,
+                        onload: function () {
+                            var iframe = this.getIFrameEl();
+                            var data = { actionFlag: "grant", dah: row.dah };
+                            iframe.contentWindow.SetData(data);
+                        },
+                        ondestroy: function (action) {
+                            if (action == "ok") {
+                                grid.reload();
+                            }
+                        }
+                    });
+                }
             }
 
             // 编辑操作按下的事件
