@@ -86,24 +86,24 @@
                         <input id="lunchAllowrance" name="lunchAllowrance" class="mini-textbox" style="width:250px;" required="true" value="${userInfo.lunch_allowrance}"/>
                     </td>
                 </tr>
-                <tr>
-                    <td style="text-align:right;">社保：</td>
-                    <td>
-                        <input id="insurance" name="insurance" class="mini-textbox" style="width:250px;" required="true" value="${userInfo.insurance}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align:right;">养老保险：</td>
-                    <td>
-                        <input id="endowmentInsurance" name="endowmentInsurance" class="mini-textbox" style="width:250px;" required="true" value="${userInfo.endowment_insurance}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align:right;">医疗保险：</td>
-                    <td>
-                        <input id="medicalInsurance" name="medicalInsurance" class="mini-textbox" style="width:250px;" required="true" value="${userInfo.medical_insurance}"/>
-                    </td>
-                </tr>
+                <%--<tr>--%>
+                    <%--<td style="text-align:right;">社保：</td>--%>
+                    <%--<td>--%>
+                        <%--<input id="insurance" name="insurance" class="mini-textbox" style="width:250px;" required="true" value="${userInfo.insurance}"/>--%>
+                    <%--</td>--%>
+                <%--</tr>--%>
+                <%--<tr>--%>
+                    <%--<td style="text-align:right;">养老保险：</td>--%>
+                    <%--<td>--%>
+                        <%--<input id="endowmentInsurance" name="endowmentInsurance" class="mini-textbox" style="width:250px;" required="true" value="${userInfo.endowment_insurance}"/>--%>
+                    <%--</td>--%>
+                <%--</tr>--%>
+                <%--<tr>--%>
+                    <%--<td style="text-align:right;">医疗保险：</td>--%>
+                    <%--<td>--%>
+                        <%--<input id="medicalInsurance" name="medicalInsurance" class="mini-textbox" style="width:250px;" required="true" value="${userInfo.medical_insurance}"/>--%>
+                    <%--</td>--%>
+                <%--</tr>--%>
                 <tr>
                     <td style="text-align:right;">备注：</td>
                     <td>

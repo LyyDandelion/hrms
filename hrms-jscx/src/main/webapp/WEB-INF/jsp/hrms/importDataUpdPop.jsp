@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>员工信息维护</title>
+        <title>考勤信息维护</title>
         <script src="<%=request.getContextPath()%>/resources/scripts/boot.js" type="text/javascript"></script>
         <link href="<%=request.getContextPath()%>/resources/css/miniui_style.css" type="text/css" rel="stylesheet" />
         <style type="text/css">
@@ -18,74 +18,66 @@
     </head>
     <body id="userBody" style="display: none">
         <div id="userDiv" style="height:100%;border:0px solid #e0e0e0;">
-            <div style="height:26px;width:100%;text-indent:5px;font-weight:bold;font-family:Simsun;font-size:14px;line-height:26px;">员工基本信息
+            <div style="height:26px;width:100%;text-indent:5px;font-weight:bold;font-family:Simsun;font-size:14px;line-height:26px;">考勤信息
             </div>
             <form id="userForm">
             <table id="userTbl" border="0" cellpadding="10" cellspacing="2" style="width:85%;height:95%;" align="right">
+                <%--<tr>--%>
+                    <%--<td style="text-align:right;width:90px;">工号：</td>--%>
+                    <%--<td style="width:80%;">--%>
+                        <%--<input id="dah" name="dah" class="mini-textbox" style="width:250px;" required="true" vtype="rangeChar:1,10;" value="${importData.dah}"/>--%>
+                        <%--<input id="action" name="action" class="mini-hidden" value="${action}" />--%>
+
+                    <%--</td>--%>
+                <%--</tr>--%>
                 <tr>
-                    <td style="text-align:right;width:90px;">工号：</td>
-                    <td style="width:80%;">
-                        <input id="dah" name="dah" class="mini-textbox" style="width:250px;" required="true" vtype="rangeChar:1,10;" value="${userInfo.dah}"/>
-                        <input id="action" name="action" class="mini-hidden" value="${action}" />
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align:right;">姓名：</td>
+                    <td style="text-align:right;">工号：</td>
                     <td>
-                        <input id="ygxm" name="ygxm" class="mini-textbox" style="width:250px;" required="true" vtype="rangeChar:1,120" value="${userInfo.ygxm}"/>
+                        <input id="dah" name="dah" class="mini-combobox" textField="dah" valueField="dah"
+                        style="width:250px;" url="<%=request.getContextPath()%>/ajax/user_getUsers_for_import.do"
+                            onvaluechanged="levelChange" value="${importData.dah}"/>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:right;width:90px;">门禁卡卡号：</td>
-                    <td style="width:80%;">
-                        <input id="mjkkh" name="mjkkh" class="mini-textbox" style="width:250px;" vtype="rangeChar:1,20;" value="${userInfo.mjkkh}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align:right;">部门：</td>
+                    <td style="text-align:right;">月份：</td>
                     <td>
-                        <input id="jgh" name="jgh" class="mini-treeselect" style="width:250px;" multiSelect="true" value="${jgxx}"
-                        textField="jgmc" valueField="jgh" parentField="sjjg" url="<%=request.getContextPath()%>/ajax/user_getJgList.do"
-                        checkRecursive="false" showFolderCheckBox="true" showClose="true" expandOnLoad="0" required="true" oncloseclick="onCloseClick">
-                        </input>
+                        <input id="month" name="month" class="mini-textbox" style="width:250px;" required="true" value="${importData.month}"/>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:right;">岗位：</td>
+                    <td style="text-align:right;">病假天数：</td>
                     <td>
-                        <input id="gwdj" name="gwdj" class="mini-combobox" textField="name" valueField="enKey"
-                        style="width:250px;" url="<%=request.getContextPath()%>/ajax/user_getGwList.do" value="${userInfo.gwdj}"/>
+                        <input id="sickDays" name="sickDays" class="mini-textbox" style="width:250px;" required="true" value="${importData.sickDays}"  onvaluechanged="yearChange"/>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:right;">性别：</td>
+                    <td style="text-align:right;">事假天数：</td>
                     <td>
-                        <input id="sex" name="sex" class="mini-radiobuttonlist" style="width:250px;" required="true"
-                        url="<%=request.getContextPath()%>/ajax/user_getSexList.do" value="${userInfo.sex}"/>
+                        <input id="compassionateDays" name="compassionateDays" class="mini-textbox" style="width:250px;" required="true" value="${importData.compassionateDays}"/>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:right;">邮箱：</td>
+                    <td style="text-align:right;">迟到次数：</td>
                     <td>
-                        <input id="email" name="email" class="mini-textbox" style="width:250px;" vtype="email" required="true" value="${userInfo.email}"/>
+                        <input id="lateTimes" name="lateTimes" class="mini-textbox" style="width:250px;" required="true" value="${importData.lateTimes}"/>
                     </td>
                 </tr>
                 <tr>
-                <td style="text-align:right;">手机号：</td>
+                    <td style="text-align:right;">加班天数：</td>
                     <td>
-                        <input id="mobile" name="mobile" class="mini-textbox" style="width:250px;" required="true" onvalidation="onPhoneValidation" value="${userInfo.mobile}"/>
+                        <input id="overtimeDays" name="overtimeDays" class="mini-textbox" style="width:250px;" required="true" value="${importData.overtimeDays}"/>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:right;">身份证号码：</td>
+                    <td style="text-align:right;">补发：</td>
                     <td>
-                        <input id="sfzh" name="sfzh" class="mini-textbox" style="width:250px;" onvalidation="onIDCardsValidation" required="true" value="${userInfo.sfzh}"/>
+                        <input id="replenishment" name="replenishment" class="mini-textbox" style="width:250px;" required="true" value="${importData.replenishment}"/>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align:right;">备注：</td>
                     <td>
-                        <input id="bz" name="bz" class="mini-textarea" style="width:250px;" vtype="rangeChar:0,120" value="${userInfo.bz}"/>
+                        <input id="note1" name="note1" class="mini-textarea" style="width:250px;" vtype="rangeChar:0,120" value="${importData.note1}"/>
                     </td>
                 </tr>
                 <tr>
@@ -115,10 +107,40 @@
                 mini.get("mjkkh").setEnabled(false);
                 mini.get("gwdj").setEnabled(false);
             }
-            
+
+            function levelChange(){
+                var dah=mini.get("dah").getValue();
+                $.ajax({
+                    url:"ajax/checkIsExsit.do",
+                    data:{
+                        dah:dah
+                    },
+                    success:function(data){
+                        if(data=="1")
+                        {
+                            alert("此员工已录入");
+                            mini.get("dah").setValue("");
+                        }
+                        console.log(JSON.stringify(data));
+                    }
+
+                })
+                // mini.get("postSalary").setValue( mini.get("postLevel").getValue() * 1100 )
+                // mini.get("award").setValue( mini.get("postLevel").getValue() * 1500 )
+                // mini.get("trafficAllowrance").setValue( mini.get("postLevel").getValue() * 200 )
+                // mini.get("telAllowrance").setValue( mini.get("postLevel").getValue() * 100 )
+                // mini.get("lunchAllowrance").setValue( mini.get("postLevel").getValue() * 30 )
+            }
+
+            function yearChange(){
+                mini.get("insurance").setValue( mini.get("workYear").getValue() * 200 )
+                mini.get("endowmentInsurance").setValue( mini.get("workYear").getValue() * 320 )
+                mini.get("medicalInsurance").setValue( mini.get("workYear").getValue() * 100 )
+                mini.get("yearSalary").setValue( mini.get("workYear").getValue() * 25 )
+            }
+
             // 标准方法接口定义
             function SetData(data) {
-                debugger;
                 paramAction = data.actionFlag;
                 if (data.actionFlag == "add") {
                 } else if (data.actionFlag == "edit" || data.actionFlag == "start") {
@@ -126,16 +148,18 @@
                     // 跨页面传递的数据对象，克隆后才可以安全使用
                     data = mini.clone(data);
                     $.ajax({
-                        url: "<%=request.getContextPath()%>/ajax/user_getUser.do",
+                        url: "<%=request.getContextPath()%>/ajax/get_import.do",
                         data: { dah: data.dah },
                         type: "post",
                         dataType: 'text',
                         cache: false,
                         success: function (text) {
+                            debugger;
                             var o = mini.decode(text);
-                            form.setData(o.user);
+                            form.setData(o.importData);
                             form.setChanged(false);
-                            mini.get("jgh").setValue(o.jgxx);
+                            mini.get("dah").setEnabled(false);
+                            // mini.get("name").setValue(o.level);
                             mini.get("dah").setAllowInput(false);
                             //mini.get("ygxm").setEnabled(false);
                             //mini.get("jgh").setEnabled(false);
@@ -150,38 +174,24 @@
                 }
             }
 
-            // 身份证验证
-            function onIDCardsValidation(e) {
-                var id = mini.get("sfzh").getValue();
-                if(id != "") {
-                    if (e.isValid) {
-                        var pattern = /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/;
-                        if (pattern.test(e.value) == false) {
-                            e.errorText = "必须输入15~18位数字";
-                            e.isValid = false;
-                        }
-                    }
-                }
-            }
-            
             // 保存该画面数据
             function save() {
                 var form = new mini.Form("#userTbl");
                 form.validate();
                 if (form.isValid() == true) {
                     if (paramAction == "add") {
-                        mini.confirm("是否确定创建该员工？", "确定？",function(action) {
+                        mini.confirm("是否确定创建该考勤数据？", "确定？",function(action) {
                             if (action == "ok") {
                                 $.ajax({
-                                    url: "<%=request.getContextPath()%>/ajax/user_addUser.do",
+                                    url: "<%=request.getContextPath()%>/ajax/import_addImport.do",
                                     type: "post",
                                     dataType: 'text',
                                     data: $("#userForm").serializeArray(),
                                     success: function (result) {
                                         if (result == "SUCCESS") {
-                                            mini.alert("员工创建成功！", "提醒", function(action) { CloseWindow("ok");});
+                                            mini.alert("创建成功！", "提醒", function(action) { CloseWindow("ok");});
                                         } else {
-                                            mini.alert("该员工已创建，不能重复创建！");
+                                            mini.alert("已创建，不能重复创建！");
 
                                         }
                                     }
@@ -240,6 +250,8 @@
                 obj.setText("");
                 obj.setValue("");
             }
+
+
         </script>
     </body>
 </html>

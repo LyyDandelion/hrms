@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jssvc.hrms.dao.ImportDataMapper">
+  <resultMap id="BaseResultMap" type="jssvc.hrms.model.ImportData">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="dah" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="month" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sick_days" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="compassionate_days" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="late_times" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="overtime_days" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="replenishment" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="flag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="note1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sort" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dah,month, sick_days, compassionate_days, late_times, overtime_days, replenishment,
+    flag, note1, sort
+  </sql>
+
+  <select id="selectByDah" resultType="int" parameterType="java.lang.String" >
+    select count(*) from t_hrms_import_data where dah=#{dah}
+  </select>
+  <select id="selectImportDataForDah" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from t_hrms_import_data where dah=#{dah}
+  </select>
+
+  <select id="getUserList" resultType="jssvc.user.model.User">
+    select * from  t_user;
+  </select>
+  <select id="selectImportData" resultMap="BaseResultMap" parameterType="jssvc.hrms.model.filter.ImportDataSearchFilter" >
+    select distinct
+    a.*
+    from t_hrms_import_data a
+    <where>
+      <if test="dah != null and dah != ''" >
+        a.dah like CONCAT('%',#{dah,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="ygxm != null and ygxm != ''" >
+        and a.dah in(SELECT dah FROM `t_user`  u where  u.ygxm like CONCAT('%',#{ygxm},'%') )
+      </if>
+    </where>
+
+    <if test="sortField != null" >
+      order by a.${sortField} ${sortOrder}
+    </if>
+    <if test="limit != 0" >
+      limit #{offset},#{limit}
+    </if>
+  </select>
+
+
+  <select id="selectImportDataCount" resultType="int" parameterType="jssvc.hrms.model.filter.ImportDataSearchFilter" >
+    select count(1)
+    from t_hrms_import_data
+  </select>
+
+
+  <!-- 查询岗位-->
+  <select id="selectPost" resultType="int" parameterType="java.lang.String">
+    SELECT s.post_level from t_hrms_salary s where
+      s.dah=(SELECT dah from t_hrms_import_data  d where
+      d.dah=#{dah})
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_hrms_import_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_hrms_import_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jssvc.hrms.model.ImportData">
+    insert into t_hrms_import_data (id, dah,month, sick_days,
+      compassionate_days, late_times, overtime_days,
+      replenishment, flag, note1,
+      sort)
+    values (#{id,jdbcType=INTEGER}, #{dah,jdbcType=VARCHAR},#{month,jdbcType=INTEGER},#{sickDays,jdbcType=INTEGER},
+      #{compassionateDays,jdbcType=INTEGER}, #{lateTimes,jdbcType=INTEGER}, #{overtimeDays,jdbcType=INTEGER},
+      #{replenishment,jdbcType=DOUBLE}, #{flag,jdbcType=VARCHAR}, #{note1,jdbcType=VARCHAR},
+      #{sort,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jssvc.hrms.model.ImportData">
+    insert into t_hrms_import_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dah != null">
+        dah,
+      </if>
+      <if test="month != null">
+        month,
+      </if>
+      <if test="sickDays != null">
+        sick_days,
+      </if>
+      <if test="compassionateDays != null">
+        compassionate_days,
+      </if>
+      <if test="lateTimes != null">
+        late_times,
+      </if>
+      <if test="overtimeDays != null">
+        overtime_days,
+      </if>
+      <if test="replenishment != null">
+        replenishment,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="note1 != null">
+        note1,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dah != null">
+        #{dah,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=INTEGER},
+      </if>
+
+      <if test="sickDays != null">
+        #{sickDays,jdbcType=INTEGER},
+      </if>
+      <if test="compassionateDays != null">
+        #{compassionateDays,jdbcType=INTEGER},
+      </if>
+      <if test="lateTimes != null">
+        #{lateTimes,jdbcType=INTEGER},
+      </if>
+      <if test="overtimeDays != null">
+        #{overtimeDays,jdbcType=INTEGER},
+      </if>
+      <if test="replenishment != null">
+        #{replenishment,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="note1 != null">
+        #{note1,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jssvc.hrms.model.ImportData">
+    update t_hrms_import_data
+    <set>
+      <if test="dah != null">
+        dah = #{dah,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="sickDays != null">
+        sick_days = #{sickDays,jdbcType=INTEGER},
+      </if>
+      <if test="compassionateDays != null">
+        compassionate_days = #{compassionateDays,jdbcType=INTEGER},
+      </if>
+      <if test="lateTimes != null">
+        late_times = #{lateTimes,jdbcType=INTEGER},
+      </if>
+      <if test="overtimeDays != null">
+        overtime_days = #{overtimeDays,jdbcType=INTEGER},
+      </if>
+      <if test="replenishment != null">
+        replenishment = #{replenishment,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="note1 != null">
+        note1 = #{note1,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jssvc.hrms.model.ImportData">
+    update t_hrms_import_data
+    set dah = #{dah,jdbcType=VARCHAR},
+      sick_days = #{sickDays,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      compassionate_days = #{compassionateDays,jdbcType=INTEGER},
+      late_times = #{lateTimes,jdbcType=INTEGER},
+      overtime_days = #{overtimeDays,jdbcType=INTEGER},
+      replenishment = #{replenishment,jdbcType=DOUBLE},
+      flag = #{flag,jdbcType=VARCHAR},
+      note1 = #{note1,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

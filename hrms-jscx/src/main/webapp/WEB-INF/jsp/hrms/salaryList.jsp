@@ -61,7 +61,7 @@
                     <div field="telAllowrance" width="80" allowSort="true" align="center" headerAlign="center">通讯补贴</div>
                     <div field="trafficAllowrance" width="80" allowSort="true" align="center" headerAlign="center">交通补贴</div>
                     <div field="lunchAllowrance" width="80" allowSort="true" align="center" headerAlign="center">用餐补贴</div>
-                    <div field="insurance" width="80" allowSort="true" align="center" headerAlign="center">社保</div>
+                    <%--<div field="insurance" width="80" allowSort="true" align="center" headerAlign="center">社保</div>--%>
                     <div field="flagName" width="60" allowSort="false" align="center" headerAlign="center">状态</div>
                     <div name="active" width="120" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">操作</div>
                 </div>

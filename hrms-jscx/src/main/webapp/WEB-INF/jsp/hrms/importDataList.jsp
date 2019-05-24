@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>用户一览</title>
+        <title>导入数据</title>
         <script src="<%=request.getContextPath()%>/resources/scripts/boot.js" type="text/javascript"></script>
         <link href="<%=request.getContextPath()%>/resources/css/miniui_style.css" type="text/css" rel="stylesheet" />
         <style type="text/css">
@@ -21,15 +21,15 @@
                         <!-- 原来是添加拼音功能 -->
                     </td>
                     <td style="width:120px">
-                        <a class="mini-button" style="width:120px" iconCls="icon-add" id="add" onclick="add()">创建员工</a>
+                        <a class="mini-button" style="width:120px" iconCls="icon-add" id="add" onclick="add()">录入</a>
                     </td>
-                    <td style="width:60px;text-align:right;">机构：</td>
-                    <td style="width:35%">
-                        <input id="jgh" name="jgh" class="mini-treeselect" style="width:100%;" textField="jgmc"
-                        valueField="jgh" parentField="sjjg" expandOnLoad="0"
-                         allowInput="true">
-                        </input>
-                    </td>
+                    <%--<td style="width:60px;text-align:right;">院部：</td>--%>
+                    <%--<td style="width:35%">--%>
+                        <%--<input id="jgh" name="jgh" class="mini-treeselect" style="width:100%;" textField="jgmc"--%>
+                        <%--valueField="jgh" parentField="sjjg" expandOnLoad="0"--%>
+                         <%--allowInput="true">--%>
+                        <%--</input>--%>
+                    <%--</td>--%>
                     <td style="width:60px;text-align:right;">工号：</td>
                     <td style="width:15%">
                         <input id="dah" name="dah" class="mini-textbox" style="width:100%;"/>
@@ -38,26 +38,28 @@
                     <td style="width:15%">
                         <input id="ygxm" name="ygxm" class="mini-textbox" style="width:100%;"/>
                     </td>
-                    <td style="width:70px;text-align:right;">状态：</td>
-                    <td style="width:15%">
-                        <input id="flag" name="flag" class="mini-combobox" showNullItem="true" textField="text" valueField="id" style="width:100%;"/>
-                    </td>
+                    <%--<td style="width:70px;text-align:right;">状态：</td>--%>
+                    <%--<td style="width:15%">--%>
+                        <%--<input id="flag" name="flag" class="mini-combobox" showNullItem="true" textField="text" valueField="id" style="width:100%;"/>--%>
+                    <%--</td>--%>
                     <td style="width:100px"><a class="mini-button" id="search" onclick="search()" style="width:100%;">查询</a></td>
                 </tr>
             </table>
         </div>
         <div class="mini-fit">  
-            <div id="userDatagrid" class="mini-datagrid"  allowAlternating="true" style="width:100%;height:100%;"
-            url="<%=request.getContextPath()%>/ajax/user_getUsers.do" allowResize="true" idField="dah" pageSize="50">
+            <div id="salaryDatagrid" class="mini-datagrid"  allowAlternating="true" style="width:100%;height:100%;"
+            url="<%=request.getContextPath()%>/ajax/importData_getDatas.do" allowResize="true" idField="dah" pageSize="50">
                 <div property="columns">
-                    <div type="indexcolumn" headerAlign="center">序号</div>
-                    <div field="dah" width="60" allowSort="true" align="center" headerAlign="center">工号</div>
-                    <div field="ygxm" width="80" allowSort="true" align="center" headerAlign="center">姓名</div>
-                    <div field="jgmc" width="120" allowSort="false" align="center" headerAlign="center">部门</div>
-                    <div field="sexName" width="40" allowSort="false" align="center" headerAlign="center">性别</div>
-                    <div field="email" width="120" allowSort="true" align="center" headerAlign="center">邮箱</div>
-                    <div field="mobile" width="100" allowSort="true" align="center" headerAlign="center">电话号码</div>
-                    <div field="flagName" width="60" allowSort="false" align="center" headerAlign="center">状态</div>
+                    <div type="indexcolumn" width="60" headerAlign="center">序号</div>
+                    <div field="dah" width="80" allowSort="true" align="center" headerAlign="center">工号</div>
+                    <div field="name" width="80" allowSort="true" align="center" headerAlign="center">姓名</div>
+                    <div field="post" width="120" allowSort="false" align="center" headerAlign="center">岗位</div>
+                    <div field="month" width="80" allowSort="true" align="center" headerAlign="center">月份</div>
+                    <div field="sickDays" width="80" allowSort="false" align="center" headerAlign="center">病假天数</div>
+                    <div field="compassionateDays" width="80" allowSort="true" align="center" headerAlign="center">事假天数</div>
+                    <div field="lateTimes" width="80" allowSort="true" align="center" headerAlign="center">迟到天数</div>
+                    <div field="overtimeDays" width="80" allowSort="true" align="center" headerAlign="center">加班天数</div>
+                    <div field="replenishment" width="80" allowSort="true" align="center" headerAlign="center">补发</div>
                     <div name="active" width="120" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">操作</div>
                 </div>
             </div>
@@ -68,9 +70,9 @@
             var editFlag = true;
             var pwdFlag = true;
             var delFlag = true;
-            $(document).ready(function() {
+           /* $(document).ready(function() {
                 $.ajax({
-                    url: "<%=request.getContextPath()%>/ajax/user_initUserList.do",
+                    url: "<%=request.getContextPath()%>/ajax/salary_initSalaryList.do",
                     data:{id: "<%=request.getParameter("id")%>"},
                     type: "post",
                     async: false,
@@ -102,11 +104,11 @@
                         pwdFlag = data.pwdFlag;
                     }
                 });
-            });
+            }); */
 
-            var grid = mini.get("userDatagrid");
-            mini.get("flag").setValue("0");
-            grid.load({"flag":"0"});
+            var grid = mini.get("salaryDatagrid");
+            // mini.get("flag").setValue("0");
+            // grid.load({"flag":"0"});
             grid.sortBy("dah", "ASC");
             
             // 操作列的生成
@@ -117,58 +119,30 @@
                 var rowIndex = e.rowIndex;
 
                 var s = '';
-                // 密码重置权限设定
-                if (pwdFlag && record.flag == '0') {
-                    s = '<a class="Edit_Button" href="javascript:resetPwd(\'' + uid + '\')">密码重置</a>';
-                } else {
-                    s = '<a class="Edit_Button" style="color:gray" href="#">密码重置</a>';
-                }
                 // 编辑权限设定
-                if (editFlag && record.flag == '0') {
+                if (editFlag) {
                     s = s + '<a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')">编辑</a>';
                 } else {
                     s = s + '<a class="Edit_Button" style="color:gray" href="#">编辑</a>';
                 }
-                // 启用权限设定
-                if (editFlag) {
-                    if (record.flag == '0') {
-                    } else {
-                        s = s + '<a class="Edit_Button" href="javascript:addRow(\'' + uid + '\')">启用</a>';
-                    }
-                } else {
-                    if (record.flag == '0') {
-                    } else {
-                        s = s + '<a class="Edit_Button" style="color:gray" href="#">启用</a>';
-                    }
-                }
-                // 停用权限设定
-                if (delFlag) {
-                    if (record.flag == '0') {
-                        s = s + '<a class="Delete_Button" href="javascript:delRow(\'' + uid + '\')">停用</a>';
-                    }
-                } else {
-                    if (record.flag == '0') {
-                        s = s + '<a class="Delete_Button" style="color:gray" href="#">停用</a>';
-                    }
-                }
+
                 return s;
             }
 
             // 查询按钮按下的事件
             function search() {
-                debugger;
-                var jgh = mini.get("jgh").getValue();
+                // var jgh = mini.get("jgh").getValue();
                 var dah = mini.get("dah").getValue();
                 var ygxm = mini.get("ygxm").getValue();
-                var flag = mini.get("flag").getValue();
-                grid.load({ 'jgh': jgh, 'dah': dah, 'ygxm': ygxm, 'flag': flag });
+                // var flag = mini.get("flag").getValue();
+                grid.load({ 'dah': dah, 'ygxm': ygxm });
             }
 
             // 创建员工操作按下的事件
             function add() {
                 mini.open({
-                    url: "<%=request.getContextPath()%>/showUserUpdPop.do",
-                    title: "员工创建", width: 800, height: 640,
+                    url: "<%=request.getContextPath()%>/showImportDataUpdPop.do",
+                    title: "导入数据", width: 800, height: 640,
                     onload: function () {
                         var iframe = this.getIFrameEl();
                         var data = { actionFlag: "add" };
@@ -209,8 +183,8 @@
                 var row = grid.getRowByUID(row_uid);
                 if (row) {
                     mini.open({
-                        url: "<%=request.getContextPath()%>/showUserUpdPop.do",
-                        title: "编辑员工信息", width: 800, height: 640,
+                        url: "<%=request.getContextPath()%>/showImportUpdPop.do",
+                        title: "编辑信息", width: 800, height: 640,
                         onload: function () {
                             var iframe = this.getIFrameEl();
                             var data = { actionFlag: "edit", dah: row.dah };

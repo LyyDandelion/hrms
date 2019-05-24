@@ -59,15 +59,15 @@
         <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
                 type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
-                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+                typeshowSalaryList.do="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
         <javaClientGenerator targetPackage="jssvc.hrms.dao"
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="t_hrms_salary"
-               domainObjectName="Salary"
+        <table tableName="t_hrms_settlement"
+               domainObjectName="Settlement"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
