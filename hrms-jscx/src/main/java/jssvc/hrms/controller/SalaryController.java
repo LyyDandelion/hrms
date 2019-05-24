@@ -114,9 +114,11 @@ public class SalaryController extends BaseController {
             hashmap.put(ConstantKey.KEY_TOTAL, count);
             String json = JSON.Encode(hashmap);
             response.getWriter().write(json);
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new BusinessException(ConstantMessage.ERR00003, e);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             throw new BusinessException(ConstantMessage.ERR00004, e);
         } catch (IOException e) {
             throw new BusinessException(ConstantMessage.ERR00005, e);
