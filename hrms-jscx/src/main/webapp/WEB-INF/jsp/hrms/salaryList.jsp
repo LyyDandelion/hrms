@@ -23,13 +23,13 @@
                     <td style="width:120px">
                         <a class="mini-button" style="width:120px" iconCls="icon-add" id="add" onclick="add()">创建薪酬</a>
                     </td>
-                    <td style="width:60px;text-align:right;">院部：</td>
-                    <td style="width:35%">
-                        <input id="jgh" name="jgh" class="mini-treeselect" style="width:100%;" textField="jgmc"
-                        valueField="jgh" parentField="sjjg" expandOnLoad="0"
-                         allowInput="true">
-                        </input>
-                    </td>
+                    <%--<td style="width:60px;text-align:right;">院部：</td>--%>
+                    <%--<td style="width:35%">--%>
+                        <%--<input id="jgh" name="jgh" class="mini-treeselect" style="width:100%;" textField="jgmc"--%>
+                        <%--valueField="jgh" parentField="sjjg" expandOnLoad="0"--%>
+                         <%--allowInput="true">--%>
+                        <%--</input>--%>
+                    <%--</td>--%>
                     <td style="width:60px;text-align:right;">工号：</td>
                     <td style="width:15%">
                         <input id="dah" name="dah" class="mini-textbox" style="width:100%;"/>
@@ -38,10 +38,10 @@
                     <td style="width:15%">
                         <input id="ygxm" name="ygxm" class="mini-textbox" style="width:100%;"/>
                     </td>
-                    <td style="width:70px;text-align:right;">状态：</td>
-                    <td style="width:15%">
-                        <input id="flag" name="flag" class="mini-combobox" showNullItem="true" textField="text" valueField="id" style="width:100%;"/>
-                    </td>
+                    <%--<td style="width:70px;text-align:right;">状态：</td>--%>
+                    <%--<td style="width:15%">--%>
+                        <%--<input id="flag" name="flag" class="mini-combobox" showNullItem="true" textField="text" valueField="id" style="width:100%;"/>--%>
+                    <%--</td>--%>
                     <td style="width:100px"><a class="mini-button" id="search" onclick="search()" style="width:100%;">查询</a></td>
                 </tr>
             </table>
@@ -62,7 +62,7 @@
                     <div field="trafficAllowrance" width="80" allowSort="true" align="center" headerAlign="center">交通补贴</div>
                     <div field="lunchAllowrance" width="80" allowSort="true" align="center" headerAlign="center">用餐补贴</div>
                     <%--<div field="insurance" width="80" allowSort="true" align="center" headerAlign="center">社保</div>--%>
-                    <div field="flagName" width="60" allowSort="false" align="center" headerAlign="center">状态</div>
+                    <%--<div field="flagName" width="60" allowSort="false" align="center" headerAlign="center">状态</div>--%>
                     <div name="active" width="120" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">操作</div>
                 </div>
             </div>
@@ -110,8 +110,8 @@
             }); */
 
             var grid = mini.get("salaryDatagrid");
-            mini.get("flag").setValue("0");
-            grid.load({"flag":"0"});
+            // mini.get("flag").setValue("0");
+            // grid.load({"flag":"0"});
             grid.sortBy("dah", "ASC");
             
             // 操作列的生成
@@ -134,11 +134,12 @@
 
             // 查询按钮按下的事件
             function search() {
-                var jgh = mini.get("jgh").getValue();
+                // var jgh = mini.get("jgh").getValue();
                 var dah = mini.get("dah").getValue();
                 var ygxm = mini.get("ygxm").getValue();
-                var flag = mini.get("flag").getValue();
-                grid.load({ 'jgh': jgh, 'dah': dah, 'ygxm': ygxm, 'flag': flag });
+                // var flag = mini.get("flag").getValue();
+                // grid.load({ 'jgh': jgh, 'dah': dah, 'ygxm': ygxm, 'flag': flag });
+                grid.load({ 'dah': dah, 'ygxm': ygxm});
             }
 
             // 创建员工操作按下的事件

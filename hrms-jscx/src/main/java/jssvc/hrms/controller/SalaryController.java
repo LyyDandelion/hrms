@@ -323,4 +323,22 @@ public class SalaryController extends BaseController {
         return "success";
     }
 
+
+    @ResponseBody
+    @RequestMapping("ajax/salary_updateSalary.do")
+    private void updateSalary(Salary condition) throws BusinessException {
+        try {
+            condition.setFlag("1");
+
+            salaryService.updateSalary(condition);
+            response.getWriter().write(ConstantKey.SUCCESS);
+        } catch (NullPointerException e)
+        {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e)
+        {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
+
 }
