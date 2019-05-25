@@ -5,6 +5,16 @@ public class SettlementVo  extends  Settlement {
 
     private String name;
 
+     private String jgmc;
+
+    public String getJgmc() {
+        return jgmc;
+    }
+
+    public void setJgmc(String jgmc) {
+        this.jgmc = jgmc;
+    }
+
     public String getPost() {
         return post;
     }
