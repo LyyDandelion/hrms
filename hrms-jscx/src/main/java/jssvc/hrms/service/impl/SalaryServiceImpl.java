@@ -79,6 +79,16 @@ public class SalaryServiceImpl implements SalaryService {
     }
 
     @Override
+    public List<String> getUsersByChoice(SalarySearchFilter filter) {
+        return salaryDao.selectSalariesByChoice(filter);
+    }
+
+    @Override
+    public int getUsersCountByChoice(SalarySearchFilter filter) {
+        return salaryDao.selectSalariesCountByChoice(filter);
+    }
+
+    @Override
     public int getSalariesCount(SalarySearchFilter filter) throws SQLException {
         int salariesCount = salaryDao.selectSalariesCount(filter);
         return salariesCount;

@@ -1,5 +1,6 @@
 package jssvc.user.service;
 
+import jssvc.hrms.model.filter.SalarySearchFilter;
 import jssvc.user.model.*;
 import jssvc.user.model.filter.UserSearchFilter;
 import jssvc.base.exception.BusinessException;

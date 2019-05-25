@@ -25,4 +25,8 @@ public interface SalaryMapper {
     List<Salary> selectByDah(String dah);
 
     boolean updateByDah(Salary salary);
+
+    List<String> selectSalariesByChoice(SalarySearchFilter filter);
+
+    int selectSalariesCountByChoice(SalarySearchFilter filter);
 }

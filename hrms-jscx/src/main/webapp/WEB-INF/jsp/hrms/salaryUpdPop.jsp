@@ -24,10 +24,15 @@
             <table id="userTbl" border="0" cellpadding="10" cellspacing="2" style="width:85%;height:95%;" align="right">
                 <tr>
                     <td style="text-align:right;width:90px;">工号：</td>
-                    <td style="width:80%;">
-                        <input id="dah" name="dah" class="mini-textbox" style="width:250px;" required="true" vtype="rangeChar:1,10;" value="${userInfo.dah}"/>
-                        <input id="action" name="action" class="mini-hidden" value="${action}" />
+                    <%--<td style="width:80%;">--%>
+                        <%--<input id="dah" name="dah" class="mini-textbox" style="width:250px;" required="true" vtype="rangeChar:1,10;" value="${userInfo.dah}"/>--%>
+                        <%--<input id="action" name="action" class="mini-hidden" value="${action}" />--%>
 
+                    <%--</td>--%>
+                    <td>
+                        <input id="dah" name="dah" class="mini-combobox" textField="dah" valueField="dah"
+                               style="width:250px;" url="<%=request.getContextPath()%>/ajax/salary_getDahsBychoice.do"
+                               value="${importData.dah}"/>
                     </td>
                 </tr>
                 <tr>
@@ -123,6 +128,13 @@
         </div>
 
         <script type="text/javascript">
+            $.ajax({
+                url:"<%=request.getContextPath()%>/ajax/salary_getDahsBychoice.do",
+                success:function (data) {
+                    console.log("接收："+JSON.stringify(data));
+                }
+            })
+
             mini.parse();
             $("#userBody").fadeTo("slow", 1);
             var paramAction = mini.get("action").getValue();
@@ -152,6 +164,7 @@
                 mini.get("medicalInsurance").setValue( mini.get("workYear").getValue() * 100 )
                 mini.get("yearSalary").setValue( mini.get("workYear").getValue() * 25 )
             }
+
 
             // 标准方法接口定义
             function SetData(data) {

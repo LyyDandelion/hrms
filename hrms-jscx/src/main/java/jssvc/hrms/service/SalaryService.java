@@ -31,4 +31,7 @@ public interface SalaryService {
 
     SalaryVo getSalary(String dah);
 
+    List<String> getUsersByChoice(SalarySearchFilter filter);
+
+    int getUsersCountByChoice(SalarySearchFilter filter);
 }

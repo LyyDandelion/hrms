@@ -14,6 +14,8 @@ import jssvc.hrms.model.filter.SettlementSearchFilter;
 import jssvc.hrms.service.SalaryService;
 import jssvc.hrms.service.SettlementService;
 import jssvc.hrms.utlis.ExcelUtil;
+import jssvc.user.model.UserVo;
+import jssvc.user.model.filter.UserSearchFilter;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -337,6 +340,46 @@ public class SalaryController extends BaseController {
             throw new BusinessException(ConstantMessage.ERR00004, e);
         } catch (IOException e)
         {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
+
+
+    /***
+     * 获取用户工号，且去除已经导入的
+     * @param filter
+     * @throws BusinessException
+     */
+    @ResponseBody
+    @RequestMapping("ajax/salary_getDahsBychoice.do")
+    private void getDahsBychoice(SalarySearchFilter filter) throws BusinessException {
+        try {
+            // 用户查询条件
+            filter.setOffset();
+            filter.setLimit();
+            filter.setLoginDah(getSessionUser().getDah());
+            // 取得用户列表
+            List<Salary> salaryList=new ArrayList<>();
+            List<String> list = salaryService.getUsersByChoice(filter);
+            for (String dah:list) {
+                Salary s=new Salary();
+                s.setDah(dah);
+                salaryList.add(s);
+            }
+            // 取得用户总件数
+            int count = salaryService.getUsersCountByChoice(filter);
+            logger.info("用户的总数是："+ count);
+
+            //筛选
+            HashMap<String, Object> hashmap = new HashMap<String, Object>();
+            hashmap.put(ConstantKey.KEY_DATA, salaryList);
+            hashmap.put(ConstantKey.KEY_TOTAL, count);
+            String json = JSON.Encode(hashmap);
+            response.getWriter().write(json);
+        }
+        catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e) {
             throw new BusinessException(ConstantMessage.ERR00005, e);
         }
     }
