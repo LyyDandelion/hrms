@@ -77,4 +77,9 @@ public class ImportDataServiceImpl implements ImportDataService {
         return importDataMapper.selectImportDataForDah(dah);
     }
 
+    @Override
+    public void updateDate(ImportData condition) {
+        importDataMapper.updateByDah(condition);
+    }
+
 }

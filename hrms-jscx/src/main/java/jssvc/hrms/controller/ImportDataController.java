@@ -136,11 +136,9 @@ public class ImportDataController extends BaseController {
             importData.setFlag("1");
             importDataService.addImport(importData);
             response.getWriter().write(ConstantKey.SUCCESS);
-        } catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             throw new BusinessException(ConstantMessage.ERR00004, e);
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new BusinessException(ConstantMessage.ERR00005, e);
         }
     }
@@ -159,13 +157,13 @@ public class ImportDataController extends BaseController {
     @RequestMapping("ajax/get_import.do")
     private void getImport(String dah) throws BusinessException {
         try {
-            ImportData importData=importDataService.getImportData(dah);
+            ImportData importData = importDataService.getImportData(dah);
 
             HashMap<String, Object> hashmap = new HashMap<String, Object>();
             hashmap.put("importData", importData);
             String json = JSON.Encode(hashmap);
             response.getWriter().write(json);
-        }  catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             throw new BusinessException(ConstantMessage.ERR00004, e);
         } catch (IOException e) {
             throw new BusinessException(ConstantMessage.ERR00005, e);
@@ -200,4 +198,22 @@ public class ImportDataController extends BaseController {
         }
     }
 
+
+    /**
+     * 更新
+     * @throws BusinessException
+     */
+    @ResponseBody
+    @RequestMapping("ajax/importData_updateData.do")
+    private void updateDate(ImportData condition) throws BusinessException {
+        try {
+            condition.setFlag("1");
+            importDataService.updateDate(condition);
+            response.getWriter().write(ConstantKey.SUCCESS);
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e) {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
 }

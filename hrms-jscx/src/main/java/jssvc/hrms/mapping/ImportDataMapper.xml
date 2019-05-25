@@ -210,4 +210,20 @@
       sort = #{sort,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updateByDah" parameterType="jssvc.hrms.model.ImportData">
+    update t_hrms_import_data
+    set dah = #{dah,jdbcType=VARCHAR},
+      sick_days = #{sickDays,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      compassionate_days = #{compassionateDays,jdbcType=INTEGER},
+      late_times = #{lateTimes,jdbcType=INTEGER},
+      overtime_days = #{overtimeDays,jdbcType=INTEGER},
+      replenishment = #{replenishment,jdbcType=DOUBLE},
+      flag = #{flag,jdbcType=VARCHAR},
+      note1 = #{note1,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR}
+    where dah=#{dah} and month =#{month}
+  </update>
+
 </mapper>

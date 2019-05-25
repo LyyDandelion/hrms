@@ -98,6 +98,7 @@
             var paramAction = mini.get("action").getValue();
             if (mini.get("action").getValue() == "edit") {
                 mini.get("dah").setAllowInput(false);
+                mini.get("month").setAllowInput(false);
                 mini.get("ygxm").setEnabled(false);
                 mini.get("jgh").setEnabled(false);
                 mini.get("sex").setEnabled(false);
@@ -154,13 +155,14 @@
                         dataType: 'text',
                         cache: false,
                         success: function (text) {
-                            debugger;
+                            // debugger;
                             var o = mini.decode(text);
                             form.setData(o.importData);
                             form.setChanged(false);
                             mini.get("dah").setEnabled(false);
                             // mini.get("name").setValue(o.level);
                             mini.get("dah").setAllowInput(false);
+                            mini.get("month").setAllowInput(false);
                             //mini.get("ygxm").setEnabled(false);
                             //mini.get("jgh").setEnabled(false);
                             //mini.get("sex").setEnabled(false);
@@ -199,11 +201,13 @@
                             }
                         });
                     } else if (paramAction == "edit" || paramAction == "start") {
+                        var i=$("#userForm").serializeArray();
+                        console.log("test:"+JSON.stringify(i))
                         var message;
                         var alertMessage;
                         if (paramAction == "edit") {
-                            message = "是否确定更新员工信息？";
-                            alertMessage = "员工信息更新成功！";
+                            message = "是否确定更新员工考勤信息？";
+                            alertMessage = "员工考勤更新成功！";
                         } else {
                             message = "是否确定启用该员工？";
                             alertMessage = "该员工已启用！";
@@ -211,7 +215,7 @@
                         mini.confirm(message, "确定？",function(action) {
                             if (action == "ok") {
                                 $.ajax({
-                                    url: "<%=request.getContextPath()%>/ajax/user_updateUser.do",
+                                    url: "<%=request.getContextPath()%>/ajax/importData_updateData.do",
                                     type: "post",
                                     dataType: 'text',
                                     data: $("#userForm").serializeArray(),

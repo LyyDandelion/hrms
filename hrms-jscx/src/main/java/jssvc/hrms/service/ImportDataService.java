@@ -19,4 +19,6 @@ public interface ImportDataService {
     void addImport(ImportData importData);
 
     ImportData getImportData(String dah);
+
+    void updateDate(ImportData condition);
 }

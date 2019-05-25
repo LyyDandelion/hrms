@@ -191,7 +191,7 @@ public class SettlementController extends BaseController {
     //ajax/settlement_updateSettlement.do
     @ResponseBody
     @RequestMapping("ajax/settlement_updateSettlement.do")
-    private void addImport(Settlement settlement) throws BusinessException {
+    private void updateSettlement(Settlement settlement) throws BusinessException {
         try {
 //            importData.setFlag("1");
 

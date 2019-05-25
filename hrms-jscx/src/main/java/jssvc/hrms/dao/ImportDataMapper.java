@@ -30,4 +30,6 @@ public interface ImportDataMapper {
     int selectByDah(String dah);
 
     ImportData selectImportDataForDah(String dah);
+
+    void updateByDah(ImportData condition);
 }
