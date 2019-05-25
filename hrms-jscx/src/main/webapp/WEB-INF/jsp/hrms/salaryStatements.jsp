@@ -17,12 +17,12 @@
 <div class="mini-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;table-layout:fixed;">
         <tr>
-            <td style="width:60px;text-align:right;">院部：</td>
+<%--            <td style="width:60px;text-align:right;">院部：</td>
             <td style="width:25%">
                 <input id="jgh" name="jgh" class="mini-treeselect" style="width:100%;" textField="jgmc"
                        valueField="jgh" parentField="sjjg" expandOnLoad="0"
                        allowInput="true"/>
-            </td>
+            </td>--%>
             <td style="width:45px;text-align:right;">工号：</td>
             <td style="width:11%">
                 <input id="dah" name="dah" class="mini-textbox" style="width:100%;"/>
@@ -35,10 +35,10 @@
             <td style="width:15%">
                 <input id="endDate" name="endDate" class="mini-datepicker" style="width:100%;" />
             </td>
-            <td style="width:40px;text-align:right;">状态：</td>
+<%--            <td style="width:40px;text-align:right;">状态：</td>
             <td style="width:11%">
                 <input id="flag" name="flag" class="mini-combobox" showNullItem="true" textField="text" valueField="id" style="width:100%;"/>
-            </td>
+            </td>--%>
             <td style="width:80px"><a class="mini-button" id="search" onclick="search()" style="width:100%;">查询</a></td>
             <td style="width:100px"><a class="mini-button" id="print" onclick="print()" style="width:100%;">导出报表</a></td>
         </tr>
@@ -59,7 +59,9 @@
             <div field="telAllowrance" width="80" allowSort="true" align="center" headerAlign="center">通讯补贴</div>
             <div field="trafficAllowrance" width="80" allowSort="true" align="center" headerAlign="center">交通补贴</div>
             <div field="lunchAllowrance" width="80" allowSort="true" align="center" headerAlign="center">用餐补贴</div>
+<%--
             <div field="insurance" width="80" allowSort="true" align="center" headerAlign="center">社保</div>
+--%>
 <%--
             <div field="flagName" width="60" allowSort="false" align="center" headerAlign="center">状态</div>
 --%>
@@ -119,8 +121,8 @@
     });
 
     var grid = mini.get("salaryDatagrid");
-    mini.get("flag").setValue("0");
-    grid.load({"flag":"0"});
+/*    mini.get("flag").setValue("0");
+    grid.load({"flag":"0"});*/
     grid.sortBy("dah", "ASC");
 
     // 操作列的生成
@@ -146,9 +148,11 @@
     function search() {
 
 
-        var jgh = mini.get("jgh").getValue();
+  //      var jgh = mini.get("jgh").getValue();
         var dah = mini.get("dah").getValue();
+/*
         var flag = mini.get("flag").getValue();
+*/
         //对时间进行格式化
         var startDate=fomatDate(mini.get("startDate").getValue());
         var endDate=fomatDate(mini.get("endDate").getValue());
@@ -158,7 +162,7 @@
             alert("开始时间必须小于结束时间！");
             return;
         }
-        grid.load({ 'jgh': jgh, 'dah': dah, 'flag': flag,'startDate': startDate,'endDate': endDate });
+        grid.load({ 'dah': dah,'startDate': startDate,'endDate': endDate });
     }
 
     // 导出报表

@@ -208,12 +208,12 @@ public class SalaryController extends BaseController {
             // 取得用户列表
             List<SalaryVo> userVos = salaryService.getSalaries(salarySearchFilter);
             //excel标题
-            String[] title = {"序号","工号","岗位","岗位工资","工龄工资","浮动工资","绩效奖金","通讯补贴","交通补贴","用餐补贴","社保"};
+            String[] title = {"序号","工号","岗位","岗位工资","工龄工资","浮动工资","绩效奖金","通讯补贴","交通补贴","用餐补贴"};
             //excel文件名
             String fileName = "员工工资报表"+ DateUtil.getChinaDateString(new Date()) +".xls";
             //sheet名
             String sheetName = "工资报表";
-            String[][] content = new String[title.length][11];
+            String[][] content = new String[title.length][10];
             for (int i = 0; i < userVos.size(); i++) {
                 SalaryVo salaryVo=userVos.get(i);
                 content[i][0] =String.valueOf(i+1);
@@ -226,7 +226,6 @@ public class SalaryController extends BaseController {
                 content[i][7] =String.valueOf(salaryVo.getTelAllowrance());
                 content[i][8] =String.valueOf(salaryVo.getTrafficAllowrance());
                 content[i][9] =String.valueOf(salaryVo.getLunchAllowrance());
-                content[i][10] =String.valueOf(salaryVo.getInsurance());
             }
             //创建HSSFWorkbook
             HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, content, null);
