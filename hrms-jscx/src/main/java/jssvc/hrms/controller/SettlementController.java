@@ -156,8 +156,7 @@ public class SettlementController extends BaseController {
             int count = settlementService.getImportDataByDah(dah);
             String json = JSON.Encode(count);
             response.getWriter().write(json);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new BusinessException(ConstantMessage.ERR00005, e);
         }
     }
@@ -175,13 +174,13 @@ public class SettlementController extends BaseController {
     @RequestMapping("ajax/get_settlement.do")
     private void getSettlement(String dah) throws BusinessException {
         try {
-            Settlement settlement=settlementService.getSettlement(dah);
+            Settlement settlement = settlementService.getSettlement(dah);
 
             HashMap<String, Object> hashmap = new HashMap<String, Object>();
             hashmap.put("settlement", settlement);
             String json = JSON.Encode(hashmap);
             response.getWriter().write(json);
-        }  catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             throw new BusinessException(ConstantMessage.ERR00004, e);
         } catch (IOException e) {
             throw new BusinessException(ConstantMessage.ERR00005, e);
@@ -197,15 +196,37 @@ public class SettlementController extends BaseController {
 
             settlementService.updateSettlement(settlement);
             response.getWriter().write(ConstantKey.SUCCESS);
-        } catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             throw new BusinessException(ConstantMessage.ERR00004, e);
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new BusinessException(ConstantMessage.ERR00005, e);
         }
     }
 
+    @ResponseBody
+    @RequestMapping("ajax/salary_getDahsSettleBychoice.do")
+    private void getDahsSettleBychoice(SettlementSearchFilter filter) throws BusinessException {
+        try {
+            // 用户查询条件
+            filter.setOffset();
+            filter.setLimit();
+            filter.setLoginDah(getSessionUser().getDah());
+            // 取得用户列表
+            List<Settlement> userVos = settlementService.getSettlementByChoice(filter);
+            // 取得用户总件数
+//            long count = userService.getUsersCount(filter);
+//            logger.info("用户的总数是："+ count);
+            HashMap<String, Object> hashmap = new HashMap<String, Object>();
+            hashmap.put(ConstantKey.KEY_DATA, userVos);
+//            hashmap.put(ConstantKey.KEY_TOTAL, count);
+            String json = JSON.Encode(hashmap);
+            response.getWriter().write(json);
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e) {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
 
 
 }

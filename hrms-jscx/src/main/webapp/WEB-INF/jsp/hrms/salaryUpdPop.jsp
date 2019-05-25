@@ -184,7 +184,7 @@
                             var o = mini.decode(text);
                             form.setData(o.salary);
                             form.setChanged(false);
-                            // mini.get("dah").setEnabled(false);
+                            mini.get("dah").setEnabled(false);
                             mini.get("dah").setValue(o.salary.dah);
                             mini.get("dah").setAllowInput(false);
                             //mini.get("ygxm").setEnabled(false);
@@ -263,7 +263,6 @@
             function closeTab() {
                 CloseWindow("cancel");
             }
-
             // 关闭窗口
             function CloseWindow(action) {
                 if (window.CloseOwnerWindow) {

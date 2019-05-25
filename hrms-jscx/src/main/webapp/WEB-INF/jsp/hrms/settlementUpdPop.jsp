@@ -26,7 +26,7 @@
                 <td style="text-align:right;">工号：</td>
                 <td>
                     <input id="dah" name="dah" class="mini-combobox" textField="dah" valueField="dah"
-                           style="width:250px;" url="<%=request.getContextPath()%>/ajax/user_getUsers_for_import.do"
+                           style="width:250px;" url="<%=request.getContextPath()%>/ajax/salary_getDahsSettleBychoice.do"
                            onvaluechanged="levelChange" value="${importData.dah}"/>
                 </td>
             </tr>

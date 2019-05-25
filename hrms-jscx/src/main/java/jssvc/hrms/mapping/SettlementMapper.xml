@@ -53,6 +53,17 @@
       limit #{offset},#{limit}
     </if>
   </select>
+
+  <select id="selectSettlementByChoice" resultType="String" parameterType="jssvc.hrms.model.filter.SettlementSearchFilter" >
+    SELECT
+	  dah
+    FROM
+	  t_hrms_import_data
+    WHERE
+	dah NOT IN ( SELECT dah FROM t_hrms_settlement )
+  </select>
+
+
   <select id="selectSettlementCount" resultType="int" parameterType="jssvc.hrms.model.filter.SettlementSearchFilter" >
     select count(1)
     from t_hrms_settlement

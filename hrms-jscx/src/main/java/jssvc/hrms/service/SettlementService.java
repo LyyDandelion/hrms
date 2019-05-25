@@ -18,4 +18,6 @@ public interface SettlementService {
     Settlement getSettlement(String dah);
 
     void updateSettlement(Settlement settlement);
+
+    List<Settlement> getSettlementByChoice(SettlementSearchFilter filter);
 }

@@ -82,4 +82,16 @@ public class SettlementServiceImpl implements SettlementService {
         settlement.setUpdateDate(new Date());
         settlementMapper.updateByDah(settlement);
     }
+
+    @Override
+    public List<Settlement> getSettlementByChoice(SettlementSearchFilter filter) {
+        List<String> list=settlementMapper.selectSettlementByChoice(filter);
+        List<Settlement> settlementList=new ArrayList<>();
+        for (String dah:list) {
+            Settlement settlement=new Settlement();
+            settlement.setDah(dah);
+            settlementList.add(settlement);
+        }
+        return settlementList;
+    }
 }

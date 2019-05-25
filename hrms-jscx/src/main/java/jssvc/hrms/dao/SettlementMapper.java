@@ -28,4 +28,6 @@ public interface SettlementMapper {
 
     Settlement getSettlement(String dah);
     int updateByDah(Settlement record);
+
+    List<String> selectSettlementByChoice(SettlementSearchFilter filter);
 }
