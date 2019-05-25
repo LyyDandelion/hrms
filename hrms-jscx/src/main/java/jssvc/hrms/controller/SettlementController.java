@@ -5,14 +5,14 @@ import jssvc.base.constant.ConstantMessage;
 import jssvc.base.controller.BaseController;
 import jssvc.base.exception.BusinessException;
 import jssvc.base.util.JSON;
-import jssvc.hrms.model.*;
-import jssvc.hrms.model.filter.ImportDataSearchFilter;
-import jssvc.hrms.model.filter.SalarySearchFilter;
+import jssvc.hrms.model.ImportData;
+import jssvc.hrms.model.SalaryVo;
+import jssvc.hrms.model.Settlement;
+import jssvc.hrms.model.SettlementVo;
 import jssvc.hrms.model.filter.SettlementSearchFilter;
 import jssvc.hrms.service.ImportDataService;
 import jssvc.hrms.service.SalaryService;
 import jssvc.hrms.service.SettlementService;
-import jssvc.user.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +22,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class SettlementController extends BaseController {
 
 
-    private static Logger logger = LoggerFactory.getLogger(SalaryController.class);
+    private static Logger logger = LoggerFactory.getLogger(SettlementController.class);
 
     @Autowired
     SettlementService settlementService;

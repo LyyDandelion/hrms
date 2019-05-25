@@ -2,6 +2,7 @@ package jssvc.hrms.dao;
 
 import jssvc.hrms.model.Settlement;
 import jssvc.hrms.model.filter.SettlementSearchFilter;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -30,4 +31,8 @@ public interface SettlementMapper {
     int updateByDah(Settlement record);
 
     List<String> selectSettlementByChoice(SettlementSearchFilter filter);
+
+    List<Settlement> querySettlement(SettlementSearchFilter filter);
+
+    String queryDeptInfo(@Param("dah") String dah);
 }

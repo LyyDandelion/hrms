@@ -19,6 +19,16 @@ public class SettlementSearchFilter extends Pagination {
 
     private String name;
 
+    private String month;
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
     public String getDah() {
         return dah;
     }

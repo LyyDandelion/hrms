@@ -10,6 +10,7 @@ import jssvc.hrms.model.filter.SettlementSearchFilter;
 import jssvc.hrms.service.SettlementService;
 import jssvc.user.dao.UserMapper;
 import jssvc.user.model.User;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,5 +94,38 @@ public class SettlementServiceImpl implements SettlementService {
             settlementList.add(settlement);
         }
         return settlementList;
+    }
+    @Override
+    public List<SettlementVo> qurerySettlement(SettlementSearchFilter filter) {
+        List<Settlement> Settlements = settlementMapper.querySettlement(filter);
+        List<SettlementVo> SettlementVoList = new ArrayList<>();
+        String month=filter.getMonth();
+        SettlementVo SettlementVo;
+        for (int i = 0; i < Settlements.size(); i++) {
+            Settlement s = Settlements.get(i);
+            SettlementVo = new SettlementVo();
+            BeanUtils.copyProperties(s, SettlementVo);
+            //TODO 填充一些Vo特殊的属性
+            // 取得姓名
+            User u = userDao.selectByPrimaryKey(s.getDah());
+            SettlementVo.setName(u.getYgxm());
+            // 取得岗位列表
+            List<Constant> gwList = constantDao.selectByType(ConstantKey.KEY_POSITION);
+            int   postLevel=(int)settlementMapper.selectPost(u.getDah());
+            Constant constant = gwList.get(postLevel);
+            SettlementVo.setPost(constant.getName());
+            if(StringUtils.isNotBlank(month)&&StringUtils.isNumeric(month)) {   //当月份不为空时，即月份为条件
+                String monthN=month.substring(1,2);
+                if(SettlementVo.getMonth()==Integer.valueOf(monthN)){
+                    SettlementVoList.add(SettlementVo);
+                }
+            }else{
+                SettlementVoList.add(SettlementVo);
+            }
+            //部门名
+            String jgmc=settlementMapper.queryDeptInfo(s.getDah());
+            SettlementVo.setJgmc(jgmc);
+        }
+        return SettlementVoList;
     }
 }

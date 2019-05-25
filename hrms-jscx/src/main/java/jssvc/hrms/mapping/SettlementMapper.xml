@@ -387,5 +387,29 @@
         </set>
         where dah = #{dah} and month=#{month}
     </update>
-
+    <select id="querySettlement" resultMap="BaseResultMap" parameterType="jssvc.hrms.model.filter.SettlementSearchFilter">
+        select distinct a.*
+        from t_hrms_settlement a  where
+        a.dah=any(SELECT dah from t_dept_user  d
+        <where>
+        <if test="jgh!=null and jgh!=''">
+            d.jgh=#{jgh}
+        </if>
+        <if test="dah!=null and dah!=''">
+          and  d.dah=#{dah}
+        </if>
+        </where>
+        )
+        <if test="sortField != null" >
+            order by a.${sortField} ${sortOrder}
+        </if>
+        <if test="limit != 0" >
+            limit #{offset},#{limit}
+        </if>
+    </select>
+    <select id="queryDeptInfo" resultType="java.lang.String" parameterType="java.lang.String">
+        select distinct a.jgmc
+        from t_dept_info a  where
+        a.jgh=any(SELECT jgh from t_dept_user d where d.dah=#{dah})
+    </select>
 </mapper>

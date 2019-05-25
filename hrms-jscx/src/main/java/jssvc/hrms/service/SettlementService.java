@@ -20,4 +20,6 @@ public interface SettlementService {
     void updateSettlement(Settlement settlement);
 
     List<Settlement> getSettlementByChoice(SettlementSearchFilter filter);
+
+    List<SettlementVo> qurerySettlement(SettlementSearchFilter filter);
 }

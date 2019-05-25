@@ -14,8 +14,6 @@ import jssvc.hrms.model.filter.SettlementSearchFilter;
 import jssvc.hrms.service.SalaryService;
 import jssvc.hrms.service.SettlementService;
 import jssvc.hrms.utlis.ExcelUtil;
-import jssvc.user.model.UserVo;
-import jssvc.user.model.filter.UserSearchFilter;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -383,5 +381,98 @@ public class SalaryController extends BaseController {
             throw new BusinessException(ConstantMessage.ERR00005, e);
         }
     }
-
+    /**
+     * 工资统计报表
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("salaryStatistics.do")
+    private ModelAndView salaryStatistics(String id) {
+        // 跳转到工资统计报表
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("hrms/salaryStatistics");
+        mv.addObject(ConstantKey.KEY_MENU_ID, id);
+        return mv;
+    }
+    /**
+     * 工资统计报表查询
+     * @param filter
+     * @throws BusinessException
+     */
+    @ResponseBody
+    @RequestMapping("ajax/getSalaryStatistics.do")
+    private void getSalaryStatistics(SettlementSearchFilter filter) throws BusinessException {
+        try {
+            // 用户查询条件
+            filter.setOffset();
+            filter.setLimit();
+            filter.setLoginDah(getSessionUser().getDah());
+            // 工资详情
+            List<SettlementVo> settlementVos = settlementService.qurerySettlement(filter);
+            // 取得用户总件数
+            long count = settlementService.getSettlementCount(filter);
+            logger.info("工资统计报表数据："+ count);
+            HashMap<String, Object> hashmap = new HashMap<String, Object>();
+            hashmap.put(ConstantKey.KEY_DATA, settlementVos);
+            hashmap.put(ConstantKey.KEY_TOTAL, count);
+            String json = JSON.Encode(hashmap);
+            response.getWriter().write(json);
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e) {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
+    /**
+     * 工资统计报表导出
+     * @param filter
+     * @throws BusinessException
+     */
+    @ResponseBody
+    @RequestMapping("ajax/getSalaryStatisticsPrint.do")
+    private String getSalaryStatisticsPrint(SettlementSearchFilter filter) throws BusinessException {
+        try {
+            // 用户查询条件
+            filter.setOffset();
+            filter.setLimit();
+            filter.setLoginDah(getSessionUser().getDah());
+            // 工资详情
+            List<SettlementVo> settlementVos = settlementService.qurerySettlement(filter);
+            //excel标题
+            String[] title = {"序号","工号","部门","姓名","基本工资","加班工资","事假扣款","迟到扣款","病假扣款","养老保险","医疗保险","公积金","实发工资"};
+            //excel文件名
+            String fileName = "工资统计报表"+ DateUtil.getChinaDateString(new Date()) +".xls";
+            //sheet名
+            String sheetName = "工资统计报表";
+            String[][] content = new String[title.length][13];
+            for (int i = 0; i < settlementVos.size(); i++) {
+                SettlementVo salaryVo=settlementVos.get(i);
+                content[i][0] =String.valueOf(i+1);
+                content[i][1] =salaryVo.getDah();
+                content[i][2] =salaryVo.getJgmc();
+                content[i][3] =salaryVo.getName();
+                content[i][4] =String.valueOf(salaryVo.getBase());
+                content[i][5] =String.valueOf(salaryVo.getOvertimeSalary());
+                content[i][6] =String.valueOf(salaryVo.getCompassionateDeduction());
+                content[i][7] =String.valueOf(salaryVo.getLateDeduction());
+                content[i][8] =String.valueOf(salaryVo.getSickDeduction());
+                content[i][9] =String.valueOf(salaryVo.getOwnerEndowmentInsurance());
+                content[i][10] =String.valueOf(salaryVo.getOwnerMedicalInsurance());
+                content[i][11] =String.valueOf(salaryVo.getOwnerAccumulationFund());
+                content[i][12] =String.valueOf(salaryVo.getRealWages());
+            }
+            //创建HSSFWorkbook
+            HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, content, null);
+            File file=new File("C:\\Users\\Administrator\\Desktop\\");
+            OutputStream stream=new FileOutputStream(new File(file, fileName));
+            wb.write(stream);
+            stream.close();
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e) {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+        return "success";
+    }
 }
