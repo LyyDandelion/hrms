@@ -171,7 +171,8 @@
                             var o = mini.decode(text);
                             form.setData(o.salary);
                             form.setChanged(false);
-                            mini.get("name").setValue(o.level);
+                            // mini.get("dah").setEnabled(false);
+                            mini.get("dah").setValue(o.salary.dah);
                             mini.get("dah").setAllowInput(false);
                             //mini.get("ygxm").setEnabled(false);
                             //mini.get("jgh").setEnabled(false);
@@ -188,6 +189,9 @@
 
             // 保存该画面数据
             function save() {
+                var s=$("#userForm").serializeArray();
+
+                console.log(JSON.stringify(s))
                 var form = new mini.Form("#userTbl");
                 form.validate();
                 if (form.isValid() == true) {
@@ -214,8 +218,8 @@
                         var message;
                         var alertMessage;
                         if (paramAction == "edit") {
-                            message = "是否确定更新员工信息？";
-                            alertMessage = "员工信息更新成功！";
+                            message = "是否确定更新固定工资信息？";
+                            alertMessage = "员工固定工资信息更新成功！";
                         } else {
                             message = "是否确定启用该员工？";
                             alertMessage = "该员工已启用！";
@@ -223,7 +227,7 @@
                         mini.confirm(message, "确定？",function(action) {
                             if (action == "ok") {
                                 $.ajax({
-                                    url: "<%=request.getContextPath()%>/ajax/user_updateUser.do",
+                                    url: "<%=request.getContextPath()%>/ajax/salary_updateSalary.do",
                                     type: "post",
                                     dataType: 'text',
                                     data: $("#userForm").serializeArray(),

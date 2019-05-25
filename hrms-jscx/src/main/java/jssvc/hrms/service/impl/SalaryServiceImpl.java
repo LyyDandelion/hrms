@@ -99,7 +99,7 @@ public class SalaryServiceImpl implements SalaryService {
 
     @Override
     public boolean updateSalary(Salary salary) throws BusinessException {
-        return false;
+        return salaryDao.updateByDah(salary);
     }
 
     public Salary getSalary(Integer id) {

@@ -258,4 +258,25 @@
       sort = #{sort,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updateByDah" parameterType="jssvc.hrms.model.Salary" >
+    update t_hrms_salary
+    set dah = #{dah,jdbcType=VARCHAR},
+      post_salary = #{postSalary,jdbcType=DOUBLE},
+      year_salary = #{yearSalary,jdbcType=DOUBLE},
+      float_salary = #{floatSalary,jdbcType=DOUBLE},
+      award = #{award,jdbcType=DOUBLE},
+      tel_allowrance = #{telAllowrance,jdbcType=DOUBLE},
+      traffic_allowrance = #{trafficAllowrance,jdbcType=DOUBLE},
+      lunch_allowrance = #{lunchAllowrance,jdbcType=DOUBLE},
+      insurance = #{insurance,jdbcType=DOUBLE},
+      endowment_insurance = #{endowmentInsurance,jdbcType=DOUBLE},
+      medical_insurance = #{medicalInsurance,jdbcType=DOUBLE},
+      work_year = #{workYear,jdbcType=DOUBLE},
+      post_level = #{postLevel,jdbcType=DOUBLE},
+      flag = #{flag,jdbcType=VARCHAR},
+      note1 = #{note1,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR}
+    where dah = #{dah}
+  </update>
 </mapper>
