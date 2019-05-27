@@ -24,7 +24,7 @@
                     </td>
                     <td style="width:90px;text-align:right;">部门名称：</td>
                     <td style="width:15%;">
-                        <input id="roleName" class="mini-textbox" emptyText="请输入部门名称" style="width:100%;" onenter="onKeyEnter"/>
+                        <input id="jgmc" class="mini-textbox" emptyText="请输入部门名称" style="width:100%;" onenter="onKeyEnter"/>
                     </td>
                     <td style="width:70px;">
                         <a class="mini-button" id="search" onclick="search()">查询</a>
@@ -75,8 +75,8 @@
 
             // 查询按钮按下的事件
             function search() {
-                var name = mini.get("roleName").getValue();
-                grid.load({ 'roleName': name });
+                var name = mini.get("jgmc").getValue();
+                grid.load({ 'jgmc': name });
             }
 
             // 增加角色

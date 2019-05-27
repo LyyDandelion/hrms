@@ -8,6 +8,7 @@ import jssvc.base.enums.Sex;
 import jssvc.base.exception.BusinessException;
 import jssvc.base.util.JSON;
 import jssvc.base.util.Tree;
+import jssvc.hrms.model.filter.SettlementSearchFilter;
 import jssvc.user.dao.DataAuthorityMapper;
 import jssvc.user.dao.DeptInfoMapper;
 import jssvc.user.dao.DeptUserMapper;
@@ -671,9 +672,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<DeptInfoVo> getDeptInfo() {
+    public List<DeptInfoVo> getDeptInfo(SettlementSearchFilter filter) {
         List<DeptInfoVo> deptInfoVos=new ArrayList<DeptInfoVo>();
-        List<DeptInfo> deptInfos=deptInfoMapperDao.selectAll();
+        List<DeptInfo> deptInfos=deptInfoMapperDao.selectAll(filter);
         if(!deptInfos.isEmpty()){
            for(DeptInfo deptInfo:deptInfos){
                DeptInfoVo deptInfoVo=new DeptInfoVo();

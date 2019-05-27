@@ -1388,7 +1388,7 @@ public class UserController extends BaseController {
         try {
           // 取得功能权限列表
         //   List<MenuFunction> menuFunctions = getMenuFunction(id);
-            List<DeptInfoVo> deptInfos=userService.getDeptInfo();
+            List<DeptInfoVo> deptInfos=userService.getDeptInfo(filter);
             // 删除角色权限
             Boolean delFlag = false;
             // 创建/修改角色和菜单功能权限

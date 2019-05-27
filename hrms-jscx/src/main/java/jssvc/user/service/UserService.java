@@ -1,6 +1,7 @@
 package jssvc.user.service;
 
 import jssvc.base.exception.BusinessException;
+import jssvc.hrms.model.filter.SettlementSearchFilter;
 import jssvc.user.model.DataAuthority;
 import jssvc.user.model.DeptInfoVo;
 import jssvc.user.model.DeptUser;
@@ -306,5 +307,5 @@ public interface UserService {
      * @deprecated  查询部门信息
      * @return
      */
-    List<DeptInfoVo> getDeptInfo();
+    List<DeptInfoVo> getDeptInfo(SettlementSearchFilter filter);
 }

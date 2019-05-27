@@ -20,6 +20,15 @@ public class SettlementSearchFilter extends Pagination {
     private String name;
 
     private String month;
+    private String jgmc;
+
+    public String getJgmc() {
+        return jgmc;
+    }
+
+    public void setJgmc(String jgmc) {
+        this.jgmc = jgmc;
+    }
 
     public String getMonth() {
         return month;

@@ -1,5 +1,6 @@
 package jssvc.user.dao;
 
+import jssvc.hrms.model.filter.SettlementSearchFilter;
 import jssvc.user.model.DeptInfo;
 import jssvc.user.model.DeptUser;
 import jssvc.user.model.DeptUserExample;
@@ -33,7 +34,7 @@ public interface DeptInfoMapper {
     int deleteByDah(String dah);
 
     //查询全部
-    List<DeptInfo> selectAll();
+    List<DeptInfo> selectAll(SettlementSearchFilter filter);
     //根据部门号查询
     List<DeptInfo> selectDeptInfoByDeptName(@Param("jgmc") String jgmc);
     //根据部门编号查询,返回部门名

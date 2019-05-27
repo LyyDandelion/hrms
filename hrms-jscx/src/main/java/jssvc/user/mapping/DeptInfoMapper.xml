@@ -181,9 +181,14 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
     <!--查询全部信息-->
-    <select id="selectAll"  resultMap="BaseResultMap">
+    <select id="selectAll"  resultMap="BaseResultMap" parameterType="jssvc.hrms.model.filter.SettlementSearchFilter">
     select a.*
     from t_dept_info a
+        <where>
+            <if test="jgmc!=null and jgmc!=''">
+               a.jgmc=#{jgmc,jdbcType=VARCHAR}
+            </if>
+        </where>
   </select>
   <select id="selectDeptInfoByDeptName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select a.*
