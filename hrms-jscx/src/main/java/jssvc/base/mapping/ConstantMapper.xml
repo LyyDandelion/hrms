@@ -107,4 +107,53 @@
     where type = #{type,jdbcType=VARCHAR}
       and en_key=#{enKey,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectPosition" resultMap="BaseResultMap" parameterType="jssvc.base.model.filter.PositionSearchFilter">
+    select distinct
+    a.*
+    from t_constant a
+    <where>
+      <if test="type!=null and type!=''">
+        a.type =#{type}
+      </if>
+      <if test="enKey != null and enKey != ''" >
+        and  a.en_key like CONCAT('%',#{enKey,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="name != null and name != ''" >
+        and a.name in(SELECT name FROM `t_constant`  u where  u.name like CONCAT('%',#{name},'%') )
+      </if>
+    </where>
+
+    <if test="sortField != null" >
+      order by a.${sortField} ${sortOrder}
+    </if>
+    <if test="limit != 0" >
+      limit #{offset},#{limit}
+    </if>
+  </select>
+
+  <select id="selectPositionCount" resultType="int" parameterType="jssvc.base.model.filter.PositionSearchFilter">
+    select count(1)
+    from t_constant
+    <where>
+      <if test="type!=null and type!=''">
+        type =#{type}
+      </if>
+    </where>
+
+  </select>
+  <select id="getPositionByEnKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select id ,type,en_key,name
+    from t_constant
+    where type='position' and en_key=#{enKey}
+
+  </select>
+
+  <select id="selectIsExist" resultType="int" parameterType="java.lang.String">
+    select count(1)
+    from t_constant
+    where type='position' and en_key=#{enKey}
+  </select>
+
+
 </mapper>
