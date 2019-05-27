@@ -1417,4 +1417,84 @@ public class UserController extends BaseController {
             throw new BusinessException(ConstantMessage.ERR00004, e);
         }
     }
+
+    /**
+     * @deprecated  新增部门信息表
+     * @param condition
+     * @throws BusinessException
+     */
+
+    @ResponseBody
+    @RequestMapping("ajax/addDept.do")
+    private void addDept(InstitutionInfo condition) throws BusinessException {
+        try {
+            List<InstitutionInfo> institutionInfos=userService.getChildJgByJgh(condition.getJgh());
+            if(!institutionInfos.isEmpty()){
+                response.getWriter().write(ConstantKey.KEY_ERROR);
+            }else {
+                condition.setFlag("0");
+                userService.addDept(condition);
+            }
+            response.getWriter().write(ConstantKey.SUCCESS);
+        } catch (NullPointerException e)
+        {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException | SQLException e)
+        {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
+    /**
+     * @deprecated  更新部门信息表
+     * @param condition
+     * @throws BusinessException
+     */
+
+    @ResponseBody
+    @RequestMapping("ajax/updateDept.do")
+    private void updateDept(InstitutionInfo condition) throws BusinessException {
+        try {
+            String jgh=condition.getJgh();
+            List<InstitutionInfo> institutionInfos=userService.getChildJgByJgh(condition.getJgh());
+            InstitutionInfo institutionInfo=new InstitutionInfo();
+            if(!institutionInfos.isEmpty()){
+                institutionInfo=institutionInfos.get(0);
+                institutionInfo.setJgmc(condition.getJgmc());
+                institutionInfo.setSjjg(condition.getSjjg());
+            }
+            boolean result=userService.updateDept(institutionInfo);
+            if(result) {
+                response.getWriter().write(ConstantKey.SUCCESS);
+            }else {
+                response.getWriter().write(ConstantKey.KEY_ERROR);
+            }
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException | SQLException e)
+        {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
+    /**
+     * @deprecated  删除部门信息表
+     * @param jgh
+     * @throws BusinessException
+     */
+
+    @ResponseBody
+    @RequestMapping("ajax/deleteDept.do")
+    private void deleteDept(String jgh) throws BusinessException {
+        try {
+            boolean result=userService.deleteDept(jgh);
+            if(result) {
+                response.getWriter().write(ConstantKey.SUCCESS);
+            }else {
+                response.getWriter().write(ConstantKey.KEY_ERROR);
+            }
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e) {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
 }

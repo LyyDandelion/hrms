@@ -155,7 +155,7 @@
     <include refid="Base_Column_List" />
     from t_dept_info
     where flag = '0'
-    and sjjg = #{jgh,jdbcType=VARCHAR}
+    and jgh = #{jgh,jdbcType=VARCHAR}
     order by num
   </select>
   <select id="selectKjCountByJgh" resultType="int" parameterType="java.lang.String">

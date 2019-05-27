@@ -308,4 +308,21 @@ public interface UserService {
      * @return
      */
     List<DeptInfoVo> getDeptInfo(SettlementSearchFilter filter);
+
+    /**
+     * @deprecated  新增部门信息
+     * @param deptInfo
+     */
+    void addDept(InstitutionInfo deptInfo);
+
+    /**
+     * @deprecated  更新部门信息
+     * @param deptInfo
+     */
+    boolean updateDept(InstitutionInfo deptInfo);
+    /**
+     * @deprecated  删除部门信息
+     * @param jgh
+     */
+    boolean deleteDept(String jgh);
 }

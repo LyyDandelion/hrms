@@ -36,10 +36,11 @@
             <div id="roleDatagrid" class="mini-datagrid"  allowAlternating="true" style="width:100%;height:100%;"
             url="<%=request.getContextPath()%>/ajax/getDeptList.do" allowResize="true" idField="id" pageSize="50">
                 <div property="columns">
-                    <div type="indexcolumn" headerAlign="center" width="70">序号</div>
-                    <div field="jgmc" width="30%" allowSort="false">部门名称</div>
-                    <div field="sjjg" width="40%" allowSort="false">部门编号</div>
-                    <div field="superDept" width="30%" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">上级部门</div>
+                    <div type="indexcolumn" headerAlign="center" align="center"  width="70">序号</div>
+                    <div field="jgmc" width="30%" headerAlign="center" align="center"  allowSort="false">部门名称</div>
+                    <div field="jgh" width="30%"  headerAlign="center" align="center" allowSort="false">部门编号</div>
+                    <div field="superDept" width="30%" headerAlign="center" align="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">上级部门</div>
+                    <div field="sjjg" width="30%" headerAlign="center" align="center" allowSort="false">上级部门编号</div>
                 </div>
             </div>
         </div>
@@ -82,11 +83,11 @@
             // 增加角色
             function add() {
                 mini.open({
-                    url: "<%=request.getContextPath()%>/showRoleUpd.do",
-                    title: "新增角色", width: 600, height: 360,
+                    url: "<%=request.getContextPath()%>/showDeptUpdPop.do",
+                    title: "新增部门", width: 600, height: 360,
                     onload: function () {
                         var iframe = this.getIFrameEl();
-                        var data = { action: "new"};
+                        var data = { actionFlag: "add"};
                         iframe.contentWindow.SetData(data);
                     },
                     ondestroy: function (action) {
@@ -102,11 +103,11 @@
                 var row = grid.getSelected();
                 if (row) {
                     mini.open({
-                        url: "<%=request.getContextPath()%>/showRoleUpd.do",
-                        title: "编辑角色", width: 600, height: 360,
+                        url: "<%=request.getContextPath()%>/showDeptEditPop.do",
+                        title: "编辑部门", width: 600, height: 360,
                         onload: function () {
                             var iframe = this.getIFrameEl();
-                            var data = { action: "edit", id: row.id, roleName: row.roleName, roleDescription: row.roleDescription, flag: row.flag};
+                            var data = { actionFlag: "edit", jgmc: row.jgmc, jgh: row.jgh,sjjg:row.sjjg};
                             iframe.contentWindow.SetData(data);
                             
                         },
@@ -149,23 +150,23 @@
                     if (action == "ok") {
                         if(rows[0].flag == 1){
                             grid.reload();
-                            mini.alert("该角色不能被删除！");
+                            mini.alert("该部门不能被删除！");
                             return;
                         }
-                        var id = rows[0].id;
+                        var jgh = rows[0].jgh;
                             $.ajax({
-                                url: "<%=request.getContextPath()%>/ajax/role_deleteRole.do",
+                                url: "<%=request.getContextPath()%>/ajax/deleteDept.do",
                                 type: "post",
-                                data: { roleId: id },
+                                data: { jgh: jgh },
                                 dataType: 'text',
                                 success: function (text) {
                                     if (text == "SUCCESS") {
                                         mini.alert("删除成功", "提醒", function(e) {
                                             grid.reload();
                                         });
-                                    } else if (text == "FAIL") {
+                                    } else {
                                         grid.reload();
-                                        mini.alert("该角色已被分配给用户，无法删除！");
+                                        mini.alert("该部门删除失败！");
                                     }
                                 }
                             });

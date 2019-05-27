@@ -692,4 +692,27 @@ public class UserServiceImpl implements UserService {
         //TODO 填充一些Vo特殊的属性
         return deptInfoVos;
     }
+    @Override
+    public void  addDept(InstitutionInfo dept) {
+         institutionInfoDao.insert(dept);
+    }
+
+    @Override
+    public boolean updateDept(InstitutionInfo deptInfo) {
+       int result= institutionInfoDao.updateByPrimaryKey(deptInfo);
+       if(result<=0){
+           return false;
+       }else
+           return true;
+    }
+
+    @Override
+    public boolean deleteDept(String jgh) {
+        int result=institutionInfoDao.deleteByPrimaryKey(jgh);
+        if(result<=0){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
