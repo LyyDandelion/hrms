@@ -513,4 +513,7 @@ public class ConstantKey {
     /**结果*/
     public static final String BXD_PROCESS_CONFIG_LIST = "bxd/bxdProcessConfigList";
 
+    /**超级用户*/
+    public static final String ADMIN="admin";
+    public static final String EXPORT_PATH = "C:\\Users\\Administrator\\Desktop\\";
 }

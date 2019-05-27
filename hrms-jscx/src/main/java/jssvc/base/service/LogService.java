@@ -41,4 +41,5 @@ public interface LogService {
      **/
     boolean createLog(Log log) throws BusinessException;
 
+    void backups();
 }

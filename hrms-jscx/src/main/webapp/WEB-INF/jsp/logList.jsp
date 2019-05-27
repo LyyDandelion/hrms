@@ -17,13 +17,14 @@
         <div class="mini-toolbar" style="padding:2px;border-bottom:0;">
             <table style="width:100%;table-layout:fixed;">
                 <tr>
+                    <td style="width:70px"><a class="mini-button" id="backups" onclick="backups()" style="width:100%;">备份</a></td>
                     <td style="width:30%"></td>
-                    <td style="width:50px;">部门：</td>
-                    <td style="width:20%">
-                        <input id="jgh" name="jgh" class="mini-treeselect" style="width:100%;" textField="jgmc"
-                        valueField="jgh" parentField="sjjg" expandOnLoad="0" allowInput="true">
-                        </input>
-                    </td>
+                    <%--<td style="width:50px;">部门：</td>--%>
+                    <%--<td style="width:20%">--%>
+                        <%--<input id="jgh" name="jgh" class="mini-treeselect" style="width:100%;" textField="jgmc"--%>
+                        <%--valueField="jgh" parentField="sjjg" expandOnLoad="0" allowInput="true">--%>
+                        <%--</input>--%>
+                    <%--</td>--%>
                     <td style="width:1%"></td>
                     <td style="width:50px;">用户名：</td>
                     <td style="width:10%">
@@ -104,6 +105,24 @@
                 var toDate = mini.get("toDate").getFormValue();
                 grid.load({ 'jgh': jgh, 'type': type,
                      'ygxm': ygxm,'object' : object ,'fromDate': fromDate, 'toDate':toDate});
+            }
+
+            function backups(){
+                mini.confirm("是否确定备份日志信息？", "确定？", function(action) {
+                    if (action == "ok") {
+                        $.ajax({
+                            url: "<%=request.getContextPath()%>/ajax/log_backups.do",
+                            type: "post",
+                            // data: {dah : row.dah},
+                            dataType: 'text',
+                            success: function (text) {
+                                if (text == "SUCCESS") {
+                                    mini.alert("日志已备份!!!请安全保管", "提醒", function(action) { grid.reload(); });
+                                }
+                            }
+                        });
+                    }
+                });
             }
 
         </script>

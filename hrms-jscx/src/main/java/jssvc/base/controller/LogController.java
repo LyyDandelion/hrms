@@ -10,6 +10,8 @@ import jssvc.base.vo.LogVo;
 import jssvc.base.vo.filter.LogSearchFilter;
 import jssvc.user.model.InstitutionInfo;
 import jssvc.user.model.MenuFunction;
+import jssvc.user.model.User;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -32,11 +35,10 @@ public class LogController extends BaseController {
 
     /**
      * @description:转入日志管理页面
-     *
      * @author: redcomet
      * @param: []
-     * @return: org.springframework.web.servlet.ModelAndView        
-     * @create: 2018/10/15 
+     * @return: org.springframework.web.servlet.ModelAndView
+     * @create: 2018/10/15
      **/
     @ResponseBody
     @RequestMapping("showLogList.do")
@@ -46,14 +48,13 @@ public class LogController extends BaseController {
         return mv;
     }
 
-   /**
-    * @description:初始化日志管理页面
-    *
-    * @author: redcomet
-    * @param: [id]
-    * @return: void        
-    * @create: 2018/10/15 
-    **/
+    /**
+     * @description:初始化日志管理页面
+     * @author: redcomet
+     * @param: [id]
+     * @return: void
+     * @create: 2018/10/15
+     **/
     @ResponseBody
     @RequestMapping("ajax/log_initLogList.do")
     public void initLogList(String id) throws BusinessException {
@@ -65,11 +66,11 @@ public class LogController extends BaseController {
             Boolean searchFlag = false;
             for (int i = 0; i < menuFunctions.size(); i++) {
                 switch (ActionType.valueOf(menuFunctions.get(i).getFunctionAction())) {
-                case log_listLog:
-                    searchFlag = true;
-                    break;
-                default:
-                    break;
+                    case log_listLog:
+                        searchFlag = true;
+                        break;
+                    default:
+                        break;
                 }
             }
             HashMap<String, Object> hashmap = new HashMap<String, Object>();
@@ -85,14 +86,13 @@ public class LogController extends BaseController {
 
     }
 
-   /**
-    * @description:日志查询
-    *
-    * @author: redcomet
-    * @param: [filter]
-    * @return: void        
-    * @create: 2018/10/15 
-    **/
+    /**
+     * @description:日志查询
+     * @author: redcomet
+     * @param: [filter]
+     * @return: void
+     * @create: 2018/10/15
+     **/
     @ResponseBody
     @RequestMapping("ajax/log_listLog.do")
     public void listLog(LogSearchFilter filter) throws BusinessException {
@@ -104,19 +104,19 @@ public class LogController extends BaseController {
             // 取得日志列表
             List<LogVo> result = logService.getLogs(filter);
             //屏蔽password
-            String[] keyWords={"password=","oldPwd=","newPwd="}; 
-            for(String key:keyWords){
-                for(LogVo log :result){
-                    String obj=log.getObject();
-                    String[] objStrs=obj.split(key);
-                    if(null==objStrs || objStrs.length < 2)
+            String[] keyWords = {"password=", "oldPwd=", "newPwd="};
+            for (String key : keyWords) {
+                for (LogVo log : result) {
+                    String obj = log.getObject();
+                    String[] objStrs = obj.split(key);
+                    if (null == objStrs || objStrs.length < 2)
                         continue;
-                    obj=objStrs[0];
-                    for(int i=1;i<objStrs.length;i++){
-                        if(-1 == objStrs[i].indexOf(","))
-                            obj+=key+"******";
+                    obj = objStrs[0];
+                    for (int i = 1; i < objStrs.length; i++) {
+                        if (-1 == objStrs[i].indexOf(","))
+                            obj += key + "******";
                         else
-                            obj+=key+"******"+objStrs[i].substring(objStrs[i].indexOf(","));
+                            obj += key + "******" + objStrs[i].substring(objStrs[i].indexOf(","));
                     }
                     log.setObject(obj);
                 }
@@ -134,4 +134,29 @@ public class LogController extends BaseController {
             throw new BusinessException(ConstantMessage.ERR00005, e);
         }
     }
+
+    //
+    @ResponseBody
+    @RequestMapping("ajax/log_backups.do")
+    private void backups(HttpSession session) throws BusinessException {
+        try {
+            User user = (User) session.getAttribute("user");
+            boolean isAdmin = StringUtils.equals(ConstantKey.ADMIN, user.getDah());
+            if (!isAdmin) {
+                response.getWriter().write(ConstantKey.FAIL);
+                return;
+            }
+            logService.backups();
+
+//            condition.setFlag("1");
+//            salaryService.updateSalary(condition);
+            response.getWriter().write(ConstantKey.SUCCESS);
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
+        } catch (IOException e) {
+            throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
+
+
 }
