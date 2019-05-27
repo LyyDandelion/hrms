@@ -4,8 +4,10 @@ import jssvc.base.constant.ConstantKey;
 import jssvc.base.dao.ConstantMapper;
 import jssvc.base.model.Constant;
 import jssvc.hrms.dao.ImportDataMapper;
+import jssvc.hrms.dao.SalaryMapper;
 import jssvc.hrms.model.ImportData;
 import jssvc.hrms.model.ImportDataVo;
+import jssvc.hrms.model.Salary;
 import jssvc.hrms.model.filter.ImportDataSearchFilter;
 import jssvc.hrms.service.ImportDataService;
 import jssvc.user.dao.UserMapper;
@@ -22,7 +24,8 @@ public class ImportDataServiceImpl implements ImportDataService {
 
     @Autowired
     ImportDataMapper importDataMapper;
-
+    @Autowired
+    SalaryMapper salaryMapper;
     @Autowired
     private UserMapper userDao;
     @Autowired
@@ -42,9 +45,21 @@ public class ImportDataServiceImpl implements ImportDataService {
             User u = userDao.selectByPrimaryKey(s.getDah());
             importDataVo.setName(u.getYgxm());
 
+            List<Salary> salaryList=salaryMapper.selectByDah(s.getDah());
+            if(salaryList.size()<1)
+            {
+                return null;
+            }
+            Constant constant=new Constant();
             // 取得岗位列表
             List<Constant> gwList = constantDao.selectByType(ConstantKey.KEY_POSITION);
-            Constant constant = gwList.get(importDataMapper.selectPost(u.getDah()));
+            for(int k=0;k<gwList.size();k++)
+            {
+                if(salaryList.get(0).getPostLevel().intValue()==Integer.parseInt(gwList.get(k).getEnKey()))
+                {
+                    constant = gwList.get(k);
+                }
+            }
             importDataVo.setPost(constant.getName());
 
             importDataVoList.add(importDataVo);

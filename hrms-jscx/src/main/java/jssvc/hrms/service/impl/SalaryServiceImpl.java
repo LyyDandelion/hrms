@@ -50,10 +50,16 @@ public class SalaryServiceImpl implements SalaryService {
             // 取得姓名
             User u = userDao.selectByPrimaryKey(s.getDah());
             salaryVo.setName(u.getYgxm());
-
+            Constant constant=new Constant();
             // 取得岗位列表
             List<Constant> gwList = constantDao.selectByType(ConstantKey.KEY_POSITION);
-            Constant constant = gwList.get(s.getPostLevel().intValue());
+            for(int k=0;k<gwList.size();k++)
+            {
+                if(s.getPostLevel().intValue()==Integer.parseInt(gwList.get(k).getEnKey()))
+                {
+                    constant = gwList.get(k);
+                }
+            }
             salaryVo.setPost(constant.getName());
 
             salaryVos.add(salaryVo);
