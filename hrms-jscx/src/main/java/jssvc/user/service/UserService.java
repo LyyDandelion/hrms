@@ -1,9 +1,19 @@
 package jssvc.user.service;
 
-import jssvc.hrms.model.filter.SalarySearchFilter;
-import jssvc.user.model.*;
-import jssvc.user.model.filter.UserSearchFilter;
 import jssvc.base.exception.BusinessException;
+import jssvc.user.model.DataAuthority;
+import jssvc.user.model.DeptInfoVo;
+import jssvc.user.model.DeptUser;
+import jssvc.user.model.DeptUserVo;
+import jssvc.user.model.InstitutionInfo;
+import jssvc.user.model.Menu;
+import jssvc.user.model.MenuFunction;
+import jssvc.user.model.Role;
+import jssvc.user.model.User;
+import jssvc.user.model.UserRole;
+import jssvc.user.model.UserRoleVo;
+import jssvc.user.model.UserVo;
+import jssvc.user.model.filter.UserSearchFilter;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -292,4 +302,9 @@ public interface UserService {
      **/
     List<InstitutionInfo> getHeadBankList();
 
+    /**
+     * @deprecated  查询部门信息
+     * @return
+     */
+    List<DeptInfoVo> getDeptInfo();
 }

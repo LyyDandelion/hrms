@@ -6,18 +6,29 @@ import jssvc.base.constant.ConstantMessage;
 import jssvc.base.constant.SystemConstant;
 import jssvc.base.controller.BaseController;
 import jssvc.base.enums.ActionType;
+import jssvc.base.enums.Sex;
 import jssvc.base.exception.BusinessException;
 import jssvc.base.interceptor.LogFace;
 import jssvc.base.listener.LoginListener;
-import jssvc.base.enums.Sex;
 import jssvc.base.model.Constant;
 import jssvc.base.util.JSON;
 import jssvc.base.util.MD5;
-import jssvc.base.util.TreeUtil;
 import jssvc.base.util.StringUtil;
-
+import jssvc.base.util.TreeUtil;
+import jssvc.hrms.model.filter.SettlementSearchFilter;
 import jssvc.user.enums.UserStatus;
-import jssvc.user.model.*;
+import jssvc.user.model.DataAuthority;
+import jssvc.user.model.DeptInfoVo;
+import jssvc.user.model.DeptUser;
+import jssvc.user.model.DeptUserVo;
+import jssvc.user.model.InstitutionInfo;
+import jssvc.user.model.MenuFunction;
+import jssvc.user.model.Role;
+import jssvc.user.model.RoleVo;
+import jssvc.user.model.User;
+import jssvc.user.model.UserRole;
+import jssvc.user.model.UserRoleVo;
+import jssvc.user.model.UserVo;
 import jssvc.user.model.filter.UserSearchFilter;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -32,10 +43,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.SQLException;
-import java.util.*;
-
-import static jssvc.base.enums.ActionType.role_deleteRole;
-import static jssvc.base.enums.ActionType.role_saveRole;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: 用户类控制器
@@ -784,7 +796,6 @@ public class UserController extends BaseController {
 
     /**
      * @description:初始化权限列表
-     *
      * @author: redcomet
      * @param: [id]
      * @return: void        
@@ -1334,6 +1345,76 @@ public class UserController extends BaseController {
             throw new BusinessException(ConstantMessage.ERR00004, e);
         } catch (IOException e) {
             throw new BusinessException(ConstantMessage.ERR00005, e);
+        }
+    }
+
+    /**
+     *
+     * @deprecated  增加部门弹出页面
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("showDeptUpdPop.do")
+    private ModelAndView showDeptUpdPop() {
+        // 跳转到用户更新页面
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("hrms/deptUpdPop");
+        return mv;
+    }
+
+    /**
+     *
+     * @deprecated  编辑部门信息
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("showDeptEditPop.do")
+    private ModelAndView showDeptEditPop() {
+        // 跳转到用户更新页面
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("hrms/deptEditPop");
+        return mv;
+    }
+
+    /**
+     * @description:初始化部门信息表
+     * @author: zhoukai
+     * @return: void
+     * @create: 2018/10/12
+     **/
+    @ResponseBody
+    @RequestMapping("ajax/getDeptList.do")
+    private void getDeptList(SettlementSearchFilter filter) throws Exception {
+        try {
+          // 取得功能权限列表
+        //   List<MenuFunction> menuFunctions = getMenuFunction(id);
+            List<DeptInfoVo> deptInfos=userService.getDeptInfo();
+            // 删除角色权限
+            Boolean delFlag = false;
+            // 创建/修改角色和菜单功能权限
+            Boolean editFlag = false;
+            // 判断登录者是否具有删除角色权限、创建/修改角色和菜单功能权限
+            for (int i = 0; i < deptInfos.size(); i++) {
+                editFlag=true;
+               /* switch (ActionType.valueOf(menuFunctions.get(i).getFunctionAction())) {
+                    case role_saveRole:
+                        editFlag = true;
+                        break;
+                    case role_deleteRole:
+                        delFlag = true;
+                        break;
+                    default:
+                        break;
+                }*/
+            }
+            HashMap<String, Object> hashmap = new HashMap<String, Object>();
+            hashmap.put(ConstantKey.KEY_DATA, deptInfos);
+            hashmap.put(ConstantKey.EDIT_FLAG, editFlag);
+            hashmap.put(ConstantKey.DEL_FLAG, delFlag);
+            String json = JSON.Encode(hashmap);
+            response.getWriter().write(json);
+        } catch (NullPointerException e) {
+            throw new BusinessException(ConstantMessage.ERR00004, e);
         }
     }
 }

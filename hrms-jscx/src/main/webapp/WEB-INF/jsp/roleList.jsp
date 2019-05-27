@@ -37,7 +37,7 @@
             <div id="roleDatagrid" class="mini-datagrid"  allowAlternating="true" style="width:100%;height:100%;"
             url="<%=request.getContextPath()%>/ajax/role_getRoleList.do" allowResize="true" idField="id" pageSize="50">
                 <div property="columns">
-                    <div type="indexcolumn" headerAlign="center">序号</div>
+                    <div type="indexcolumn" headerAlign="center" width="70">序号</div>
                     <div field="roleName" width="30%" allowSort="false">角色名称</div>
                     <div field="roleDescription" width="40%" allowSort="false">角色描述</div>
                     <div field="createTime" width="30%" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">创建时间</div>

@@ -8,11 +8,36 @@ import jssvc.base.enums.Sex;
 import jssvc.base.exception.BusinessException;
 import jssvc.base.util.JSON;
 import jssvc.base.util.Tree;
-import jssvc.user.dao.*;
+import jssvc.user.dao.DataAuthorityMapper;
+import jssvc.user.dao.DeptInfoMapper;
+import jssvc.user.dao.DeptUserMapper;
+import jssvc.user.dao.InstitutionInfoMapper;
+import jssvc.user.dao.MenuFunctionMapper;
+import jssvc.user.dao.MenuMapper;
+import jssvc.user.dao.RoleFunctionMapper;
+import jssvc.user.dao.RoleMapper;
+import jssvc.user.dao.RoleMenuMapper;
+import jssvc.user.dao.UserMapper;
+import jssvc.user.dao.UserRoleMapper;
 import jssvc.user.enums.UserStatus;
-import jssvc.user.model.*;
+import jssvc.user.model.DataAuthority;
+import jssvc.user.model.DeptInfo;
+import jssvc.user.model.DeptInfoVo;
+import jssvc.user.model.DeptUser;
+import jssvc.user.model.DeptUserVo;
+import jssvc.user.model.InstitutionInfo;
+import jssvc.user.model.Menu;
+import jssvc.user.model.MenuFunction;
+import jssvc.user.model.Role;
+import jssvc.user.model.RoleFunction;
+import jssvc.user.model.RoleMenu;
+import jssvc.user.model.User;
+import jssvc.user.model.UserRole;
+import jssvc.user.model.UserRoleVo;
+import jssvc.user.model.UserVo;
 import jssvc.user.model.filter.UserSearchFilter;
 import jssvc.user.service.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -57,6 +82,8 @@ public class UserServiceImpl implements UserService {
     private RoleMenuMapper roleMenuDao;
     @Autowired
     private RoleFunctionMapper roleFunctionDao;
+    @Autowired
+    private DeptInfoMapper deptInfoMapperDao;
 
     private static  Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -641,5 +668,27 @@ public class UserServiceImpl implements UserService {
     public List<InstitutionInfo> getHeadBankList() {
         List<InstitutionInfo> resultList = institutionInfoDao.selectHeadBankList();
         return resultList;
+    }
+
+    @Override
+    public List<DeptInfoVo> getDeptInfo() {
+        List<DeptInfoVo> deptInfoVos=new ArrayList<DeptInfoVo>();
+        List<DeptInfo> deptInfos=deptInfoMapperDao.selectAll();
+        if(!deptInfos.isEmpty()){
+           for(DeptInfo deptInfo:deptInfos){
+               DeptInfoVo deptInfoVo=new DeptInfoVo();
+               BeanUtils.copyProperties(deptInfo, deptInfoVo);
+               String  superDept=deptInfoMapperDao.selectDeptInfoByDeptId(deptInfo.getSjjg());
+               if(StringUtils.isNotBlank(superDept)){  //存在上级
+                   deptInfoVo.setSuperDept(superDept);
+               }else{
+                   deptInfoVo.setSuperDept("无");
+               }
+               deptInfoVos.add(deptInfoVo);
+           }
+        }
+
+        //TODO 填充一些Vo特殊的属性
+        return deptInfoVos;
     }
 }

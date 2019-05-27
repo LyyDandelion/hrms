@@ -3,223 +3,177 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>部门管理</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>角色管理</title>
         <script src="<%=request.getContextPath()%>/resources/scripts/boot.js" type="text/javascript"></script>
         <link href="<%=request.getContextPath()%>/resources/css/miniui_style.css" type="text/css" rel="stylesheet" />
+        <style type="text/css">
+            body{
+                overflow:hidden;
+            }
+        </style>
     </head>
-    <body id="jgBody" style="display: none">
+    <body id="userBody" style="display: none">
         <div class="mini-toolbar" style="padding:2px;border-bottom:0;">
-            <table style="width:50%;table-layout:fixed;">
+            <table style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td style="width:99%;">
-                        <a class="mini-button" id="add" onclick="onAddBefore()" style="width:110px;">插入节点(前)</a>
-                        <a class="mini-button" id="add" onclick="onAddAfter()" style="width:110px;">插入节点(后)</a>
-                        <a class="mini-button" id="add" onclick="onAddNode()" style="width:110px;">插入子节点</a>
-                        <a class="mini-button" id="add" onclick="onEditNode()" style="width:90px;">编辑节点</a>
-                        <a class="mini-button" id="add" onclick="onRemoveNode()" style="width:90px;">删除节点</a>
-                        <span class="separator"></span>
-                        <a class="mini-button" id="save" onclick="saveData()" style="width:90px;font-weight:bold;">保存</a>
+                    <td style="width:85%;">
+                        <a class="mini-button" id="add" onclick="add()">增加部门</a>
+                        <a class="mini-button" id="edit" onclick="edit()">编辑部门</a>
+                        <a class="mini-button" id="remove" onclick="remove()">删除部门</a>
                     </td>
-                </tr>
-            </table>
-            <table style="width:50%;table-layout:fixed;">
-                <tr>
-                    <td>
-                        <ul id="jgTree" class="mini-tree" url="<%=request.getContextPath()%>/ajax/user_getJgList.do" style="width:200px;padding:5px;" 
-                        showTreeIcon="true" textField="jgmc" idField="jgh" parentField="sjjg" resultAsTree="false"
-                        allowDrag="true" allowDrop="true" expandOnLoad="0">
-                        </ul>
+                    <td style="width:90px;text-align:right;">部门名称：</td>
+                    <td style="width:15%;">
+                        <input id="roleName" class="mini-textbox" emptyText="请输入部门名称" style="width:100%;" onenter="onKeyEnter"/>
+                    </td>
+                    <td style="width:70px;">
+                        <a class="mini-button" id="search" onclick="search()">查询</a>
                     </td>
                 </tr>
             </table>
         </div>
-        <div style="display:none;width:350px;" id="jgDiv" title="部门信息" class="mini-window">
-            <table border="0" cellpadding="8" style="width:100%;table-layout:fixed;">
-                <tr>
-                    <td style="width:60px;">部门号：</td>
-                    <td style="width:90%;">
-                        <input id="jgh" name="jgh" class="mini-textbox" style="width:90%;"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>部门名：</td>
-                    <td>
-                        <input id="jgmc" name="jgmc" class="mini-textbox" style="width:90%;"/>
-                        <input id="action" name="action" class="mini-hidden"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <a class="mini-button" id="save" onclick="save" style="margin-left:60px;">保存</a>
-                        <a class="mini-button" onclick="close">取消</a>
-                    </td>
-                </tr>
-            </table>
+        <div class="mini-fit">  
+            <div id="roleDatagrid" class="mini-datagrid"  allowAlternating="true" style="width:100%;height:100%;"
+            url="<%=request.getContextPath()%>/ajax/getDeptList.do" allowResize="true" idField="id" pageSize="50">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center" width="70">序号</div>
+                    <div field="jgmc" width="30%" allowSort="false">部门名称</div>
+                    <div field="sjjg" width="40%" allowSort="false">部门编号</div>
+                    <div field="superDept" width="30%" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">上级部门</div>
+                </div>
+            </div>
         </div>
         <script type="text/javascript">
             mini.parse();
-            $("#jgBody").fadeTo("slow", 1);
-            var tree = mini.get("jgTree");
-            var jgDiv = mini.get("jgDiv");
-            var node;
-            var addJghs = [];
-            function save(e) {
-                var jgh = mini.get("jgh").getValue();
-                var jgmc = mini.get("jgmc").getValue();
-                var action = mini.get("action").getValue();
-                if (action == "") {
-                    node.jgh = jgh;
-                    node.jgmc = jgmc;
-                    tree.updateNode(node);
-                    close();
-                } else {
-                    // 检查机构是否重复
-                    $.ajax({
-                        url: "<%=request.getContextPath()%>/ajax/jg_checkJgsfcf.do",
-                        data:{jgh: jgh},
-                        type: "post",
-                        async: false,
-                        dataType: 'text',
-                        success: function (text) {
-                            if (text == "FAIL") {
-                                mini.alert("机构号已经存在，请换一个机构号");
-                            } else {
-                                // 验证添加的机构号是否跟其他新加的重复
-                                for (var i = 0; i < addJghs.length; i++) {
-                                    if (addJghs[i] == jgh) {
-                                        mini.alert("机构号已经存在，请换一个机构号");
-                                        return false;
-                                    }
-                                }
-                                addJghs.push(jgh);
-                                var newNode = {"jgh": jgh, "jgmc": jgmc};
-                                tree.addNode(newNode, action, node);
-                                tree.updateNode(node);
-                                close();
+            $("#userBody").fadeTo("slow", 1);
+            $(document).ready(function() {
+            /*    $.ajax({
+                    url: "<%=request.getContextPath()%>/ajax/role_initRoleList.do",
+                    data:{id: "<%=request.getParameter("id")%>"},
+                    type: "post",
+                    dataType: 'text',
+                    success: function (text) {
+                        var data = mini.decode(text);
+                        if (data.delFlag == false) {
+                            mini.get("remove").setEnabled(false);
+                        }
+                        if (data.editFlag == false  ) {
+                            mini.get("add").setEnabled(false);
+                            mini.get("edit").setEnabled(false);
+                        }
+                    }
+                });*/
+            });
+
+            var grid = mini.get("roleDatagrid");  
+            grid.load();
+            grid.sortBy("id", "ASC");
+
+            function onKeyEnter(e) {
+                search();
+            }
+
+            // 查询按钮按下的事件
+            function search() {
+                var name = mini.get("roleName").getValue();
+                grid.load({ 'roleName': name });
+            }
+
+            // 增加角色
+            function add() {
+                mini.open({
+                    url: "<%=request.getContextPath()%>/showRoleUpd.do",
+                    title: "新增角色", width: 600, height: 360,
+                    onload: function () {
+                        var iframe = this.getIFrameEl();
+                        var data = { action: "new"};
+                        iframe.contentWindow.SetData(data);
+                    },
+                    ondestroy: function (action) {
+                        if (action == "ok") {
+                            grid.reload();
+                        }
+                    }
+                });
+            }
+
+            // 编辑角色
+            function edit() {
+                var row = grid.getSelected();
+                if (row) {
+                    mini.open({
+                        url: "<%=request.getContextPath()%>/showRoleUpd.do",
+                        title: "编辑角色", width: 600, height: 360,
+                        onload: function () {
+                            var iframe = this.getIFrameEl();
+                            var data = { action: "edit", id: row.id, roleName: row.roleName, roleDescription: row.roleDescription, flag: row.flag};
+                            iframe.contentWindow.SetData(data);
+                            
+                        },
+                        ondestroy: function (action) {
+                            if (action == "ok") {
+                                grid.reload();
                             }
                         }
                     });
+                    
+                } else {
+                    mini.alert("请选中一条记录");
                 }
+            }
+            
+            // 批量编辑角色
+            function piLiangEdit() {
+                    mini.open({
+                        url: "<%=request.getContextPath()%>/showPiLiangRoleUpd.do",
+                        title: "批量编辑角色", width: 600, height: 360,                        
+                          onload: function () {
+                           var iframe = this.getIFrameEl();
+                            var data = { action: "piLiangEdit"};
+                            iframe.contentWindow.SetData(data);
+                        },
+                        ondestroy: function (action) {
+                            if (action == "ok") { 
+                                grid.reload(); 
+                             }
+                        }
+                    });
+                    
             }
 
-            // 关闭弹出窗口时清空机构信息
-            function close() {
-                mini.get("jgh").setValue("");
-                mini.get("jgmc").setValue("");
-                mini.get("action").setValue("");
-                jgDiv.hide();
-            }
-            
-            // 在选择节点前增加
-            function onAddBefore(e) {
-                node = tree.getSelectedNode();
-                if (node == null) {
-                    mini.alert("请选择一个节点");
-                } else {
-                    if (node.sjjg == "0706678KJ") {
-                        mini.get("jgh").setAllowInput(true);
-                        mini.get("action").setValue("before");
-                        jgDiv.show();
-                    } else {
-                        mini.alert("不能在这个机构前创建新的机构");
-                    }
-                }
-            }
-            
-            // 在选择节点后增加
-            function onAddAfter(e) {
-                node = tree.getSelectedNode();
-                if (node == null) {
-                    mini.alert("请选择一个节点");
-                } else {
-                    if (node.sjjg == "0706678KJ") {
-                        mini.get("jgh").setAllowInput(true);
-                        mini.get("action").setValue("after");
-                        jgDiv.show();
-                    } else {
-                        mini.alert("不能在这个机构后创建新的机构");
-                    }
-                }
-            }
-            
-            // 在选择节点下增加一个子节点
-            function onAddNode(e) {
-                node = tree.getSelectedNode();
-                if (node == null) {
-                    mini.alert("请选择一个节点");
-                } else {
-                    if (node.jgh == "0706678KJ") {
-                        mini.get("jgh").setAllowInput(true);
-                        mini.get("action").setValue("add");
-                        jgDiv.show();
-                    } else {
-                        mini.alert("不能在这个机构下创建新的机构");
-                    }
-                }
-            }
-            
-            // 编辑节点
-            function onEditNode(e) {
-                node = tree.getSelectedNode();
-                if (node == null) {
-                    mini.alert("请选择一个节点");
-                } else {
-                    if (node.sjjg == "0706678KJ") {
-                        mini.get("jgh").setValue(node.jgh);
-                        mini.get("jgh").setAllowInput(false);
-                        mini.get("jgmc").setValue(node.jgmc);
-                        mini.get("action").setValue("");
-                        jgDiv.show();
-                    } else {
-                        mini.alert("不能编辑这个机构");
-                    }
-                }
-            }
-            
-            // 删除节点
-            function onRemoveNode(e) {
-                var node = tree.getSelectedNode();
-                if (node == null) {
-                    mini.alert("请选择一个节点");
-                } else {
-                    if (node.sjjg == "0706678KJ") {
-                        mini.confirm("确定删除选中节点?", "确定？", function(action) {
-                            if (action == "ok") {
-                                tree.removeNode(node);
-                            }
-                        });
-                    } else {
-                        mini.alert("不能删除这个机构");
-                    }
-                }
-            }
-
-            // 保存机构信息
-            var msgid;
-            function saveData() {
-                var data = tree.getData();
-                var removed = tree.getChanges("removed");
-                var json = mini.encode(data);
-                var removedJson = mini.encode(removed);
-
-                msgid = mini.loading("数据保存中，请稍后......", "保存数据");
-                mini.confirm("确定保存机构?", "确定？", function(action) {
+            // 删除角色
+            function remove() {
+                var rows = grid.getSelecteds();
+                if (rows.length > 0) {
+                    mini.confirm("是否确定删除选中记录？", "确定？", function(action) {
                     if (action == "ok") {
-                        $.ajax({
-                            url: "<%=request.getContextPath()%>/ajax/jg_saveJgData.do",
-                            data: { data: json, removed: removedJson },
-                            type: "post",
-                            dataType: 'text',
-                            success: function (text) {
-                                mini.hideMessageBox(msgid);
-                                mini.alert("机构保存成功");
-                                addJghs = [];
-                            }
-                        });
+                        if(rows[0].flag == 1){
+                            grid.reload();
+                            mini.alert("该角色不能被删除！");
+                            return;
+                        }
+                        var id = rows[0].id;
+                            $.ajax({
+                                url: "<%=request.getContextPath()%>/ajax/role_deleteRole.do",
+                                type: "post",
+                                data: { roleId: id },
+                                dataType: 'text',
+                                success: function (text) {
+                                    if (text == "SUCCESS") {
+                                        mini.alert("删除成功", "提醒", function(e) {
+                                            grid.reload();
+                                        });
+                                    } else if (text == "FAIL") {
+                                        grid.reload();
+                                        mini.alert("该角色已被分配给用户，无法删除！");
+                                    }
+                                }
+                            });
                     }
-                });
+                    });
+                } else {
+                    mini.alert("请选中一条记录");
+                }
             }
         </script>
     </body>  
