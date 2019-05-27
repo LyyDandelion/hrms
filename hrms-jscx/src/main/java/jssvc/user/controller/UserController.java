@@ -1375,6 +1375,19 @@ public class UserController extends BaseController {
         mv.setViewName("hrms/deptEditPop");
         return mv;
     }
+    /**
+     *
+     * @deprecated  显示部门信息树状图
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("showTree.do")
+    private ModelAndView showTree() {
+        // 跳转到用户更新页面
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("hrms/showTree");
+        return mv;
+    }
 
     /**
      * @description:初始化部门信息表

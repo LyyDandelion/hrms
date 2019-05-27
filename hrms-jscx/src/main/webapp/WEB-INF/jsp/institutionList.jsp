@@ -21,6 +21,7 @@
                         <a class="mini-button" id="add" onclick="add()">增加部门</a>
                         <a class="mini-button" id="edit" onclick="edit()">编辑部门</a>
                         <a class="mini-button" id="remove" onclick="remove()">删除部门</a>
+                        <a class="mini-button" id="showTree" onclick="showTree()">查看树状关系图</a>
                     </td>
                     <td style="width:90px;text-align:right;">部门名称：</td>
                     <td style="width:15%;">
@@ -86,8 +87,8 @@
                     url: "<%=request.getContextPath()%>/showDeptUpdPop.do",
                     title: "新增部门", width: 600, height: 360,
                     onload: function () {
-                        var iframe = this.getIFrameEl();
-                        var data = { actionFlag: "add"};
+                       var iframe = this.getIFrameEl();
+                       var data = { actionFlag: "add"};
                         iframe.contentWindow.SetData(data);
                     },
                     ondestroy: function (action) {
@@ -141,7 +142,24 @@
                     });
                     
             }
+            //查看树状图
+            function showTree() {
+                mini.open({
+                    url: "<%=request.getContextPath()%>/showTree.do",
+                    title: "部门关系树状图", width: 350, height: 360,
+                    onload: function () {
+                      /*  var iframe = this.getIFrameEl();
+                        var data = { action: ""};
+                        iframe.contentWindow.SetData(data);*/
+                    },
+                    ondestroy: function (action) {
+                        if (action == "ok") {
+                            grid.reload();
+                        }
+                    }
+                });
 
+            }
             // 删除角色
             function remove() {
                 var rows = grid.getSelecteds();
