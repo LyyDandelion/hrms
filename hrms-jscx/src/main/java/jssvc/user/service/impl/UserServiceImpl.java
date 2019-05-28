@@ -272,20 +272,23 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
     @Transactional
-    public boolean updateUser(User user, List<DeptUser> yhjgList) throws BusinessException {
+    public boolean updateUser(User user, List<String> yhjgList) throws BusinessException {
         logger.info(String.valueOf(new StringBuffer("updateUser  员工对象：").append(JSON.Encode(user)).append("  机构对象：").append(JSON.Encode(yhjgList))));
         boolean flag = true;
         try {
             // 更新用户
             userDao.updateByPrimaryKeySelective(user);
+//            deptDao.updateJghByDah(user);
             if (yhjgList.size() > 0) {
                 // 删除用户所属机构
                 deptDao.deleteByDah(user.getDah());
                 // 循环插入用户所属机构
                 for (int i = 0; i < yhjgList.size(); i++) {
-                    deptDao.insert(yhjgList.get(i));
+                    DeptUser deptUser=new DeptUser();
+                    deptUser.setDah(user.getDah());
+                    deptUser.setJgh(yhjgList.get(i));
+                    deptDao.insert(deptUser);
                 }
             }
         } catch (RuntimeException e) {

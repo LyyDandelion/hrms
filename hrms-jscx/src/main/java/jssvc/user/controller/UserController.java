@@ -324,14 +324,15 @@ public class UserController extends BaseController {
     private void updateUser(User user, String jgh, String action) throws BusinessException {
         try {
             // 机构拆分
-            // String[] arrJgh = jgh.split(SystemConstant.COMMA);
-            List<DeptUser> yhjgList = new ArrayList<DeptUser>();
-            // for (int i = 0; i < arrJgh.length; i++) {
-            // Yhjg yhjg = new Yhjg();
-            // yhjg.setDah(user.getDah());
-            // yhjg.setJgh(arrJgh[i]);
-            // yhjgList.add(yhjg);
-            // }
+//             String[] arrJgh = jgh.split(SystemConstant.COMMA);
+            List<String> yhjgList = new ArrayList<String>();
+            yhjgList.add(jgh);
+//             for (int i = 0; i < arrJgh.length; i++) {
+//             Yhjg yhjg = new Yhjg();
+//             yhjg.setDah(user.getDah());
+//             yhjg.setJgh(arrJgh[i]);
+//             yhjgList.add(yhjg);
+//             }
             // 用户状态设为启用
             user.setFlag(String.valueOf(UserStatus.start.getId()));
             // 更新用户

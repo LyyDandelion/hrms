@@ -44,7 +44,7 @@
                 <tr>
                     <td style="text-align:right;">部门：</td>
                     <td>
-                        <input id="jgh" name="jgh" class="mini-treeselect" style="width:250px;" multiSelect="true" value="${jgxx}"
+                        <input id="jgh" name="jgh" class="mini-treeselect" style="width:250px;" multiSelect="false" value="${jgxx}"
                         textField="jgmc" valueField="jgh" parentField="sjjg" url="<%=request.getContextPath()%>/ajax/user_getJgList.do"
                         checkRecursive="false" showFolderCheckBox="true" showClose="true" expandOnLoad="0" required="true" oncloseclick="onCloseClick">
                         </input>

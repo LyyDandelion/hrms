@@ -1,5 +1,7 @@
 package jssvc.base.constant;
 
+import jssvc.base.util.PropertyUtil;
+
 public class ConstantKey {
     // 对象的key
 
@@ -515,7 +517,7 @@ public class ConstantKey {
 
     /**超级用户*/
     public static final String ADMIN="admin";
-    public static final String EXPORT_PATH = "C:\\Users\\Administrator\\Desktop\\";
+    public static final String EXPORT_PATH =PropertyUtil.getProperty("export_path");
     public static final String POSITION ="position" ;
     public static final String EN_KEY = "en_key";
 }

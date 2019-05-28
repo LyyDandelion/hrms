@@ -54,6 +54,7 @@
                     <div field="dah" width="60" allowSort="true" align="center" headerAlign="center">工号</div>
                     <div field="ygxm" width="80" allowSort="true" align="center" headerAlign="center">姓名</div>
                     <div field="jgmc" width="120" allowSort="false" align="center" headerAlign="center">部门</div>
+                    <div field="gwdjName" width="120" allowSort="false" align="center" headerAlign="center">岗位</div>
                     <div field="sexName" width="40" allowSort="false" align="center" headerAlign="center">性别</div>
                     <div field="email" width="120" allowSort="true" align="center" headerAlign="center">邮箱</div>
                     <div field="mobile" width="100" allowSort="true" align="center" headerAlign="center">电话号码</div>

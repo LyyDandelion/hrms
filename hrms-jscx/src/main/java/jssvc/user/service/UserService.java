@@ -105,7 +105,7 @@ public interface UserService {
      * @return: boolean        
      * @create: 2018/10/12 
      **/
-    boolean updateUser(User user, List<DeptUser> yhjgList) throws BusinessException;
+    boolean updateUser(User user, List<String> yhjgList) throws BusinessException;
 
     /**
      * @description:修改密码

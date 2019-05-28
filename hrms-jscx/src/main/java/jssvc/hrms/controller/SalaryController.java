@@ -229,7 +229,7 @@ public class SalaryController extends BaseController {
             }
             //创建HSSFWorkbook
             HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, content, null);
-            File file=new File("C:\\Users\\Administrator\\Desktop\\");
+            File file=new File(ConstantKey.EXPORT_PATH);
             OutputStream stream=new FileOutputStream(new File(file, fileName));
             wb.write(stream);
             stream.close();
@@ -308,7 +308,7 @@ public class SalaryController extends BaseController {
             }
             //创建HSSFWorkbook
             HSSFWorkbook wb = ExcelUtil.getHSSFWorkbookForSalary(sheetName, content, null);
-            File file=new File("C:\\Users\\Administrator\\Desktop\\");
+            File file=new File(ConstantKey.EXPORT_PATH);
             OutputStream stream=new FileOutputStream(new File(file, fileName));
             wb.write(stream);
             stream.close();
@@ -463,7 +463,7 @@ public class SalaryController extends BaseController {
             }
             //创建HSSFWorkbook
             HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, content, null);
-            File file=new File("C:\\Users\\Administrator\\Desktop\\");
+            File file=new File(ConstantKey.EXPORT_PATH);
             OutputStream stream=new FileOutputStream(new File(file, fileName));
             wb.write(stream);
             stream.close();
