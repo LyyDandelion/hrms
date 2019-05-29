@@ -122,6 +122,7 @@
                 // 编辑权限设定
                 if (editFlag) {
                     s = s + '<a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')">编辑</a>';
+
                 } else {
                     s = s + '<a class="Edit_Button" style="color:gray" href="#">编辑</a>';
                 }

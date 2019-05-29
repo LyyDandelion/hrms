@@ -16,9 +16,15 @@ public interface ImportDataService {
 
     int getImportDataByDah(String dah);
 
+
     void addImport(ImportData importData);
 
     ImportData getImportData(String dah);
+    ImportData getImportData(String dah,String month);
 
     void updateDate(ImportData condition);
+
+    int getImportDataByDah(String dah, String month);
+
+
 }

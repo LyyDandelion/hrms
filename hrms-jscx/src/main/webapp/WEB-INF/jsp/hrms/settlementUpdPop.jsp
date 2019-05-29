@@ -27,7 +27,8 @@
                 <td>
                     <input id="dah" name="dah" class="mini-combobox" textField="dah" valueField="dah"
                            style="width:250px;" url="<%=request.getContextPath()%>/ajax/salary_getDahsSettleBychoice.do"
-                           onvaluechanged="levelChange" value="${importData.dah}"/>
+                            value="${importData.dah}"/>
+                    <%--onvaluechanged="levelChange"--%>
                 </td>
             </tr>
             <tr>

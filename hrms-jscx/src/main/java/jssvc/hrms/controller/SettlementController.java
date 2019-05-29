@@ -101,9 +101,10 @@ public class SettlementController extends BaseController {
             //工资结算
             //获取固定工资
             String dah = importData.getDah();
+            String month=importData.getMonth()+"";
             SalaryVo salaryVo = salaryService.getSalary(dah);
 
-            ImportData newImportData = importDataService.getImportData(dah);
+            ImportData newImportData = importDataService.getImportData(dah,month);
             //设置基本工资
             double base_salary = salaryVo.getPostSalary() + salaryVo.getYearSalary() + salaryVo.getAward() + salaryVo.getTrafficAllowrance() + salaryVo.getTelAllowrance() + salaryVo.getLunchAllowrance();
 

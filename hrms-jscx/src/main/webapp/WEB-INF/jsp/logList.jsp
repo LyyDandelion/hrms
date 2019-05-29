@@ -25,33 +25,33 @@
                         <%--valueField="jgh" parentField="sjjg" expandOnLoad="0" allowInput="true">--%>
                         <%--</input>--%>
                     <%--</td>--%>
-                    <td style="width:1%"></td>
-                    <td style="width:50px;">用户名：</td>
-                    <td style="width:10%">
-                        <input id="ygxm" name="ygxm" class="mini-textbox" style="width:100%;"/>
-                    </td>
-                    <td style="width:1%"></td>
-                    <td style="width:50px;">操作：</td>
-                    <td style="width:10%">
-                        <input id="type" name="type" class="mini-textbox" style="width:100%;"/>
-                    </td>
-                    <td style="width:1%"></td>
-                    <td style="width:50px;">对象：</td>
-                    <td style="width:10%">
-                        <input id="object" name="type" class="mini-textbox" style="width:100%;"/>
-                    </td>
-                    <td style="width:1%"></td>
-                    <td style="width:70px;">创建时间：</td>
-                    <td style="width:10%">
-                        <input id="fromDate" name="fromDate" class="mini-datepicker" style="width:100%;"/>
-                    </td>
-                    <td style="width:4%">
-                        &nbsp;～&nbsp;
-                    </td>
-                    <td style="width:10%">
-                        <input id="toDate" name="toDate" class="mini-datepicker" style="width:100%;"/>
-                    </td>
-                    <td style="width:70px"><a class="mini-button" id="search" onclick="search()" style="width:100%;">查询</a></td>
+                    <%--<td style="width:1%"></td>--%>
+                    <%--<td style="width:50px;">用户名：</td>--%>
+                    <%--<td style="width:10%">--%>
+                        <%--<input id="ygxm" name="ygxm" class="mini-textbox" style="width:100%;"/>--%>
+                    <%--</td>--%>
+                    <%--<td style="width:1%"></td>--%>
+                    <%--<td style="width:50px;">操作：</td>--%>
+                    <%--<td style="width:10%">--%>
+                        <%--<input id="type" name="type" class="mini-textbox" style="width:100%;"/>--%>
+                    <%--</td>--%>
+                    <%--<td style="width:1%"></td>--%>
+                    <%--<td style="width:50px;">对象：</td>--%>
+                    <%--<td style="width:10%">--%>
+                        <%--<input id="object" name="type" class="mini-textbox" style="width:100%;"/>--%>
+                    <%--</td>--%>
+                    <%--<td style="width:1%"></td>--%>
+                    <%--<td style="width:70px;">创建时间：</td>--%>
+                    <%--<td style="width:10%">--%>
+                        <%--<input id="fromDate" name="fromDate" class="mini-datepicker" style="width:100%;"/>--%>
+                    <%--</td>--%>
+                    <%--<td style="width:4%">--%>
+                        <%--&nbsp;～&nbsp;--%>
+                    <%--</td>--%>
+                    <%--<td style="width:10%">--%>
+                        <%--<input id="toDate" name="toDate" class="mini-datepicker" style="width:100%;"/>--%>
+                    <%--</td>--%>
+                    <%--<td style="width:70px"><a class="mini-button" id="search" onclick="search()" style="width:100%;">查询</a></td>--%>
                 </tr>
             </table>
         </div>

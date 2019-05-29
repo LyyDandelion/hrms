@@ -59,8 +59,9 @@
 	  dah
     FROM
 	  t_hrms_import_data
-    WHERE
-	dah NOT IN ( SELECT dah FROM t_hrms_settlement )
+	  group by dah
+--     WHERE
+-- 	dah NOT IN ( SELECT dah FROM t_hrms_settlement )
   </select>
 
 

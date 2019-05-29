@@ -33,15 +33,16 @@
                 <tr>
                     <td style="text-align:right;">工号：</td>
                     <td>
-                        <input id="dah" name="dah" class="mini-combobox" textField="dah" valueField="dah"
+                        <input id="dah" name="dah" class="mini-combobox" textField="dah" required="true" valueField="dah"
                         style="width:250px;" url="<%=request.getContextPath()%>/ajax/user_getUsers_for_import.do"
-                            onvaluechanged="levelChange" value="${importData.dah}"/>
+                             value="${importData.dah}"/>
                     </td>
+                    <%--onvaluechanged="levelChange"--%>
                 </tr>
                 <tr>
                     <td style="text-align:right;">月份：</td>
                     <td>
-                        <input id="month" name="month" class="mini-textbox" style="width:250px;" required="true" value="${importData.month}"/>
+                        <input id="month" name="month" onvaluechanged="levelChange"  class="mini-textbox" style="width:250px;" required="true" value="${importData.month}"/>
                     </td>
                 </tr>
                 <tr>
@@ -110,21 +111,24 @@
             }
 
             function levelChange(){
+
                 var dah=mini.get("dah").getValue();
+                var month=mini.get("month").getValue();
                 $.ajax({
                     url:"ajax/checkIsExsit.do",
                     data:{
-                        dah:dah
+                        dah:dah,
+                        month:month
                     },
                     success:function(data){
                         if(data=="1")
                         {
                             alert("此员工已录入");
                             mini.get("dah").setValue("");
+                            mini.get("month").setValue("");
                         }
                         console.log(JSON.stringify(data));
                     }
-
                 })
                 // mini.get("postSalary").setValue( mini.get("postLevel").getValue() * 1100 )
                 // mini.get("award").setValue( mini.get("postLevel").getValue() * 1500 )
@@ -181,6 +185,7 @@
                 var form = new mini.Form("#userTbl");
                 form.validate();
                 if (form.isValid() == true) {
+                    levelChange();
                     if (paramAction == "add") {
                         mini.confirm("是否确定创建该考勤数据？", "确定？",function(action) {
                             if (action == "ok") {

@@ -24,10 +24,16 @@
   <select id="selectByDah" resultType="int" parameterType="java.lang.String" >
     select count(*) from t_hrms_import_data where dah=#{dah}
   </select>
+  <select id="selectByMap" resultType="int" parameterType="java.util.Map" >
+    select count(*) from t_hrms_import_data where dah=#{dah} and month=#{month}
+  </select>
   <select id="selectImportDataForDah" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select * from t_hrms_import_data where dah=#{dah}
   </select>
 
+  <select id="selectImportDataForMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from t_hrms_import_data where dah=#{dah} and month=#{month}
+  </select>
   <select id="getUserList" resultType="jssvc.user.model.User">
     select * from  t_user;
   </select>

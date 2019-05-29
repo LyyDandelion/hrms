@@ -6,6 +6,7 @@ import jssvc.hrms.model.filter.ImportDataSearchFilter;
 import jssvc.user.model.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ImportDataMapper {
     int deleteByPrimaryKey(Integer id);
@@ -30,6 +31,10 @@ public interface ImportDataMapper {
     int selectByDah(String dah);
 
     ImportData selectImportDataForDah(String dah);
+    ImportData selectImportDataForMap(Map map);
+
 
     void updateByDah(ImportData condition);
+
+    int selectByMap(Map map);
 }

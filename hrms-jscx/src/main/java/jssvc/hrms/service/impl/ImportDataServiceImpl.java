@@ -17,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ImportDataServiceImpl implements ImportDataService {
@@ -93,8 +95,24 @@ public class ImportDataServiceImpl implements ImportDataService {
     }
 
     @Override
+    public ImportData getImportData(String dah, String month) {
+        Map map =new HashMap<>();
+        map.put("dah",dah);
+        map.put("month",month);
+        return importDataMapper.selectImportDataForMap(map);
+    }
+
+    @Override
     public void updateDate(ImportData condition) {
         importDataMapper.updateByDah(condition);
+    }
+
+    @Override
+    public int getImportDataByDah(String dah, String month) {
+        Map map =new HashMap<>();
+        map.put("dah",dah);
+        map.put("month",month);
+        return importDataMapper.selectByMap(map);
     }
 
 }

@@ -113,10 +113,10 @@ public class ImportDataController extends BaseController {
 
     @ResponseBody
     @RequestMapping("ajax/checkIsExsit.do")
-    private void checkIsExsit(String dah) throws BusinessException {
+    private void checkIsExsit(String dah,String month) throws BusinessException {
         try {
             // 取得岗位列表
-            int count = importDataService.getImportDataByDah(dah);
+            int count = importDataService.getImportDataByDah(dah,month);
             String json = JSON.Encode(count);
             response.getWriter().write(json);
         }
