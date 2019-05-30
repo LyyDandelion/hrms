@@ -38,7 +38,13 @@ public class SalaryServiceImpl implements SalaryService {
 
     @Override
     public List<SalaryVo> getSalaries(SalarySearchFilter filter) throws SQLException {
-        List<Salary> salaries = salaryDao.selectSalaries(filter);
+        String pah=salaryDao.selectByLoginPah(filter);
+        List<Salary> salaries=new ArrayList<Salary>();
+        if(pah==null||pah.equals("")){
+            salaries = salaryDao.selectSalaries(filter);
+        }else{
+            salaries = salaryDao.selectSalariesByAdmin(filter);
+        }
         List<SalaryVo> salaryVos = new ArrayList<>();
         SalaryVo salaryVo;
         for(int i=0; i<salaries.size(); i++){

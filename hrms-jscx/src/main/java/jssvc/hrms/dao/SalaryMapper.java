@@ -14,11 +14,15 @@ public interface SalaryMapper {
 
     Salary selectByPrimaryKey(Integer id);
 
+    String selectByLoginPah(SalarySearchFilter filter);
+
     int updateByPrimaryKeySelective(Salary record);
 
     int updateByPrimaryKey(Salary record);
 
     List<Salary> selectSalaries(SalarySearchFilter filter);
+
+    List<Salary> selectSalariesByAdmin(SalarySearchFilter filter);
 
     int selectSalariesCount(SalarySearchFilter filter);
 

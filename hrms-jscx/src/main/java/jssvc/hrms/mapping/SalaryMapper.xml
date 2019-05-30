@@ -36,9 +36,12 @@
     <select id="selectSalaries" resultMap="BaseResultMap" parameterType="jssvc.hrms.model.filter.SalarySearchFilter">
         select distinct
         a.*
-        from t_hrms_salary a
+        from t_hrms_salary a where 1=1
         <if test="dah != null and dah!=''">
-            where a.dah = #{dah,jdbcType=VARCHAR}
+            and a.dah = #{dah,jdbcType=VARCHAR}
+        </if>
+        <if test="loginDah != null and loginDah!=''">
+            and a.dah =#{loginDah,jdbcType=VARCHAR}
         </if>
         <if test="sortField != null">
             order by a.${sortField} ${sortOrder}
@@ -48,6 +51,23 @@
         </if>
     </select>
 
+    <select id="selectSalariesByAdmin" resultMap="BaseResultMap" parameterType="jssvc.hrms.model.filter.SalarySearchFilter">
+        select distinct
+        a.*
+        from t_hrms_salary a where 1=1
+        <if test="dah != null and dah!=''">
+            and a.dah = #{dah,jdbcType=VARCHAR}
+        </if>
+        <if test="sortField != null">
+            order by a.${sortField} ${sortOrder}
+        </if>
+        <if test="limit != 0">
+            limit #{offset},#{limit}
+        </if>
+    </select>
+    <select id="selectByLoginPah" resultType="String" parameterType="jssvc.hrms.model.filter.SalarySearchFilter">
+        select a.ygxm from t_user a where a.dah =#{loginDah,jdbcType=VARCHAR} and a.ygxm like '%管理员%'
+    </select>
 
     <select id="selectSalariesByChoice" resultType="String" parameterType="jssvc.hrms.model.filter.SalarySearchFilter">
         SELECT
