@@ -185,8 +185,9 @@
                 var form = new mini.Form("#userTbl");
                 form.validate();
                 if (form.isValid() == true) {
-                    levelChange();
+                   //levelChange();
                     if (paramAction == "add") {
+                        levelChange();
                         mini.confirm("是否确定创建该考勤数据？", "确定？",function(action) {
                             if (action == "ok") {
                                 $.ajax({
