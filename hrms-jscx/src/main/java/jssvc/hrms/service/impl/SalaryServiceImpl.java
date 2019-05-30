@@ -82,7 +82,7 @@ public class SalaryServiceImpl implements SalaryService {
             BeanUtils.copyProperties(s, salaryVo);
 
             List<Constant> gwList = constantDao.selectByType(ConstantKey.KEY_POSITION);
-            Constant constant = gwList.get(s.getPostLevel().intValue());
+            Constant constant = gwList.get(s.getPostLevel().intValue()-1);
             salaryVo.setPost(constant.getName());
             return salaryVo;
         }
