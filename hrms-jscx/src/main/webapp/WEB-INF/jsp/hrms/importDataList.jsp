@@ -188,7 +188,7 @@
                         title: "编辑信息", width: 800, height: 640,
                         onload: function () {
                             var iframe = this.getIFrameEl();
-                            var data = { actionFlag: "edit", dah: row.dah };
+                            var data = { actionFlag: "edit", dah: row.dah,month:row.month };
                             iframe.contentWindow.SetData(data);
                         },
                         ondestroy: function (action) {
