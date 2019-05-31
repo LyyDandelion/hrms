@@ -155,9 +155,9 @@ public class ImportDataController extends BaseController {
 
     @ResponseBody
     @RequestMapping("ajax/get_import.do")
-    private void getImport(String dah) throws BusinessException {
+    private void getImport(String dah,String month) throws BusinessException {
         try {
-            ImportData importData = importDataService.getImportData(dah);
+            ImportData importData = importDataService.getImportData(dah,month);
 
             HashMap<String, Object> hashmap = new HashMap<String, Object>();
             hashmap.put("importData", importData);
