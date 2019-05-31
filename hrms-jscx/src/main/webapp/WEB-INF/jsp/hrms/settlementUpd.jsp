@@ -112,7 +112,7 @@
             data = mini.clone(data);
             $.ajax({
                 url: "<%=request.getContextPath()%>/ajax/get_settlement.do",
-                data: { dah: data.dah },
+                data: { dah: data.dah ,month:data.month},
                 type: "post",
                 dataType: 'text',
                 cache: false,

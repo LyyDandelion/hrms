@@ -28,6 +28,7 @@ public interface SettlementMapper {
     int selectByDah(String dah);
 
     Settlement getSettlement(String dah);
+    Settlement getSettlementTwo(String dah,String month);
     int updateByDah(Settlement record);
 
     List<String> selectSettlementByChoice(SettlementSearchFilter filter);

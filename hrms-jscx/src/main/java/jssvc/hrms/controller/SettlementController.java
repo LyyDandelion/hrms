@@ -171,9 +171,9 @@ public class SettlementController extends BaseController {
 
     @ResponseBody
     @RequestMapping("ajax/get_settlement.do")
-    private void getSettlement(String dah) throws BusinessException {
+    private void getSettlement(String dah,String month) throws BusinessException {
         try {
-            Settlement settlement = settlementService.getSettlement(dah);
+            Settlement settlement = settlementService.getSettlement(dah,month);
 
             HashMap<String, Object> hashmap = new HashMap<String, Object>();
             hashmap.put("settlement", settlement);

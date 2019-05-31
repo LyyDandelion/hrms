@@ -90,8 +90,8 @@ public class SettlementServiceImpl implements SettlementService {
     }
 
     @Override
-    public Settlement getSettlement(String dah) {
-        return settlementMapper.getSettlement(dah);
+    public Settlement getSettlement(String dah,String month) {
+        return settlementMapper.getSettlementTwo(dah,month);
     }
 
     @Override

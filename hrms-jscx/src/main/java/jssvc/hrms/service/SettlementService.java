@@ -15,7 +15,7 @@ public interface SettlementService {
 
     int getImportDataByDah(String dah);
 
-    Settlement getSettlement(String dah);
+    Settlement getSettlement(String dah,String month);
 
     void updateSettlement(Settlement settlement);
 

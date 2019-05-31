@@ -80,6 +80,9 @@
   <select id="getSettlement" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select * from t_hrms_settlement where dah=#{dah}
   </select>
+    <select id="getSettlementTwo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from t_hrms_settlement where dah=#{0} and month=#{1}
+  </select>
   <select id="selectByDah" resultType="int" parameterType="java.lang.String" >
     select count(*) from t_hrms_settlement where dah=#{dah}
   </select>
