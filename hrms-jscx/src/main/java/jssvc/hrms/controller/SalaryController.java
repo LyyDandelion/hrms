@@ -213,7 +213,7 @@ public class SalaryController extends BaseController {
             String fileName = "员工工资报表"+ DateUtil.getChinaDateString(new Date()) +".xls";
             //sheet名
             String sheetName = "工资报表";
-            String[][] content = new String[title.length][10];
+            String[][] content = new String[userVos.size()][title.length];
             for (int i = 0; i < userVos.size(); i++) {
                 SalaryVo salaryVo=userVos.get(i);
                 content[i][0] =String.valueOf(i+1);
