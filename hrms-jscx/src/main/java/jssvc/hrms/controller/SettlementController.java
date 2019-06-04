@@ -62,12 +62,27 @@ public class SettlementController extends BaseController {
             filter.setOffset();
             filter.setLimit();
             filter.setLoginDah(getSessionUser().getDah());
-            // 取得用户列表
-            List<SettlementVo> userVos = settlementService.getDatas(filter);
-            // 取得用户总件数
-            long count = settlementService.getSettlementCount(filter);
-            logger.info("导入数据总数是：" + count);
+            List<SettlementVo> userVos;
+            int count;
             HashMap<String, Object> hashmap = new HashMap<String, Object>();
+            //设置权限
+            if(getSessionUser().getDah().equals(ConstantKey.ADMIN))
+            {
+                 userVos = settlementService.getDatas(filter);
+                count = settlementService.getSettlementCount(filter);
+                hashmap.put(ConstantKey.EDIT_FLAG, true);
+                hashmap.put(ConstantKey.SEARCH_FLAG,true);
+
+            }
+            else{
+                userVos = settlementService.getDatasByLimit(filter);
+                count = settlementService.getSettlementCountByLimit(filter);
+                hashmap.put(ConstantKey.EDIT_FLAG, false);
+                hashmap.put(ConstantKey.SEARCH_FLAG,false);
+            }
+
+            logger.info("导入数据总数是：" + count);
+
             hashmap.put(ConstantKey.KEY_DATA, userVos);
             hashmap.put(ConstantKey.KEY_TOTAL, count);
             String json = JSON.Encode(hashmap);

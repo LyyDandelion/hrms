@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jssvc.hrms.dao.SalaryConfigMapper" >
+  <resultMap id="BaseResultMap" type="jssvc.hrms.model.SalaryConfig" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="en_key" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="post_salary" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="year_salary" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="float_salary" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="award" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="tel_allowrance" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="traffic_allowrance" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="lunch_allowrance" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="work_year" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="num_attr1" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="num_attr2" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="num_attr3" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="str_attr1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="str_attr2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="str_attr3" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="flag" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="note1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sort" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, en_key, name, post_salary, year_salary, float_salary, award, tel_allowrance, 
+    traffic_allowrance, lunch_allowrance, work_year, num_attr1, num_attr2, num_attr3, 
+    str_attr1, str_attr2, str_attr3, flag, note1, sort
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_hrms_salary_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_hrms_salary_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jssvc.hrms.model.SalaryConfig" >
+    insert into t_hrms_salary_config (id, type, en_key, 
+      name, post_salary, year_salary, 
+      float_salary, award, tel_allowrance, 
+      traffic_allowrance, lunch_allowrance, work_year, 
+      num_attr1, num_attr2, num_attr3, 
+      str_attr1, str_attr2, str_attr3, 
+      flag, note1, sort)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{enKey,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{postSalary,jdbcType=DOUBLE}, #{yearSalary,jdbcType=DOUBLE},
+      #{floatSalary,jdbcType=DOUBLE}, #{award,jdbcType=DOUBLE}, #{telAllowrance,jdbcType=DOUBLE}, 
+      #{trafficAllowrance,jdbcType=DOUBLE}, #{lunchAllowrance,jdbcType=DOUBLE}, #{workYear,jdbcType=DOUBLE}, 
+      #{numAttr1,jdbcType=DOUBLE}, #{numAttr2,jdbcType=DOUBLE}, #{numAttr3,jdbcType=DOUBLE}, 
+      #{strAttr1,jdbcType=VARCHAR}, #{strAttr2,jdbcType=VARCHAR}, #{strAttr3,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{note1,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jssvc.hrms.model.SalaryConfig" >
+    insert into t_hrms_salary_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="enKey != null" >
+        en_key,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="postSalary != null" >
+        post_salary,
+      </if>
+      <if test="yearSalary != null" >
+        year_salary,
+      </if>
+      <if test="floatSalary != null" >
+        float_salary,
+      </if>
+      <if test="award != null" >
+        award,
+      </if>
+      <if test="telAllowrance != null" >
+        tel_allowrance,
+      </if>
+      <if test="trafficAllowrance != null" >
+        traffic_allowrance,
+      </if>
+      <if test="lunchAllowrance != null" >
+        lunch_allowrance,
+      </if>
+      <if test="workYear != null" >
+        work_year,
+      </if>
+      <if test="numAttr1 != null" >
+        num_attr1,
+      </if>
+      <if test="numAttr2 != null" >
+        num_attr2,
+      </if>
+      <if test="numAttr3 != null" >
+        num_attr3,
+      </if>
+      <if test="strAttr1 != null" >
+        str_attr1,
+      </if>
+      <if test="strAttr2 != null" >
+        str_attr2,
+      </if>
+      <if test="strAttr3 != null" >
+        str_attr3,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="note1 != null" >
+        note1,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="enKey != null" >
+        #{enKey,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="postSalary != null" >
+        #{postSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="yearSalary != null" >
+        #{yearSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="floatSalary != null" >
+        #{floatSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="award != null" >
+        #{award,jdbcType=DOUBLE},
+      </if>
+      <if test="telAllowrance != null" >
+        #{telAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="trafficAllowrance != null" >
+        #{trafficAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="lunchAllowrance != null" >
+        #{lunchAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="workYear != null" >
+        #{workYear,jdbcType=DOUBLE},
+      </if>
+      <if test="numAttr1 != null" >
+        #{numAttr1,jdbcType=DOUBLE},
+      </if>
+      <if test="numAttr2 != null" >
+        #{numAttr2,jdbcType=DOUBLE},
+      </if>
+      <if test="numAttr3 != null" >
+        #{numAttr3,jdbcType=DOUBLE},
+      </if>
+      <if test="strAttr1 != null" >
+        #{strAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="strAttr2 != null" >
+        #{strAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="strAttr3 != null" >
+        #{strAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="note1 != null" >
+        #{note1,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jssvc.hrms.model.SalaryConfig" >
+    update t_hrms_salary_config
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="enKey != null" >
+        en_key = #{enKey,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="postSalary != null" >
+        post_salary = #{postSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="yearSalary != null" >
+        year_salary = #{yearSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="floatSalary != null" >
+        float_salary = #{floatSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="award != null" >
+        award = #{award,jdbcType=DOUBLE},
+      </if>
+      <if test="telAllowrance != null" >
+        tel_allowrance = #{telAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="trafficAllowrance != null" >
+        traffic_allowrance = #{trafficAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="lunchAllowrance != null" >
+        lunch_allowrance = #{lunchAllowrance,jdbcType=DOUBLE},
+      </if>
+      <if test="workYear != null" >
+        work_year = #{workYear,jdbcType=DOUBLE},
+      </if>
+      <if test="numAttr1 != null" >
+        num_attr1 = #{numAttr1,jdbcType=DOUBLE},
+      </if>
+      <if test="numAttr2 != null" >
+        num_attr2 = #{numAttr2,jdbcType=DOUBLE},
+      </if>
+      <if test="numAttr3 != null" >
+        num_attr3 = #{numAttr3,jdbcType=DOUBLE},
+      </if>
+      <if test="strAttr1 != null" >
+        str_attr1 = #{strAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="strAttr2 != null" >
+        str_attr2 = #{strAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="strAttr3 != null" >
+        str_attr3 = #{strAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="note1 != null" >
+        note1 = #{note1,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jssvc.hrms.model.SalaryConfig" >
+    update t_hrms_salary_config
+    set type = #{type,jdbcType=VARCHAR},
+      en_key = #{enKey,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      post_salary = #{postSalary,jdbcType=DOUBLE},
+      year_salary = #{yearSalary,jdbcType=DOUBLE},
+      float_salary = #{floatSalary,jdbcType=DOUBLE},
+      award = #{award,jdbcType=DOUBLE},
+      tel_allowrance = #{telAllowrance,jdbcType=DOUBLE},
+      traffic_allowrance = #{trafficAllowrance,jdbcType=DOUBLE},
+      lunch_allowrance = #{lunchAllowrance,jdbcType=DOUBLE},
+      work_year = #{workYear,jdbcType=DOUBLE},
+      num_attr1 = #{numAttr1,jdbcType=DOUBLE},
+      num_attr2 = #{numAttr2,jdbcType=DOUBLE},
+      num_attr3 = #{numAttr3,jdbcType=DOUBLE},
+      str_attr1 = #{strAttr1,jdbcType=VARCHAR},
+      str_attr2 = #{strAttr2,jdbcType=VARCHAR},
+      str_attr3 = #{strAttr3,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      note1 = #{note1,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getRecordByEnKey" parameterType="java.lang.String" resultType="int">
+   select count(1)
+    from t_hrms_salary_config
+    where
+      en_key=#{enKey}
+  </select>
+    <select id="selectConfigCount" resultType="int" parameterType="jssvc.base.model.filter.ConfigSearchFilter" >
+    select count(1)
+    from t_hrms_salary_config
+  </select>
+  <select id="selectConfig" resultMap="BaseResultMap" parameterType="jssvc.base.model.filter.ConfigSearchFilter" >
+    select distinct
+    a.*
+    from t_hrms_salary_config a
+    <where>
+      <if test="enKey != null and enKey != ''" >
+        a.en_key=#{enKey}
+      </if>
+      <if test="name != null and name != ''" >
+        and a.name like CONCAT('%',#{name},'%')
+      </if>
+    </where>
+
+    <if test="sortField != null" >
+      order by a.${sortField} ${sortOrder}
+    </if>
+    <if test="limit != 0" >
+      limit #{offset},#{limit}
+    </if>
+  </select>
+</mapper>

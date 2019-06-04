@@ -1,6 +1,7 @@
 package jssvc.hrms.dao;
 
 import jssvc.hrms.model.Settlement;
+import jssvc.hrms.model.TotalSheetVo;
 import jssvc.hrms.model.filter.SettlementSearchFilter;
 import org.apache.ibatis.annotations.Param;
 
@@ -36,4 +37,11 @@ public interface SettlementMapper {
     List<Settlement> querySettlement(SettlementSearchFilter filter);
 
     String queryDeptInfo(@Param("dah") String dah);
+
+    List<Settlement> selectSettlementByLimit(SettlementSearchFilter filter);
+
+    int selectSettlementCountByLimit(SettlementSearchFilter filter);
+
+    List<TotalSheetVo> getTotalSheet(SettlementSearchFilter filter);
+    List<TotalSheetVo>  getTotalSheetByMonthDept(SettlementSearchFilter filter);
 }

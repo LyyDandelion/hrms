@@ -66,8 +66,9 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="t_hrms_settlement"
-               domainObjectName="Settlement"
+        <!--注意！！！！ tableName 和 domainObjectName 都得修改 -->
+        <table tableName="t_hrms_salary_config"
+               domainObjectName="SalaryConfig"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

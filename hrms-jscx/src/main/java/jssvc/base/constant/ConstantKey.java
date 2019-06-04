@@ -520,4 +520,6 @@ public class ConstantKey {
     public static final String EXPORT_PATH =PropertyUtil.getProperty("export_path");
     public static final String POSITION ="position" ;
     public static final String EN_KEY = "en_key";
+
+    public static final String DEFUALT_FLAG ="1";
 }

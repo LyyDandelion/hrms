@@ -156,4 +156,46 @@ public class SettlementServiceImpl implements SettlementService {
         }
         return SettlementVoList;
     }
+
+    @Override
+    public List<SettlementVo> getDatasByLimit(SettlementSearchFilter filter) {
+        List<Settlement> Settlements = settlementMapper.selectSettlementByLimit(filter);
+        List<SettlementVo> SettlementVoList = new ArrayList<>();
+        SettlementVo SettlementVo;
+        for (int i = 0; i < Settlements.size(); i++) {
+            Settlement s = Settlements.get(i);
+            SettlementVo = new SettlementVo();
+            BeanUtils.copyProperties(s, SettlementVo);
+            //TODO 填充一些Vo特殊的属性
+            // 取得姓名
+            User u = userDao.selectByPrimaryKey(s.getDah());
+            SettlementVo.setName(u.getYgxm());
+
+            // 取得岗位列表
+            List<Salary> salaryList=salaryMapper.selectByDah(s.getDah());
+            if(salaryList.size()<1)
+            {
+                return null;
+            }
+            Constant constant=new Constant();
+            // 取得岗位列表
+            List<Constant> gwList = constantDao.selectByType(ConstantKey.KEY_POSITION);
+            for(int k=0;k<gwList.size();k++)
+            {
+                if(salaryList.get(0).getPostLevel().intValue()==Integer.parseInt(gwList.get(k).getEnKey()))
+                {
+                    constant = gwList.get(k);
+                }
+            }
+            SettlementVo.setPost(constant.getName());
+
+            SettlementVoList.add(SettlementVo);
+        }
+        return SettlementVoList;
+    }
+
+    @Override
+    public int getSettlementCountByLimit(SettlementSearchFilter filter) {
+        return settlementMapper.selectSettlementCountByLimit(filter);
+    }
 }

@@ -26,12 +26,52 @@
       <arg column="sort" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+    <resultMap id="TotalMap" type="jssvc.hrms.model.TotalSheetVo" >
+        <result column="month" property="month"/>
+        <result column="month_total" property="monthTotal"/>
+        <result column="dept" property="dept"/>
+        <result column="dept_total" property="deptTotal"/>
+    </resultMap>
   <sql id="Base_Column_List" >
     id, dah, month, sick_deduction, compassionate_deduction, late_deduction, overtime_salary, 
     owner_endowment_insurance, company_endowment_insurance, owner_medical_insurance, 
     company_medical_insurance, owner_accumulation_fund, company_accumulation_fund, update_date, 
     base,real_wages,is_grant, flag, note1, sort
   </sql>
+    <select id="getTotalSheet"  resultMap="TotalMap" parameterType="jssvc.hrms.model.filter.SettlementSearchFilter">
+        SELECT month, sum(real_wages) as month_total FROM `t_hrms_settlement` s GROUP BY month order by month asc;
+    </select>
+    <select id="getTotalSheetByMonthDept" resultMap="TotalMap" parameterType="jssvc.hrms.model.filter.SettlementSearchFilter">
+        SELECT
+	      hs.`month`,
+	      sum(real_wages) as month_total,
+	      du.jgh,
+	      di.jgmc as dept
+         FROM
+	        t_hrms_settlement hs
+	     LEFT JOIN t_dept_user du ON hs.dah = du.dah
+          left join t_dept_info di on du.jgh=di.jgh GROUP BY jgh
+    </select>
+
+    <select id="selectSettlementByLimit"  resultMap="BaseResultMap" parameterType="jssvc.hrms.model.filter.SettlementSearchFilter" >
+        select distinct
+        a.*
+        from t_hrms_settlement a
+        where
+            a.dah =#{loginDah}
+        <if test="sortField != null" >
+            order by a.${sortField} ${sortOrder}
+        </if>
+        <if test="limit != 0" >
+            limit #{offset},#{limit}
+        </if>
+    </select>
+
+    <select id="selectSettlementCountByLimit" resultType="int" parameterType="jssvc.hrms.model.filter.SettlementSearchFilter" >
+    select count(1)
+    from t_hrms_settlement
+    where dah=#{loginDah}
+  </select>
 
   <select id="selectSettlement" resultMap="BaseResultMap" parameterType="jssvc.hrms.model.filter.SettlementSearchFilter" >
     select distinct

@@ -16,20 +16,13 @@
     <body id="userBody" style="display: none">
         <div class="mini-toolbar" style="padding:2px;border-bottom:0;">
             <table style="width:100%;table-layout:fixed;">
-                <tr>
+                <tr id="search_form">
                     <td style="width:120px">
                         <!-- 原来是添加拼音功能 -->
                     </td>
                     <td style="width:120px">
                         <a class="mini-button" style="width:120px" iconCls="icon-add" id="add" onclick="add()">结算</a>
                     </td>
-                    <%--<td style="width:60px;text-align:right;">院部：</td>--%>
-                    <%--<td style="width:35%">--%>
-                        <%--<input id="jgh" name="jgh" class="mini-treeselect" style="width:100%;" textField="jgmc"--%>
-                        <%--valueField="jgh" parentField="sjjg" expandOnLoad="0"--%>
-                         <%--allowInput="true">--%>
-                        <%--</input>--%>
-                    <%--</td>--%>
                     <td style="width:60px;text-align:right;">工号：</td>
                     <td style="width:15%">
                         <input id="dah" name="dah" class="mini-textbox" style="width:100%;"/>
@@ -38,10 +31,6 @@
                     <td style="width:15%">
                         <input id="ygxm" name="ygxm" class="mini-textbox" style="width:100%;"/>
                     </td>
-                    <%--<td style="width:70px;text-align:right;">状态：</td>--%>
-                    <%--<td style="width:15%">--%>
-                        <%--<input id="flag" name="flag" class="mini-combobox" showNullItem="true" textField="text" valueField="id" style="width:100%;"/>--%>
-                    <%--</td>--%>
                     <td style="width:100px"><a class="mini-button" id="search" onclick="search()" style="width:100%;">查询</a></td>
                 </tr>
             </table>
@@ -78,29 +67,37 @@
         <script type="text/javascript">
             mini.parse();
             $("#userBody").fadeTo("slow", 1);
+            // console.log()
             var editFlag = true;
             var pwdFlag = true;
             var delFlag = true;
-           /* $(document).ready(function() {
+            $(document).ready(function() {
                 $.ajax({
-                    url: "<%=request.getContextPath()%>/ajax/salary_initSalaryList.do",
+                    url: "<%=request.getContextPath()%>/ajax/settlement_getDatas.do",
                     data:{id: "<%=request.getParameter("id")%>"},
                     type: "post",
                     async: false,
                     dataType: 'text',
                     success: function (text) {
+                        debugger;
                         var data = mini.decode(text);
-                        // 绑定机构列表
-                        var tree = mini.get("jgh");
-                        tree.loadList(data.jgxx);
-                        // 绑定用户状态
-                        var flag = mini.get("flag");
-                        flag.setData(data.ygzt);
+                        // // 绑定机构列表
+                        // var tree = mini.get("jgh");
+                        // tree.loadList(data.jgxx);
+                        // // 绑定用户状态
+                        // var flag = mini.get("flag");
+                        // flag.setData(data.ygzt);
                         if (data.editFlag == false) {
                             mini.get("add").setEnabled(false);
+                            $("#add").hide();
+                            $("#search_form").hide();
                         }
                         if (data.searchFlag == false) {
                             mini.get("search").setEnabled(false);
+                            $("#search").hide();
+                            $("#ygxm").hide();
+                            $("#dah").hide();
+
                         }
                         if (data.batchPinyinFlag == false) {
                             $("#batchAddPinyin").css("display","none");
@@ -115,20 +112,18 @@
                         pwdFlag = data.pwdFlag;
                     }
                 });
-            }); */
-
+            });
             var grid = mini.get("salaryDatagrid");
             // mini.get("flag").setValue("0");
             // grid.load({"flag":"0"});
             grid.sortBy("dah", "ASC");
-            
+
             // 操作列的生成
             function onActionRenderer(e) {
                 var grid = e.sender;
                 var record = e.record;
                 var uid = record._uid;
                 var rowIndex = e.rowIndex;
-
                 var s = '';
                 // 编辑权限设定
                 if (editFlag) {

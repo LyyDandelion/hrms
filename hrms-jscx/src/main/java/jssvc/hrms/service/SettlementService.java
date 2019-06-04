@@ -22,4 +22,8 @@ public interface SettlementService {
     List<Settlement> getSettlementByChoice(SettlementSearchFilter filter);
 
     List<SettlementVo> qurerySettlement(SettlementSearchFilter filter);
+
+    List<SettlementVo> getDatasByLimit(SettlementSearchFilter filter);
+
+    int getSettlementCountByLimit(SettlementSearchFilter filter);
 }

@@ -151,11 +151,43 @@
             }
 
             function levelChange(){
-                mini.get("postSalary").setValue( mini.get("postLevel").getValue() * 1100 )
-                mini.get("award").setValue( mini.get("postLevel").getValue() * 1500 )
-                mini.get("trafficAllowrance").setValue( mini.get("postLevel").getValue() * 200 )
-                mini.get("telAllowrance").setValue( mini.get("postLevel").getValue() * 100 )
-                mini.get("lunchAllowrance").setValue( mini.get("postLevel").getValue() * 30 )
+                debugger;
+                var enKey=mini.get("postLevel").getValue();
+                $("#enKey").val(enKey);
+                $.ajax({
+                    url:"ajax/config_get.do",
+                    data:{
+                        enKey:enKey
+                    },
+                    success:function(data){
+                        var form = new mini.Form("#userTbl");
+                        console.log("data:"+JSON.stringify(data));
+                        var condition=data.condition;
+                        var o = mini.decode(data);
+                        form.setData(o.condition);
+                        mini.get("postLevel").setValue(enKey);
+                        // mini.get("postSalary").setValue( condition.postSalary )
+                        // mini.get("award").setValue(condition.award )
+                        // mini.get("trafficAllowrance").setValue( condition.trafficAllowrance )
+                        // mini.get("telAllowrance").setValue( condition.telAllowrance )
+                        // mini.get("lunchAllowrance").setValue(condition.lunchAllowrance)
+                        // if(data=="1")
+                        // {
+                        //     alert("此岗位配置已存在");
+                        //     mini.get("enKey").setValue("");
+                        //     mini.get("name").setValue("");
+                        // }
+                        // console.log(JSON.stringify(data));
+                    }
+
+                })
+
+                // mini.get("postSalary").setValue( mini.get("postLevel").getValue() * 1100 )
+                // mini.get("award").setValue( mini.get("postLevel").getValue() * 1500 )
+                // mini.get("trafficAllowrance").setValue( mini.get("postLevel").getValue() * 200 )
+                // mini.get("telAllowrance").setValue( mini.get("postLevel").getValue() * 100 )
+                // mini.get("lunchAllowrance").setValue( mini.get("postLevel").getValue() * 30 )
+
             }
 
             function yearChange(){
