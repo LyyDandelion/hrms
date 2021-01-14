@@ -168,7 +168,7 @@
       <dependency>
           <groupId>org.apache.poi</groupId>
           <artifactId>poi</artifactId>
-          <version>3.8-beta4</version>
+          <version>3.17</version>
       </dependency>
       <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
       <dependency>
@@ -198,7 +198,7 @@
       <dependency>
           <groupId>org.apache.poi</groupId>
           <artifactId>poi</artifactId>
-          <version>3.6</version>
+          <version>3.17</version>
       </dependency>
       <dependency>
           <groupId>jstl</groupId>
